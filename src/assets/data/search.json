@@ -1,0 +1,72 @@
+{
+  "asset": [
+    { "id": "A001", "name": "Excavator CAT 336", "code": "EX-336", "location": "Pit 1" },
+    { "id": "A002", "name": "Dump Truck Komatsu HD785", "code": "DT-785", "location": "Haul Road" },
+    { "id": "A003", "name": "Bulldozer CAT D8T", "code": "BD-D8T", "location": "Pit 2" }
+  ],
+  "item": [
+    { "id": "I001", "name": "Hydraulic Oil", "sku": "HYD-001", "category": "Consumable" },
+    { "id": "I002", "name": "Spare Tire", "sku": "TIRE-002", "category": "Sparepart" }
+  ],
+  "workorder": [
+    { "id": "WO-2025-001", "title": "Quarterly Maintenance Excavator", "status": "Scheduled" },
+    { "id": "WO-2025-002", "title": "Repair Dump Truck Brake", "status": "Completed" }
+  ],
+  "employee": [
+    { "id": "E001", "name": "Andi Saputra", "department": "Maintenance" },
+    { "id": "E002", "name": "Budi Santoso", "department": "Operation" }
+  ],
+  "menu": [
+    { "id": "dashboard", "name": "Dashboard", "path": "/dashboard", "icon": "mdiViewDashboard", "level": 1 },
+    { "id": "Task", "name": "Task Management", "path": "/task", "icon": "mdiClipboardList", "level": 2, "parent": "Transaction" },
+    { "id": "maintenance", "name": "Work Order", "path": "/work-order", "icon": "mdiWrench", "level": 2, "parent": "Transaction" },
+    { "id": "defect", "name": "Defect Management", "path": "/defect", "icon": "mdiAlertCircle", "level": 2, "parent": "Transaction" },
+    { "id": "itemstat", "name": "Material Status", "path": "/material-status", "icon": "mdiPackageVariant", "level": 2, "parent": "Transaction" },
+    { "id": "sync", "name": "Sync Data", "path": "/sync-data", "icon": "mdiSync", "level": 2, "parent": "Transaction" },
+    { "id": "reports", "name": "Reports", "path": "/reports", "icon": "mdiChartBox", "level": 2, "parent": "Transaction" },
+    { "id": "master-data-local", "name": "Master Data Local", "path": "/system/master-local", "icon": "mdiDatabase", "level": 2, "parent": "System" },
+    { "id": "master-data-sap", "name": "Master Data SAP", "path": "/system/master-sap", "icon": "mdiDatabaseSync", "level": 2, "parent": "System" },
+    { "id": "settings", "name": "Settings", "path": "/settings", "icon": "mdiCog", "level": 2, "parent": "System" },
+    
+    { "id": "asset-utilization", "name": "Asset Utilization", "path": "/reports/asset-utilization", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "maintenance-history", "name": "Maintenance History", "path": "/reports/maintenance-history", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "scheduled-maintenance", "name": "Scheduled Maintenance", "path": "/reports/scheduled-maintenance", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "cost-analysis", "name": "Cost Analysis", "path": "/reports/cost-analysis", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "downtime-analysis", "name": "Downtime Analysis", "path": "/reports/downtime-analysis", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "equipment-performance", "name": "Equipment Performance", "path": "/reports/equipment-performance", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "inventory-status", "name": "Inventory Status", "path": "/reports/inventory-status", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "maintenance-compliance", "name": "Maintenance Compliance", "path": "/reports/maintenance-compliance", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "fuel-consumption", "name": "Fuel Consumption", "path": "/reports/fuel-consumption", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "equipment-availability", "name": "Equipment Availability", "path": "/reports/equipment-availability", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "parts-usage", "name": "Parts Usage", "path": "/reports/parts-usage", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "labor-analysis", "name": "Labor Analysis", "path": "/reports/labor-analysis", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "service-contracts", "name": "Service Contracts", "path": "/reports/service-contracts", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "warranty-coverage", "name": "Warranty Coverage", "path": "/reports/warranty-coverage", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "oil-analysis", "name": "Oil Analysis", "path": "/reports/oil-analysis", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "asset-lifecycle", "name": "Asset Lifecycle", "path": "/reports/asset-lifecycle", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "component-reliability", "name": "Component Reliability", "path": "/reports/component-reliability", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "inspection-findings", "name": "Inspection Findings", "path": "/reports/inspection-findings", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "safety-incidents", "name": "Safety Incidents", "path": "/reports/safety-incidents", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "productivity-metrics", "name": "Productivity Metrics", "path": "/reports/productivity-metrics", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "operator-performance", "name": "Operator Performance", "path": "/reports/operator-performance", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    { "id": "site-comparison", "name": "Site Comparison", "path": "/reports/site-comparison", "icon": "mdiChartBox", "level": 3, "parent": "Reports" },
+    
+    { "id": "asset-categories", "name": "Asset Categories", "path": "/system/master-local/asset-categories", "icon": "mdiShape", "level": 3, "parent": "Master Data Local" },
+    { "id": "maintenance-types", "name": "Maintenance Types", "path": "/system/master-local/maintenance-types", "icon": "mdiTools", "level": 3, "parent": "Master Data Local" },
+    { "id": "status-definitions", "name": "Status Definitions", "path": "/system/master-local/status-definitions", "icon": "mdiTagMultiple", "level": 3, "parent": "Master Data Local" },
+    { "id": "locations", "name": "Locations", "path": "/system/master-local/locations", "icon": "mdiMapMarker", "level": 3, "parent": "Master Data Local" },
+    
+    { "id": "work-centers", "name": "Work Centers", "path": "/system/master-sap/work-centers", "icon": "mdiCogs", "level": 3, "parent": "Master Data SAP" },
+    { "id": "equipment-master", "name": "Equipment Master", "path": "/system/master-sap/equipment-master", "icon": "mdiPackageVariant", "level": 3, "parent": "Master Data SAP" },
+    { "id": "functional-locations", "name": "Functional Locations", "path": "/system/master-sap/functional-locations", "icon": "mdiMapMarker", "level": 3, "parent": "Master Data SAP" },
+    { "id": "material-master", "name": "Material Master", "path": "/system/master-sap/material-master", "icon": "mdiPackage", "level": 3, "parent": "Master Data SAP" },
+    { "id": "vendor-master", "name": "Vendor Master", "path": "/system/master-sap/vendor-master", "icon": "mdiBriefcase", "level": 3, "parent": "Master Data SAP" },
+    { "id": "cost-centers", "name": "Cost Centers", "path": "/system/master-sap/cost-centers", "icon": "mdiCurrencyUsd", "level": 3, "parent": "Master Data SAP" },
+    { "id": "plant-maintenance", "name": "Plant Maintenance", "path": "/system/master-sap/plant-maintenance", "icon": "mdiFactory", "level": 3, "parent": "Master Data SAP" },
+    { "id": "activity-types", "name": "Activity Types", "path": "/system/master-sap/activity-types", "icon": "mdiClipboardList", "level": 3, "parent": "Master Data SAP" },
+    { "id": "maintenance-plans", "name": "Maintenance Plans", "path": "/system/master-sap/maintenance-plans", "icon": "mdiCalendarClock", "level": 3, "parent": "Master Data SAP" },
+    { "id": "bill-of-materials", "name": "Bill of Materials (BOM)", "path": "/system/master-sap/bill-of-materials", "icon": "mdiFormatListBulleted", "level": 3, "parent": "Master Data SAP" },
+    { "id": "purchasing-info", "name": "Purchasing Info Records", "path": "/system/master-sap/purchasing-info", "icon": "mdiCart", "level": 3, "parent": "Master Data SAP" },
+    { "id": "warehouse-management", "name": "Warehouse Management", "path": "/system/master-sap/warehouse-management", "icon": "mdiWarehouse", "level": 3, "parent": "Master Data SAP" }
+  ]
+}

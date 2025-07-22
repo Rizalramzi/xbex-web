@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Heavy Equipment",
+    "description": "Mining excavators, bulldozers, crushers, and drilling equipment",
+    "color": "#3B82F6",
+    "icon": "mdiExcavator",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Power Generation",
+    "description": "Generators, power distribution, and electrical equipment",
+    "color": "#10B981",
+    "icon": "mdiLightningBolt",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "id": 3,
+    "name": "Mining Trucks",
+    "description": "Haul trucks, dump trucks, and specialized mining vehicles",
+    "color": "#F59E0B",
+    "icon": "mdiTruckFast",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "id": 4,
+    "name": "Processing Equipment",
+    "description": "Crushing, screening, and coal processing machinery",
+    "color": "#8B5CF6",
+    "icon": "mdiCogBox",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "id": 5,
+    "name": "Support Equipment",
+    "description": "Water trucks, graders, and auxiliary mining equipment",
+    "color": "#EF4444",
+    "icon": "mdiTools",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  }
+]

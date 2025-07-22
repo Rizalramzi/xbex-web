@@ -1,0 +1,480 @@
+[
+  {
+    "id": "TASK-001",
+    "workOrderId": "WO-2024-001",
+    "taskNumber": 1,
+    "title": "Engine Oil and Filter Change",
+    "description": "Drain old engine oil, replace oil filter, and refill with specified grade oil",
+    "type": "maintenance",
+    "priority": "High",
+    "status": "completed",
+    "assignedTo": "Michael Torres",
+    "estimatedDuration": 120,
+    "actualDuration": 105,
+    "instructions": [
+      "Warm up engine to operating temperature",
+      "Drain oil completely using drain valve",
+      "Remove and replace oil filter using proper wrench",
+      "Install new drain plug with new gasket",
+      "Refill with 32 liters of 15W-40 engine oil",
+      "Check oil level and top up if necessary",
+      "Run engine and check for leaks",
+      "Update maintenance log"
+    ],
+    "safetyRequirements": [
+      "Wear safety glasses and gloves",
+      "Ensure engine is not too hot to avoid burns",
+      "Use proper lifting equipment for heavy oil containers",
+      "Dispose of used oil and filter properly"
+    ],
+    "requiredSkills": ["Engine Maintenance", "Fluid Handling"],
+    "toolsRequired": ["Oil drain pan", "Filter wrench", "Torque wrench", "Funnel"],
+    "expectedStartTime": "2024-06-25T06:00:00Z",
+    "actualStartTime": "2024-06-25T06:15:00Z",
+    "expectedEndTime": "2024-06-25T08:00:00Z",
+    "actualEndTime": "2024-06-25T08:00:00Z",
+    "progressPercentage": 100,
+    "feedback": "Task completed successfully. Oil was slightly darker than expected indicating good drainage timing. No leaks detected after completion.",
+    "qualityChecks": [
+      {
+        "item": "Oil level check",
+        "status": "passed",
+        "notes": "Oil level within specifications"
+      },
+      {
+        "item": "Leak inspection",
+        "status": "passed",
+        "notes": "No leaks detected"
+      }
+    ],
+    "completedBy": "Michael Torres",
+    "verifiedBy": "Senior Mechanic Johnson",
+    "completionNotes": "All procedures followed correctly. Equipment ready for service."
+  },
+  {
+    "id": "TASK-002",
+    "workOrderId": "WO-2024-001",
+    "taskNumber": 2,
+    "title": "Hydraulic System Inspection and Service",
+    "description": "Check hydraulic fluid levels, inspect hoses and fittings, test system pressure",
+    "type": "inspection",
+    "priority": "High",
+    "status": "in-progress",
+    "assignedTo": "Sarah Kim",
+    "estimatedDuration": 180,
+    "actualDuration": 120,
+    "instructions": [
+      "Check hydraulic fluid level in main tank",
+      "Inspect all hydraulic hoses for wear and damage",
+      "Check all fittings for tightness and leaks",
+      "Test hydraulic system pressure using gauge",
+      "Check operation of all hydraulic functions",
+      "Clean hydraulic tank breather filter",
+      "Top up hydraulic fluid if necessary",
+      "Document all findings"
+    ],
+    "safetyRequirements": [
+      "Depressurize hydraulic system before inspection",
+      "Wear safety glasses when working with hydraulic fluid",
+      "Use proper lockout/tagout procedures",
+      "Check for hot surfaces before touching components"
+    ],
+    "requiredSkills": ["Hydraulic Systems", "Pressure Testing"],
+    "toolsRequired": ["Pressure gauge", "Hydraulic fluid", "Cleaning supplies", "Torque wrench"],
+    "expectedStartTime": "2024-06-25T08:30:00Z",
+    "actualStartTime": "2024-06-25T08:45:00Z",
+    "expectedEndTime": "2024-06-25T11:30:00Z",
+    "actualEndTime": null,
+    "progressPercentage": 75,
+    "feedback": "Hydraulic fluid level was slightly low. Found minor leak at boom cylinder connection. Pressure test results within specifications.",
+    "qualityChecks": [
+      {
+        "item": "Fluid level",
+        "status": "attention_required",
+        "notes": "Level 15% below full mark"
+      },
+      {
+        "item": "System pressure",
+        "status": "passed",
+        "notes": "Pressure within 320-350 bar range"
+      }
+    ],
+    "completedBy": null,
+    "verifiedBy": null,
+    "completionNotes": "Task in progress. Need to address minor leak before completion."
+  },
+  {
+    "id": "TASK-003",
+    "workOrderId": "WO-2024-001",
+    "taskNumber": 3,
+    "title": "Track Chain and Sprocket Inspection",
+    "description": "Inspect track chains for wear, check sprocket teeth condition, measure track tension",
+    "type": "inspection",
+    "priority": "Medium",
+    "status": "scheduled",
+    "assignedTo": "Robert Chen",
+    "estimatedDuration": 90,
+    "actualDuration": 0,
+    "instructions": [
+      "Clean track chains and sprockets of debris",
+      "Inspect track chain pins for wear",
+      "Check sprocket teeth for damage or excessive wear",
+      "Measure track tension according to specifications",
+      "Lubricate track drive mechanism",
+      "Check track alignment",
+      "Document measurements and findings"
+    ],
+    "safetyRequirements": [
+      "Ensure machine is on level ground and secured",
+      "Use proper lifting equipment for heavy components",
+      "Wear steel-toed boots when working around tracks",
+      "Be aware of pinch points"
+    ],
+    "requiredSkills": ["Track Systems", "Measurement Tools"],
+    "toolsRequired": ["Measuring tape", "Calipers", "Grease gun", "Cleaning brushes"],
+    "expectedStartTime": "2024-06-25T12:00:00Z",
+    "actualStartTime": null,
+    "expectedEndTime": "2024-06-25T13:30:00Z",
+    "actualEndTime": null,
+    "progressPercentage": 0,
+    "feedback": null,
+    "qualityChecks": [],
+    "completedBy": null,
+    "verifiedBy": null,
+    "completionNotes": null
+  },
+  {
+    "id": "TASK-004",
+    "workOrderId": "WO-2024-002",
+    "taskNumber": 1,
+    "title": "Transmission Diagnosis",
+    "description": "Diagnose transmission failure and identify root cause",
+    "type": "diagnosis",
+    "priority": "Critical",
+    "status": "completed",
+    "assignedTo": "Expert Mechanic Wilson",
+    "estimatedDuration": 240,
+    "actualDuration": 180,
+    "instructions": [
+      "Connect diagnostic equipment to transmission control module",
+      "Retrieve error codes and review fault history",
+      "Perform visual inspection of transmission exterior",
+      "Check transmission fluid level and condition",
+      "Test electrical connections and sensors",
+      "Review operator report of failure symptoms",
+      "Document findings and recommend repair actions"
+    ],
+    "safetyRequirements": [
+      "Ensure vehicle is properly supported",
+      "Disconnect battery before electrical work",
+      "Wear appropriate PPE",
+      "Follow lockout/tagout procedures"
+    ],
+    "requiredSkills": ["Transmission Diagnostics", "Electronic Systems", "Heavy Equipment"],
+    "toolsRequired": ["Diagnostic scanner", "Multimeter", "Transmission fluid tester", "Basic tools"],
+    "expectedStartTime": "2024-06-18T15:00:00Z",
+    "actualStartTime": "2024-06-18T15:45:00Z",
+    "expectedEndTime": "2024-06-18T19:00:00Z",
+    "actualEndTime": "2024-06-18T18:45:00Z",
+    "progressPercentage": 100,
+    "feedback": "Fault codes indicate solenoid valve failure in shift control circuit. Transmission fluid contaminated with metal particles. Root cause: Solenoid valve failure due to contaminated fluid.",
+    "qualityChecks": [
+      {
+        "item": "Diagnostic codes retrieved",
+        "status": "passed",
+        "notes": "Multiple codes related to shift solenoid circuit"
+      },
+      {
+        "item": "Fluid analysis",
+        "status": "failed",
+        "notes": "Fluid contaminated with metal debris"
+      }
+    ],
+    "completedBy": "Expert Mechanic Wilson",
+    "verifiedBy": "Shop Supervisor Davis",
+    "completionNotes": "Diagnosis complete. Recommend solenoid replacement and fluid system flush."
+  },
+  {
+    "id": "TASK-005",
+    "workOrderId": "WO-2024-002",
+    "taskNumber": 2,
+    "title": "Transmission Solenoid Replacement",
+    "description": "Remove faulty solenoid valve and install new unit",
+    "type": "repair",
+    "priority": "Critical",
+    "status": "completed",
+    "assignedTo": "Transmission Specialist Lee",
+    "estimatedDuration": 360,
+    "actualDuration": 420,
+    "instructions": [
+      "Drain transmission fluid completely",
+      "Remove transmission pan and filter",
+      "Disconnect electrical connections to solenoid",
+      "Remove bolts securing solenoid assembly",
+      "Install new solenoid with proper torque specifications",
+      "Replace transmission filter and pan gasket",
+      "Reconnect all electrical connections",
+      "Refill transmission with new fluid",
+      "Perform system test and calibration"
+    ],
+    "safetyRequirements": [
+      "Use proper lifting equipment for transmission components",
+      "Wear chemical-resistant gloves when handling fluids",
+      "Ensure proper ventilation in work area",
+      "Follow electrical safety procedures"
+    ],
+    "requiredSkills": ["Transmission Repair", "Hydraulic Systems", "Electrical Systems"],
+    "toolsRequired": ["Transmission jack", "Torque wrench set", "Electrical tools", "Fluid handling equipment"],
+    "expectedStartTime": "2024-06-18T20:00:00Z",
+    "actualStartTime": "2024-06-18T20:15:00Z",
+    "expectedEndTime": "2024-06-19T02:00:00Z",
+    "actualEndTime": "2024-06-19T03:15:00Z",
+    "progressPercentage": 100,
+    "feedback": "Solenoid replacement completed successfully. Additional time required due to corroded bolts that needed special removal tools. New fluid installed and system tested.",
+    "qualityChecks": [
+      {
+        "item": "Solenoid installation torque",
+        "status": "passed",
+        "notes": "All bolts torqued to specification"
+      },
+      {
+        "item": "Electrical connections",
+        "status": "passed",
+        "notes": "All connections secure and tested"
+      },
+      {
+        "item": "Fluid level and pressure",
+        "status": "passed",
+        "notes": "Proper level and pressure achieved"
+      }
+    ],
+    "completedBy": "Transmission Specialist Lee",
+    "verifiedBy": "Lead Mechanic Johnson",
+    "completionNotes": "Repair completed successfully. Unit tested and ready for service."
+  },
+  {
+    "id": "TASK-006",
+    "workOrderId": "WO-2024-003",
+    "taskNumber": 1,
+    "title": "Blade Cutting Edge Replacement",
+    "description": "Remove worn cutting edge and install new replacement",
+    "type": "replacement",
+    "priority": "Medium",
+    "status": "in-progress",
+    "assignedTo": "Heavy Equipment Team",
+    "estimatedDuration": 180,
+    "actualDuration": 120,
+    "instructions": [
+      "Position bulldozer on level ground and secure",
+      "Lower blade to ground and engage locks",
+      "Remove bolts securing worn cutting edge",
+      "Clean mounting surface thoroughly",
+      "Install new cutting edge with grade 8 bolts",
+      "Torque bolts to manufacturer specifications",
+      "Test blade operation and movement",
+      "Apply thread locker to all bolts"
+    ],
+    "safetyRequirements": [
+      "Use proper lifting equipment for heavy cutting edge",
+      "Ensure machine is properly supported",
+      "Wear safety glasses during grinding operations",
+      "Be aware of pinch points around blade"
+    ],
+    "requiredSkills": ["Heavy Equipment Maintenance", "Blade Systems"],
+    "toolsRequired": ["Impact wrench", "Torque wrench", "Lifting equipment", "Grinding tools"],
+    "expectedStartTime": "2024-06-27T08:00:00Z",
+    "actualStartTime": "2024-06-27T08:30:00Z",
+    "expectedEndTime": "2024-06-27T11:00:00Z",
+    "actualEndTime": null,
+    "progressPercentage": 65,
+    "feedback": "Old cutting edge removed successfully. New edge being installed. One bolt thread damaged and needs repair.",
+    "qualityChecks": [
+      {
+        "item": "Mounting surface preparation",
+        "status": "passed",
+        "notes": "Surface cleaned and inspected"
+      },
+      {
+        "item": "Bolt condition",
+        "status": "attention_required",
+        "notes": "One bolt thread needs repair"
+      }
+    ],
+    "completedBy": null,
+    "verifiedBy": null,
+    "completionNotes": "In progress. Addressing bolt thread issue."
+  },
+  {
+    "id": "TASK-007",
+    "workOrderId": "WO-2024-003",
+    "taskNumber": 2,
+    "title": "Track Tension Adjustment",
+    "description": "Adjust track tension to proper specifications",
+    "type": "adjustment",
+    "priority": "Medium",
+    "status": "scheduled",
+    "assignedTo": "Track Specialist Martinez",
+    "estimatedDuration": 120,
+    "actualDuration": 0,
+    "instructions": [
+      "Measure current track sag using proper gauge",
+      "Locate track tension adjustment point",
+      "Add or remove grease from tension cylinder",
+      "Measure track sag again to verify adjustment",
+      "Ensure track alignment is correct",
+      "Test track operation by moving machine",
+      "Document final measurements"
+    ],
+    "safetyRequirements": [
+      "Keep hands clear of moving tracks",
+      "Ensure machine is on level, stable ground",
+      "Use proper measuring tools",
+      "Be aware of stored energy in tension system"
+    ],
+    "requiredSkills": ["Track Systems", "Measurement"],
+    "toolsRequired": ["Track gauge", "Grease gun", "Measuring tape"],
+    "expectedStartTime": "2024-06-27T13:00:00Z",
+    "actualStartTime": null,
+    "expectedEndTime": "2024-06-27T15:00:00Z",
+    "actualEndTime": null,
+    "progressPercentage": 0,
+    "feedback": null,
+    "qualityChecks": [],
+    "completedBy": null,
+    "verifiedBy": null,
+    "completionNotes": null
+  },
+  {
+    "id": "TASK-008",
+    "workOrderId": "WO-2024-004",
+    "taskNumber": 1,
+    "title": "Engine Service and Oil Change",
+    "description": "Complete engine service including oil and filter change",
+    "type": "maintenance",
+    "priority": "Low",
+    "status": "scheduled",
+    "assignedTo": "Service Technician Brown",
+    "estimatedDuration": 90,
+    "actualDuration": 0,
+    "instructions": [
+      "Warm engine to operating temperature",
+      "Drain engine oil completely",
+      "Replace oil filter and drain plug gasket",
+      "Refill with specified oil grade and quantity",
+      "Check oil level and top up if needed",
+      "Run engine and check for leaks",
+      "Reset service indicators",
+      "Update maintenance records"
+    ],
+    "safetyRequirements": [
+      "Allow engine to cool to safe temperature",
+      "Wear protective gloves and eyewear",
+      "Dispose of used oil properly",
+      "Use spill containment measures"
+    ],
+    "requiredSkills": ["Vehicle Maintenance", "Fluid Systems"],
+    "toolsRequired": ["Oil drain equipment", "Filter wrench", "Funnel", "Oil testing kit"],
+    "expectedStartTime": "2024-07-02T07:00:00Z",
+    "actualStartTime": null,
+    "expectedEndTime": "2024-07-02T08:30:00Z",
+    "actualEndTime": null,
+    "progressPercentage": 0,
+    "feedback": null,
+    "qualityChecks": [],
+    "completedBy": null,
+    "verifiedBy": null,
+    "completionNotes": null
+  },
+  {
+    "id": "TASK-009",
+    "workOrderId": "WO-2024-005",
+    "taskNumber": 1,
+    "title": "Hydraulic Leak Investigation",
+    "description": "Locate and assess hydraulic system leak",
+    "type": "diagnosis",
+    "priority": "High",
+    "status": "pending",
+    "assignedTo": "Hydraulic Specialist Rodriguez",
+    "estimatedDuration": 120,
+    "actualDuration": 0,
+    "instructions": [
+      "Clean hydraulic system to locate leak source",
+      "Inspect all hydraulic hoses and connections",
+      "Check cylinder seals and rod condition",
+      "Test system pressure at various points",
+      "Use leak detection dye if necessary",
+      "Document leak location and severity",
+      "Estimate repair requirements and parts needed"
+    ],
+    "safetyRequirements": [
+      "Depressurize system before inspection",
+      "Wear safety glasses and gloves",
+      "Be aware of high-pressure injection hazards",
+      "Use proper lockout procedures"
+    ],
+    "requiredSkills": ["Hydraulic Systems", "Leak Detection"],
+    "toolsRequired": ["Pressure tester", "Leak detection dye", "Cleaning supplies", "Inspection lights"],
+    "expectedStartTime": "2024-06-28T13:00:00Z",
+    "actualStartTime": null,
+    "expectedEndTime": "2024-06-28T15:00:00Z",
+    "actualEndTime": null,
+    "progressPercentage": 0,
+    "feedback": null,
+    "qualityChecks": [],
+    "completedBy": null,
+    "verifiedBy": null,
+    "completionNotes": null
+  },
+  {
+    "id": "TASK-010",
+    "workOrderId": "WO-2024-006",
+    "taskNumber": 1,
+    "title": "Drill Bit Inspection and Replacement",
+    "description": "Inspect current drill bits and replace worn units",
+    "type": "replacement",
+    "priority": "Medium",
+    "status": "completed",
+    "assignedTo": "Drilling Technician Wang",
+    "estimatedDuration": 150,
+    "actualDuration": 135,
+    "instructions": [
+      "Remove drill string from hole safely",
+      "Inspect each drill bit for wear patterns",
+      "Measure bit diameter and cutting edge condition",
+      "Replace bits that exceed wear limits",
+      "Check bit rotation and cutting action",
+      "Install bits with proper torque specification",
+      "Test drill string operation",
+      "Document bit conditions and replacements"
+    ],
+    "safetyRequirements": [
+      "Follow proper drill string handling procedures",
+      "Wear cut-resistant gloves when handling bits",
+      "Ensure drilling rig is properly secured",
+      "Be aware of pinch points and rotating equipment"
+    ],
+    "requiredSkills": ["Drilling Operations", "Bit Maintenance"],
+    "toolsRequired": ["Bit wrenches", "Measuring calipers", "Torque wrench", "Lifting equipment"],
+    "expectedStartTime": "2024-06-20T06:00:00Z",
+    "actualStartTime": "2024-06-20T06:00:00Z",
+    "expectedEndTime": "2024-06-20T08:30:00Z",
+    "actualEndTime": "2024-06-20T08:15:00Z",
+    "progressPercentage": 100,
+    "feedback": "Replaced 3 out of 5 drill bits due to excessive wear. Two bits still within acceptable limits. New bits installed and tested successfully.",
+    "qualityChecks": [
+      {
+        "item": "Bit condition assessment",
+        "status": "passed",
+        "notes": "All worn bits identified and replaced"
+      },
+      {
+        "item": "Installation torque",
+        "status": "passed",
+        "notes": "All bits torqued to specification"
+      }
+    ],
+    "completedBy": "Drilling Technician Wang",
+    "verifiedBy": "Drilling Supervisor Chen",
+    "completionNotes": "Bit replacement completed. Drilling efficiency should improve significantly."
+  }
+]

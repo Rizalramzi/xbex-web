@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "Operational",
+    "description": "Asset is functioning normally and available for use",
+    "color": "#10B981",
+    "bgColor": "#D1FAE5",
+    "icon": "mdiCheckCircle",
+    "priority": 1,
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Under Maintenance",
+    "description": "Asset is currently undergoing scheduled maintenance",
+    "color": "#F59E0B",
+    "bgColor": "#FEF3C7",
+    "icon": "mdiWrench",
+    "priority": 2,
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "id": 3,
+    "name": "Needs Repair",
+    "description": "Asset requires immediate repair or attention",
+    "color": "#EF4444",
+    "bgColor": "#FEE2E2",
+    "icon": "mdiAlertCircle",
+    "priority": 3,
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "id": 4,
+    "name": "Retired",
+    "description": "Asset is no longer in service and has been retired",
+    "color": "#6B7280",
+    "bgColor": "#F3F4F6",
+    "icon": "mdiArchive",
+    "priority": 4,
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "id": 5,
+    "name": "On Order",
+    "description": "Asset has been ordered but not yet received",
+    "color": "#8B5CF6",
+    "bgColor": "#EDE9FE",
+    "icon": "mdiClockOutline",
+    "priority": 5,
+    "createdAt": "2023-01-01T00:00:00Z",
+    "updatedAt": "2023-01-01T00:00:00Z"
+  }
+]

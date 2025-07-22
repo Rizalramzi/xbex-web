@@ -1,0 +1,257 @@
+.card {
+    @apply bg-panel-bg p-[10px] rounded-md shadow-md w-[450px] border-[1px] border-panel-bg;
+}
+
+.card_title {
+    @apply text-xl;
+    color: #000 !important
+}
+
+.btn_primary {
+    @apply bg-primary text-white  disabled:bg-slate-500 disabled:text-white disabled:cursor-not-allowed
+}
+
+.btn_success {
+    @apply bg-success text-white  disabled:bg-slate-500 disabled:text-white disabled:cursor-not-allowed
+}
+
+.btn_secondary {
+    @apply bg-secondary text-white  disabled:bg-slate-500 disabled:text-white disabled:cursor-not-allowed
+}
+
+.btn_warning {
+    @apply bg-warning text-black disabled:bg-slate-500 disabled:text-white disabled:cursor-not-allowed
+}
+
+.btn_error {
+    @apply bg-error text-yellow-200 disabled:opacity-60 disabled:cursor-not-allowed
+}
+
+.btn_text_primary {
+    @apply cursor-pointer text-primary
+        hover:bg-primary hover:text-white hover:opacity-30 hover:px-2
+        disabled:cursor-none;
+}
+
+.btn_text_secondary {
+    @apply cursor-pointer text-secondary
+        hover:bg-secondary hover:text-white hover:opacity-30 hover:px-2
+        disabled:cursor-none;
+}
+
+
+
+.btn_text_warning {
+    @apply cursor-pointer text-warning
+        hover:bg-warning hover:text-slate-700 hover:opacity-30 hover:px-2
+        disabled:cursor-none;
+}
+
+.btn_text_error {
+    @apply cursor-pointer text-error
+    hover:bg-error hover:text-warning hover:opacity-30 hover:px-2
+    disabled:cursor-none;
+}
+
+.input_label {
+    @apply text-[0.7em] font-bold text-slate-500
+}
+
+.input_field {
+@apply w-[100%] bg-input-bg text-input-text border-[1px] border-slate-300 px-2
+    focus:bg-input-bg-active focus:text-input-text-active focus:border-slate-500 
+    text-[13px]
+    disabled:bg-transparent disabled:border-0 disabled:border-b 
+    disabled:border-b-slate-300 disabled:ml-0 disabled:px-0
+    min-h-[30px]
+    outline-none;
+}
+
+textarea.input_field {
+    @apply border p-2
+}
+
+.input_select {
+    @apply bg-transparent pt-1 pb-1 border-b-[1px] border-slate-300
+    focus:bg-input-bg-active focus:text-input-text-active focus:border-slate-400
+}
+
+
+.input_select .option {
+    @apply text-white
+}
+
+.input_icon {
+@apply absolute right-0 h-full items-center px-2 text-slate-700 hover:opacity-30;
+}
+
+.input_error {
+@apply text-[0.7em] font-semibold text-error;
+}
+
+.suim_table {
+    @apply mb-3 border border-0;
+}
+
+.suim_table > thead > tr {
+    @apply py-[3px] bg-primary text-white min-h-[35px] h-[38px] border-b-0 border-[#D1D5DC] ;
+}
+
+.suim_table > thead > tr > th {
+    @apply font-normal pl-[5px] pr-[5px] first:border-l-0 border-l border-[#D1D5DC];
+}
+
+.suim_table .row_select {
+    @apply w-[30px]
+}
+
+.suim_table .row_action {
+    @apply flex gap-[2px];
+}
+
+.suim_table > tbody > tr {
+    @apply odd:bg-white even:bg-slate-100 hover:bg-slate-200;
+}
+
+.suim_table > tbody > tr > td {
+    @apply first:border-l-0 border-l-0 pl-[5px] pr-[5px];
+}
+
+.nodata {
+    @apply bg-slate-100 mb-2 p-2 text-center border border-slate-200;
+}
+
+.suim_form .section {
+    @apply pb-5
+}
+
+.suim_form h1.title {
+    @apply mb-[10px]
+}
+
+.suim_form { 
+    .tab_container .tab, 
+    .tab_container .tab_selected{
+  	padding-left: 20px !important;
+  	padding-right: 20px !important;
+    } 
+    .tab_selected{
+	border-left: 0 !important;
+	border-right: 0 !important;
+	border-top: 0 !important; 
+    }
+    .section_group_container {
+        @apply gap-5;
+
+        .section_group {
+            @apply gap-[20px];
+        }
+    }
+
+    .form_inputs {
+        .section_group {
+            .section {
+                @apply pb-2 last:pb-0;
+
+                div.title {
+                    @apply border-b-[1px] border-slate-500 mb-[15px] font-bold font-[16px];
+                }
+            }
+        }
+    }
+
+    .tab_container {
+        @apply mb-2 items-center font-semibold;
+
+        .tab_selected {
+            @apply p-2 border border-b-[5px] border-primary text-primary min-w-[50px] text-center;
+        }
+        
+        .tab {
+            @apply p-2 border-b-[5px] border-slate-300 cursor-pointer hover:text-secondary hover:border-secondary min-w-[50px] text-center;
+        }
+    }
+}
+.main-layout:has(.suim_form.focus){
+  position: relative
+}
+
+.suim_form.focus{
+  @apply  w-full p-5 pt-[70px];
+  top: 0;
+  position: absolute;
+  left: 0;
+  width: 100%;  
+}
+
+.suim_form.focus>div{
+    @apply bg-white;
+  padding: 10px
+}
+  
+.suim_datalist .suim_form .header{
+  min-height: 0 !important;
+}
+ 
+.suim_form .section_title{
+  @apply mb-3 p-1 px-0 font-semibold;
+}
+.suim_grid .header{
+  @apply mb-4;
+}
+.suim_grid tbody.editor > tr {
+    @apply pt-0 bg-white hover:bg-slate-200;
+}
+.suim_grid tbody.editor > tr > td{
+  @apply pt-0;
+}
+.suim_grid tbody.editor > tr > td  .suim_input  input.input_field {
+  @apply border-0 border-b-[1px] mb-[2px];
+}
+.v-select {
+    @apply bg-input-bg;
+}
+.suim_grid tbody.editor > tr > td  .v-select>div{
+  @apply border-0 border-b-[1px] mb-[2px];
+}
+.modal_container .modal_title{
+  @apply p-3 font-semibold text-[120%];
+}
+.suim_datalist.show_title > .card_body   .suim_form   .header{
+  position:relative
+}
+.suim_datalist.show_title > .card_body   .suim_form   .header .suim_form_button.form_button_top{
+  position: absolute;
+  top: -35px;
+  right: 0;
+}
+.suim_datalist.hide_title > .card_body   .suim_form  .header .suim_form_button.form_button_top,
+.suim_datalist.show_title  .suim_datalist.show_title  .suim_form .header .suim_form_button.form_button_top{
+  position: relative !important;
+  top: auto  !important;
+  right: auto  !important;
+}
+.suim_form.loading > .loader{
+  @apply  cursor-not-allowed pointer-events-none absolute flex justify-center pt-[70px];
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;  
+  background-color:rgba(240,240,240,0.5);
+  
+} 
+.loader::before{
+  @apply border-t-primary;
+  position: absolute;
+  content: "";
+  border: 14px solid  #f6e2e2; 
+  border-top: 14px solid var(--color-primary);   
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1.75s linear infinite;
+  opacity: 1.2;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
