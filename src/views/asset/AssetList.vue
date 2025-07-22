@@ -124,7 +124,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import Layout from '../../components/Layout.vue';
+
 import FavoriteButton from '../../components/FavoriteButton.vue';
 import { useAssetStore } from '../../stores/assetStore';
 import assetService from '../../services/assetService';

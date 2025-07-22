@@ -10,9 +10,9 @@
         <div class="mt-3 sm:mt-0 flex items-center space-x-3">
           <button
             type="button"
-            class="inline-flex items-center rounded-md bg-petrosea-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-petrosea-primary-dark"
+            class="inline-flex items-center rounded-md bg-petrosea-primary px-3 py-2 text-sm font-semibold text-secondary shadow-sm hover:bg-petrosea-primary-dark"
           >
-            <MdiIcon name="plus" class="mr-2 h-4 w-4" />
+            <MdiIcon :path="mdiPlus" class="mr-2 h-4 w-4 text-secondary" />
             New Work Order
           </button>
           <FavoriteButton :show-tooltip="true" />
@@ -201,7 +201,7 @@
         <!-- Error State -->
         <div v-else-if="error" class="p-8 text-center">
           <div class="text-red-600">
-            <MdiIcon name="alert-circle" class="h-8 w-8 mx-auto mb-2" />
+            <MdiIcon :path="mdiAlertCircle" class="h-8 w-8 mx-auto mb-2" />
             <p class="font-medium">Error loading work orders</p>
             <p class="text-sm mt-1">{{ error }}</p>
           </div>
@@ -209,7 +209,7 @@
 
         <!-- Empty State -->
         <div v-else-if="filteredWorkOrders.length === 0" class="p-8 text-center">
-          <MdiIcon name="clipboard-text-outline" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <MdiIcon :path="mdiClipboardTextOutline" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
           <h3 class="text-lg font-medium text-gray-900 mb-2">No work orders found</h3>
           <p class="text-gray-600">{{ searchQuery || statusFilter || priorityFilter || typeFilter ? 'Try adjusting your filters' : 'Create your first work order to get started' }}</p>
         </div>
@@ -355,7 +355,7 @@
                   </td>
                   <td class="px-4 py-4">
                     <div class="flex items-start space-x-3">
-                      <MdiIcon :name="getAssetIcon(workOrder.assetName)" class="h-6 w-6 text-gray-400 mt-1 flex-shrink-0" />
+                      <MdiIcon :path="getAssetIcon(workOrder.assetName)" class="h-6 w-6 text-gray-400 mt-1 flex-shrink-0" />
                       <div class="min-w-0 flex-1">
                         <!-- Asset Info -->
                         <div class="flex items-center space-x-2 mb-1">
@@ -409,7 +409,7 @@
                   <td class="px-3 py-4 whitespace-nowrap">
                     <div class="flex flex-col">
                       <span :class="getItemStatusBadgeClass(getWorkOrderItemStatus(workOrder.id).status)" class="inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full mb-1">
-                        <MdiIcon :name="getItemStatusIcon(getWorkOrderItemStatus(workOrder.id).status)" class="h-3 w-3 mr-1" />
+                        <MdiIcon :path="getItemStatusIcon(getWorkOrderItemStatus(workOrder.id).status)" class="h-3 w-3 mr-1" />
                         {{ getItemStatusLabel(getWorkOrderItemStatus(workOrder.id).status) }}
                       </span>
                       <span class="text-xs text-gray-500 truncate max-w-[8rem]" :title="getWorkOrderItemStatus(workOrder.id).message">
@@ -434,21 +434,21 @@
                         class="text-petrosea-primary hover:text-petrosea-primary-dark"
                         :title="`View ${workOrder.id}`"
                       >
-                        <MdiIcon name="eye" class="h-4 w-4" />
+                        <MdiIcon :path="mdiEye" class="h-4 w-4" />
                       </button>
                       <button
                         type="button"
                         class="text-gray-600 hover:text-gray-900"
                         :title="`Edit ${workOrder.id}`"
                       >
-                        <MdiIcon name="pencil" class="h-4 w-4" />
+                        <MdiIcon :path="mdiPencil" class="h-4 w-4" />
                       </button>
                       <button
                         type="button"
                         class="text-red-600 hover:text-red-900"
                         :title="`Delete ${workOrder.id}`"
                       >
-                        <MdiIcon name="delete" class="h-4 w-4" />
+                        <MdiIcon :path="mdiDelete" class="h-4 w-4" />
                       </button>
                     </div>
                   </td>
@@ -482,11 +482,11 @@
                   </select>
                 </div>
               </div>
-              <div class="flex items-center space-x-2">
+              <div class="flex items-center gap-1">
                 <button
                   @click="currentPage = 1"
                   :disabled="currentPage === 1"
-                  class="px-3 py-2 text-sm bg-white border-2 border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 hover:border-gray-400 disabled:bg-gray-100 disabled:text-gray-400 disabled:border-gray-200 disabled:cursor-not-allowed transition-all font-medium"
+                  class="pageButton"
                   title="First page"
                 >
                   ⏮️
@@ -494,18 +494,18 @@
                 <button
                   @click="currentPage--"
                   :disabled="currentPage === 1"
-                  class="px-3 py-2 text-sm bg-white border-2 border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 hover:border-gray-400 disabled:bg-gray-100 disabled:text-gray-400 disabled:border-gray-200 disabled:cursor-not-allowed transition-all font-medium"
+                  class="pageButton"
                   title="Previous page"
                 >
                   ◀️
                 </button>
-                <span class="px-4 py-2 text-sm font-medium text-gray-900 bg-gray-50 border-2 border-gray-300 rounded-md min-w-[5rem] text-center">
+                <span class="pageButton">
                   {{ currentPage }} of {{ totalPages }}
                 </span>
                 <button
                   @click="currentPage++"
                   :disabled="currentPage === totalPages"
-                  class="px-3 py-2 text-sm bg-white border-2 border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 hover:border-gray-400 disabled:bg-gray-100 disabled:text-gray-400 disabled:border-gray-200 disabled:cursor-not-allowed transition-all font-medium"
+                  class="pageButton"
                   title="Next page"
                 >
                   ▶️
@@ -513,7 +513,7 @@
                 <button
                   @click="currentPage = totalPages"
                   :disabled="currentPage === totalPages"
-                  class="px-3 py-2 text-sm bg-white border-2 border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 hover:border-gray-400 disabled:bg-gray-100 disabled:text-gray-400 disabled:border-gray-200 disabled:cursor-not-allowed transition-all font-medium"
+                  class="pageButton"
                   title="Last page"
                 >
                   ⏭️
@@ -529,12 +529,32 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import Layout from '../components/Layout.vue'
 import FavoriteButton from '../components/FavoriteButton.vue'
 import MdiIcon from '../components/MdiIcon.vue'
 import { useWorkOrderStore } from '../stores/workOrderStore'
 import { useTaskStore } from '../stores/taskStore'
 import { useItemStore } from '../stores/itemStore'
+
+// Import MDI icons
+import { 
+  mdiPlus,
+  mdiEye,
+  mdiPencil,
+  mdiDelete,
+  mdiAlertCircle,
+  mdiClipboardTextOutline,
+  mdiCheckCircle,
+  mdiCloseCircle,
+  mdiHelpCircle,
+  mdiExcavator,
+  mdiTruckFast,
+  mdiHammerScrewdriver,
+  mdiCog,
+  mdiRoadVariant,
+  mdiRoad,
+  mdiForklift,
+  mdiBulldozer
+} from '@mdi/js'
 
 const workOrderStore = useWorkOrderStore()
 const taskStore = useTaskStore()
@@ -1034,15 +1054,15 @@ const getTypeLabel = (type) => {
 
 const getAssetIcon = (assetName) => {
   const name = assetName.toLowerCase()
-  if (name.includes('excavator')) return 'excavator'
-  if (name.includes('truck') || name.includes('dump')) return 'dump-truck'
-  if (name.includes('drill')) return 'hammer-screwdriver'
-  if (name.includes('crusher')) return 'cog'
-  if (name.includes('grader')) return 'road-variant'
-  if (name.includes('compactor')) return 'steamroller'
-  if (name.includes('loader')) return 'forklift'
-  if (name.includes('dozer') || name.includes('bulldozer')) return 'bulldozer'
-  return 'cog'
+  if (name.includes('excavator')) return mdiExcavator
+  if (name.includes('truck') || name.includes('dump')) return mdiTruckFast
+  if (name.includes('drill')) return mdiHammerScrewdriver
+  if (name.includes('crusher')) return mdiCog
+  if (name.includes('grader')) return mdiRoadVariant
+  if (name.includes('compactor')) return mdiRoad
+  if (name.includes('loader')) return mdiForklift
+  if (name.includes('dozer') || name.includes('bulldozer')) return mdiBulldozer
+  return mdiCog
 }
 
 const getCompletionBarClass = (percentage) => {
@@ -1072,15 +1092,15 @@ const getItemStatusBadgeClass = (status) => {
 const getItemStatusIcon = (status) => {
   switch (status) {
     case 'ok':
-      return 'check-circle'
+      return mdiCheckCircle
     case 'concerning':
-      return 'alert-circle'
+      return mdiAlertCircle
     case 'critical':
-      return 'close-circle'
+      return mdiCloseCircle
     case 'unknown':
-      return 'help-circle'
+      return mdiHelpCircle
     default:
-      return 'help-circle'
+      return mdiHelpCircle
   }
 }
 

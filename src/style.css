@@ -5,7 +5,6 @@
 @layer base {
   html {
     font-family: 'Inter', system-ui, sans-serif;
-    /* Set light mode as default */
     color-scheme: light;
   }
   
@@ -16,6 +15,7 @@
   
   body {
     min-height: 100vh;
+    font-size: 12px;
     background-color: var(--color-bgapp);
     color: var(--text-primary);
   }
@@ -28,7 +28,7 @@
 }
 
 @layer components {
-  .btn {
+  /* .btn {
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
     font-weight: 500;
@@ -74,5 +74,5 @@
     padding: 1.5rem;
     border: 1px solid var(--border-light);
     color: var(--text-primary);
-  }
+  } */
 }

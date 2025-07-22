@@ -81,6 +81,6 @@
 </template>
 
 <script setup>
-import Layout from '../components/Layout.vue';
+
 import FavoriteButton from '../components/FavoriteButton.vue';
 </script>

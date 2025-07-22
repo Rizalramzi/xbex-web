@@ -51,8 +51,10 @@
         </div>
 
         <!-- SSO Confirmation Modal -->
-        <div v-if="showSsoConfirm" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40">
-          <div class="bg-popup rounded-lg shadow-lg p-8 max-w-sm w-full">
+        <div v-if="showSsoConfirm" 
+          class="fixed inset-0 flex items-center justify-center z-50" 
+          style="background-color: rgba(0, 0, 0, 0.8);">
+          <div class="rounded-lg shadow-lg p-8 max-w-sm w-full" style="background-color: var(--color-bgpopup);">
             <h3 class="text-lg font-semibold mb-4" style="color: var(--text-primary);">Redirect to SSO Portal</h3>
             <p class="mb-6 text-sm" style="color: var(--text-muted);">
               You will be redirected to the Single Sign On portal to continue authentication.
@@ -169,7 +171,7 @@ import logoImage from '../../assets/images/logo.svg';
 const router = useRouter();
 const authStore = useAuthStore();
 
-const loginMethod = ref(null); // 'sso' or 'manual'
+const loginMethod = ref('manual'); // 'sso' or 'manual'
 const showSsoConfirm = ref(false);
 
 const loginId = ref('');

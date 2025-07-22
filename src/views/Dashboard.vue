@@ -58,7 +58,6 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import Layout from '../components/Layout.vue'
 import FavoriteButton from '../components/FavoriteButton.vue'
 import MdiIcon from '../components/MdiIcon.vue'
 import SiteManager from './dashboard/SiteManager.vue'

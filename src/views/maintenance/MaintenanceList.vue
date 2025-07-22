@@ -127,7 +127,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import Layout from '../../components/Layout.vue';
+
 import FavoriteButton from '../../components/FavoriteButton.vue';
 import { useMaintenanceStore } from '../../stores/maintenanceStore';
 

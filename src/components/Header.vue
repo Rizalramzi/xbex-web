@@ -9,7 +9,7 @@
           alt="ARFS" 
           class="w-8 h-8 cursor-pointer transition-transform duration-200 hover:scale-105"
         />
-        <h1 class="font-bold hidden sm:block" style="color: var(--color-primary);">ARFS</h1>
+        <h1 class="font-bold hidden sm:block" style="color: var(--color-primary);">XiBex</h1>
       </div>
       
       <!-- Breadcrumb -->
@@ -18,7 +18,7 @@
         <span class="font-medium" style="color: var(--color-primary);">{{ pageTitle }}</span>
         <template v-if="currentSite">
           <span style="color: var(--text-muted);">|</span>
-          <span class="font-medium flex items-center" style="color: var(--text-secondary);">
+          <span class="font-medium flex items-center text-secondary-light">
             <MdiIcon :path="mdiMapMarker" :size="16" class="mr-1" />
             {{ currentSite }}
           </span>

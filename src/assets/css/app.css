@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 .card {
     @apply bg-panel-bg p-[10px] rounded-md shadow-md w-[450px] border-[1px] border-panel-bg;
 }
@@ -132,13 +134,13 @@ textarea.input_field {
 .suim_form { 
     .tab_container .tab, 
     .tab_container .tab_selected{
-  	padding-left: 20px !important;
-  	padding-right: 20px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
     } 
     .tab_selected{
-	border-left: 0 !important;
-	border-right: 0 !important;
-	border-top: 0 !important; 
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-top: 0 !important; 
     }
     .section_group_container {
         @apply gap-5;
@@ -173,85 +175,93 @@ textarea.input_field {
     }
 }
 .main-layout:has(.suim_form.focus){
-  position: relative
+position: relative
 }
 
 .suim_form.focus{
-  @apply  w-full p-5 pt-[70px];
-  top: 0;
-  position: absolute;
-  left: 0;
-  width: 100%;  
+@apply  w-full p-5 pt-[70px];
+top: 0;
+position: absolute;
+left: 0;
+width: 100%;  
 }
 
 .suim_form.focus>div{
     @apply bg-white;
-  padding: 10px
+padding: 10px
 }
-  
+
 .suim_datalist .suim_form .header{
-  min-height: 0 !important;
+min-height: 0 !important;
 }
- 
+
 .suim_form .section_title{
-  @apply mb-3 p-1 px-0 font-semibold;
+@apply mb-3 p-1 px-0 font-semibold;
 }
 .suim_grid .header{
-  @apply mb-4;
+@apply mb-4;
 }
 .suim_grid tbody.editor > tr {
     @apply pt-0 bg-white hover:bg-slate-200;
 }
 .suim_grid tbody.editor > tr > td{
-  @apply pt-0;
+@apply pt-0;
 }
 .suim_grid tbody.editor > tr > td  .suim_input  input.input_field {
-  @apply border-0 border-b-[1px] mb-[2px];
+@apply border-0 border-b-[1px] mb-[2px];
 }
 .v-select {
     @apply bg-input-bg;
 }
 .suim_grid tbody.editor > tr > td  .v-select>div{
-  @apply border-0 border-b-[1px] mb-[2px];
+@apply border-0 border-b-[1px] mb-[2px];
 }
 .modal_container .modal_title{
-  @apply p-3 font-semibold text-[120%];
+@apply p-3 font-semibold text-[120%];
 }
 .suim_datalist.show_title > .card_body   .suim_form   .header{
-  position:relative
+position:relative
 }
 .suim_datalist.show_title > .card_body   .suim_form   .header .suim_form_button.form_button_top{
-  position: absolute;
-  top: -35px;
-  right: 0;
+position: absolute;
+top: -35px;
+right: 0;
 }
 .suim_datalist.hide_title > .card_body   .suim_form  .header .suim_form_button.form_button_top,
 .suim_datalist.show_title  .suim_datalist.show_title  .suim_form .header .suim_form_button.form_button_top{
-  position: relative !important;
-  top: auto  !important;
-  right: auto  !important;
+position: relative !important;
+top: auto  !important;
+right: auto  !important;
 }
 .suim_form.loading > .loader{
-  @apply  cursor-not-allowed pointer-events-none absolute flex justify-center pt-[70px];
-  height: -webkit-fill-available;
-  width: -webkit-fill-available;  
-  background-color:rgba(240,240,240,0.5);
-  
+@apply  cursor-not-allowed pointer-events-none absolute flex justify-center pt-[70px];
+height: -webkit-fill-available;
+width: -webkit-fill-available;  
+background-color:rgba(240,240,240,0.5);
+
 } 
 .loader::before{
-  @apply border-t-primary;
-  position: absolute;
-  content: "";
-  border: 14px solid  #f6e2e2; 
-  border-top: 14px solid var(--color-primary);   
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  animation: spin 1.75s linear infinite;
-  opacity: 1.2;
+@apply border-t-primary;
+position: absolute;
+content: "";
+border: 14px solid  #f6e2e2; 
+border-top: 14px solid var(--color-primary);   
+border-radius: 50%;
+width: 100px;
+height: 100px;
+animation: spin 1.75s linear infinite;
+opacity: 1.2;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@theme {
+    @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+    }
+}
+
+.pageButton {
+    @apply px-3 py-2 text-sm   
+        disabled:text-gray-400 disabled:opacity-20 disabled:cursor-not-allowed 
+        transition-all font-medium;
 }

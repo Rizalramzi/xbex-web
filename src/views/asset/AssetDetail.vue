@@ -126,7 +126,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
-import Layout from '../../components/Layout.vue';
+
 import { useAssetStore } from '../../stores/assetStore';
 import { useMaintenanceStore } from '../../stores/maintenanceStore';
 

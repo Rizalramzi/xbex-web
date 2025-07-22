@@ -1,4 +1,4 @@
-/* Base CSS - Custom Color Variables for Asset Management App */
+@import "tailwindcss";
 
 :root {
   /* Light Mode Colors - Based on Petrosea Corporate Theme */
@@ -6,14 +6,14 @@
   --color-primary-hover: #145a4f;
   --color-primary-light: #e6f2f0;
   
-  --color-secondary: #4a5568;
-  --color-secondary-hover: #2d3748;
+  --color-secondary: #595b5f;
+  --color-secondary-hover: #848a94;
   --color-secondary-light: #edf2f7;
   
   --color-tertiary: #2b6cb0;
   --color-tertiary-hover: #2c5282;
   --color-tertiary-light: #bee3f8;
-    --color-info: #1a91da;
+  --color-info: #1a91da;
   --color-info-hover: #1570a6;
   --color-info-light: #e6f6ff;
   
@@ -53,14 +53,14 @@
   --color-primary-hover: #38b2ac;
   --color-primary-light: #234e52;
   
-  --color-secondary: #a0aec0;
-  --color-secondary-hover: #cbd5e0;
-  --color-secondary-light: #2d3748;
+  --color-secondary: #dfe2e9;
+  --color-secondary-hover: #848a94;
+  --color-secondary-light: #edf2f7;
   
   --color-tertiary: #63b3ed;
   --color-tertiary-hover: #4299e1;
   --color-tertiary-light: #2a4365;
-    --color-info: #63b3ed;
+  --color-info: #63b3ed;
   --color-info-hover: #4299e1;
   --color-info-light: #2a4365;
   
@@ -92,6 +92,42 @@
   --border-light: #4a5568;
   --border-medium: #718096;
   --border-dark: #a0aec0;
+}
+
+@theme static {
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-light: var(--color-primary-light);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-hover: var(--color-secondary-hover);
+  --color-secondary-light: var(--color-secondary-light);
+  --color-tertiary: var(--color-tertiary);
+  --color-tertiary-hover: var(--color-tertiary-hover);
+  --color-tertiary-light: var(--color-tertiary-light);
+  --color-info: var(--color-info);
+  --color-info-hover: var(--color-info-hover);
+  --color-info-light: var(--color-info-light);
+  --color-warning: var(--color-warning);
+  --color-warning-hover: var(--color-warning-hover);
+  --color-warning-light: var(--color-warning-light);
+  --color-success: var(--color-success);
+  --color-success-hover: var(--color-success-hover);
+  --color-success-light: var(--color-success-light);
+  --color-error: var(--color-error);
+  --color-error-hover: var(--color-error-hover);
+  --color-error-light: var(--color-error-light);
+  --color-input-bg: var(--color-bg-input);
+  --color-input-text: var(--text-primary);
+  --color-input-border: var(--border-medium);
+  --color-input-bg-active: var(--color-bgpopup);
+  --color-input-text-active: var(--text-primary);
+  --color-input-border-active: var(--color-primary);
+  --color-popup-bg: var(--color-bgpopup);
+  --color-panel-bg: var(--color-bg-card);
+  --color-app-bg: var(--color-bgapp);
+  --color-header-bg: var(--color-bgheader);
+  --color-sidebar-bg: var(--color-bgsidebar);
+  --color-modal-bg: var(--color-bgmodal);
 }
 
 /* Set light mode as default */
@@ -207,7 +243,7 @@ body {
   font-size: 0.75rem;
   font-weight: 500;
 }
-
+s
 .badge-warning {
   background-color: var(--color-warning-light);
   color: var(--color-warning);

@@ -533,7 +533,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import Layout from '../components/Layout.vue'
+
 import FavoriteButton from '../components/FavoriteButton.vue'
 import TaskViewer from '../components/TaskViewer.vue'
 import { useTaskStore } from '../stores/taskStore'

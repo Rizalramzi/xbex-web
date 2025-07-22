@@ -1,0 +1,391 @@
+[
+  {
+    "id": "dashboard",
+    "name": "Dashboard",
+    "href": "/dashboard",
+    "icon": "mdiViewDashboard",
+    "level": 1
+  },
+  {
+    "id": "transacton",
+    "name": "Transaction",
+    "icon": "",
+    "level": 1,
+    "isGroup": true,
+    "children": [
+      {
+        "id": "Task",
+        "name": "Task Management",
+        "href": "/task",
+        "icon": "mdiClipboardList",
+        "level": 2
+      },
+      {
+        "id": "maintenance",
+        "name": "Work Order",
+        "href": "/work-order",
+        "icon": "mdiWrench",
+        "level": 2
+      },
+      {
+        "id": "itemstat",
+        "name": "Material Status",
+        "href": "/material-status",
+        "icon": "mdiPackageVariant",
+        "level": 2
+      },
+      {
+        "id": "defect",
+        "name": "Defect Management",
+        "href": "/defect",
+        "icon": "mdiAlertCircle",
+        "level": 2
+      },
+      {
+        "id": "sync",
+        "name": "Sync Data",
+        "href": "/sync-data",
+        "icon": "mdiSync",
+        "level": 2
+      },
+      {
+        "id": "reports",
+        "name": "Reports",
+        "href": "/reports",
+        "icon": "mdiChartBox",
+        "level": 2,
+        "children": [
+          {
+            "id": "asset-utilization",
+            "name": "Asset Utilization",
+            "href": "/reports/asset-utilization",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 1
+          },
+          {
+            "id": "maintenance-history",
+            "name": "Maintenance History",
+            "href": "/reports/maintenance-history",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 1
+          },
+          {
+            "id": "scheduled-maintenance",
+            "name": "Scheduled Maintenance",
+            "href": "/reports/scheduled-maintenance",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 1
+          },
+          {
+            "id": "cost-analysis",
+            "name": "Cost Analysis",
+            "href": "/reports/cost-analysis",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 1
+          },
+          {
+            "id": "downtime-analysis",
+            "name": "Downtime Analysis",
+            "href": "/reports/downtime-analysis",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 1
+          },
+          {
+            "id": "equipment-performance",
+            "name": "Equipment Performance",
+            "href": "/reports/equipment-performance",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 1
+          },
+          {
+            "id": "inventory-status",
+            "name": "Inventory Status",
+            "href": "/reports/inventory-status",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 1
+          },
+          {
+            "id": "maintenance-compliance",
+            "name": "Maintenance Compliance",
+            "href": "/reports/maintenance-compliance",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 1
+          },
+          {
+            "id": "fuel-consumption",
+            "name": "Fuel Consumption",
+            "href": "/reports/fuel-consumption",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 2
+          },
+          {
+            "id": "equipment-availability",
+            "name": "Equipment Availability",
+            "href": "/reports/equipment-availability",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 2
+          },
+          {
+            "id": "parts-usage",
+            "name": "Parts Usage",
+            "href": "/reports/parts-usage",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 2
+          },
+          {
+            "id": "labor-analysis",
+            "name": "Labor Analysis",
+            "href": "/reports/labor-analysis",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 2
+          },
+          {
+            "id": "service-contracts",
+            "name": "Service Contracts",
+            "href": "/reports/service-contracts",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 2
+          },
+          {
+            "id": "warranty-coverage",
+            "name": "Warranty Coverage",
+            "href": "/reports/warranty-coverage",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 2
+          },
+          {
+            "id": "oil-analysis",
+            "name": "Oil Analysis",
+            "href": "/reports/oil-analysis",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 2
+          },
+          {
+            "id": "asset-lifecycle",
+            "name": "Asset Lifecycle",
+            "href": "/reports/asset-lifecycle",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 2
+          },
+          {
+            "id": "component-reliability",
+            "name": "Component Reliability",
+            "href": "/reports/component-reliability",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 3
+          },
+          {
+            "id": "inspection-findings",
+            "name": "Inspection Findings",
+            "href": "/reports/inspection-findings",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 3
+          },
+          {
+            "id": "safety-incidents",
+            "name": "Safety Incidents",
+            "href": "/reports/safety-incidents",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 3
+          },
+          {
+            "id": "productivity-metrics",
+            "name": "Productivity Metrics",
+            "href": "/reports/productivity-metrics",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 3
+          },
+          {
+            "id": "operator-performance",
+            "name": "Operator Performance",
+            "href": "/reports/operator-performance",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 3
+          },
+          {
+            "id": "site-comparison",
+            "name": "Site Comparison",
+            "href": "/reports/site-comparison",
+            "icon": "mdiChartBox",
+            "level": 3,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "system",
+    "name": "System",
+    "icon": "",
+    "level": 1,
+    "isGroup": true,
+    "children": [
+      {
+        "id": "master-data-local",
+        "name": "Master Data Local",
+        "href": "/system/master-local",
+        "icon": "mdiDatabase",
+        "level": 2,
+        "children": [
+          {
+            "id": "asset-categories",
+            "name": "Asset Categories",
+            "href": "/system/master-local/asset-categories",
+            "icon": "mdiShape",
+            "level": 3
+          },
+          {
+            "id": "maintenance-types",
+            "name": "Maintenance Types",
+            "href": "/system/master-local/maintenance-types",
+            "icon": "mdiTools",
+            "level": 3
+          },
+          {
+            "id": "status-definitions",
+            "name": "Status Definitions",
+            "href": "/system/master-local/status-definitions",
+            "icon": "mdiTagMultiple",
+            "level": 3
+          },
+          {
+            "id": "locations",
+            "name": "Locations",
+            "href": "/system/master-local/locations",
+            "icon": "mdiMapMarker",
+            "level": 3
+          }
+        ]
+      },
+      {
+        "id": "master-data-sap",
+        "name": "Master Data SAP",
+        "href": "/system/master-sap",
+        "icon": "mdiDatabaseSync",
+        "level": 2,
+        "children": [
+          {
+            "id": "work-centers",
+            "name": "Work Centers",
+            "href": "/system/master-sap/work-centers",
+            "icon": "mdiCogs",
+            "level": 3
+          },
+          {
+            "id": "equipment-master",
+            "name": "Equipment Master",
+            "href": "/system/master-sap/equipment-master",
+            "icon": "mdiPackageVariant",
+            "level": 3
+          },
+          {
+            "id": "functional-locations",
+            "name": "Functional Locations",
+            "href": "/system/master-sap/functional-locations",
+            "icon": "mdiMapMarker",
+            "level": 3
+          },
+          {
+            "id": "material-master",
+            "name": "Material Master",
+            "href": "/system/master-sap/material-master",
+            "icon": "mdiPackage",
+            "level": 3
+          },
+          {
+            "id": "vendor-master",
+            "name": "Vendor Master",
+            "href": "/system/master-sap/vendor-master",
+            "icon": "mdiBriefcase",
+            "level": 3
+          },
+          {
+            "id": "cost-centers",
+            "name": "Cost Centers",
+            "href": "/system/master-sap/cost-centers",
+            "icon": "mdiCurrencyUsd",
+            "level": 3
+          },
+          {
+            "id": "plant-maintenance",
+            "name": "Plant Maintenance",
+            "href": "/system/master-sap/plant-maintenance",
+            "icon": "mdiFactory",
+            "level": 3
+          },
+          {
+            "id": "activity-types",
+            "name": "Activity Types",
+            "href": "/system/master-sap/activity-types",
+            "icon": "mdiClipboardList",
+            "level": 3
+          },
+          {
+            "id": "maintenance-plans",
+            "name": "Maintenance Plans",
+            "href": "/system/master-sap/maintenance-plans",
+            "icon": "mdiCalendarClock",
+            "level": 3
+          },
+          {
+            "id": "bill-of-materials",
+            "name": "Bill of Materials (BOM)",
+            "href": "/system/master-sap/bill-of-materials",
+            "icon": "mdiFormatListBulleted",
+            "level": 3
+          },
+          {
+            "id": "purchasing-info",
+            "name": "Purchasing Info Records",
+            "href": "/system/master-sap/purchasing-info",
+            "icon": "mdiCart",
+            "level": 3
+          },
+          {
+            "id": "warehouse-management",
+            "name": "Warehouse Management",
+            "href": "/system/master-sap/warehouse-management",
+            "icon": "mdiWarehouse",
+            "level": 3
+          }
+        ]
+      },
+      {
+        "id": "settings",
+        "name": "Settings",
+        "href": "/settings",
+        "icon": "mdiCog",
+        "level": 2
+      },
+      {
+        "id": "template-designer",
+        "name": "Template Designer",
+        "href": "/template-designer",
+        "icon": "mdiFileDocumentEdit",
+        "level": 2
+      }
+    ]
+  }
+]

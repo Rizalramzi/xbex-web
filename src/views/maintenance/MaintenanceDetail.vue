@@ -104,7 +104,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import Layout from '../../components/Layout.vue';
+
 import { useMaintenanceStore } from '../../stores/maintenanceStore';
 
 const route = useRoute();

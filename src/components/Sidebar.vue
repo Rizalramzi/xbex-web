@@ -5,7 +5,7 @@
   >    <!-- Sidebar header -->
     <div class="flex items-center justify-between h-16 px-6 border-b" style="background-color: var(--color-bgheader); border-color: var(--border-light);">
       <div class="flex items-center">
-        <span class="text-sm font-medium" style="color: var(--text-secondary);">Navigation</span>
+        <span class="text-sm font-medium text-secondary-light">Navigation</span>
       </div>      <button @click="toggleSidebar" class="p-2 rounded-md hover:bg-gray-100 cursor-pointer">
         <MdiIcon :path="mdiClose" :size="20" style="color: var(--text-secondary);" />
       </button>
@@ -335,10 +335,18 @@ const refreshSubMenuPosition = (itemId) => {
 // Get all menu items from menu.json
 onMounted(async () => {
   try {
-    const response = await fetch('/src/assets/data/menu.json')
-    menuItems.value = await response.json()
+    // Import the JSON file directly (this is processed by Vite build)
+    const menuData = await import('@/assets/data/menu.json')
+    menuItems.value = menuData.default || menuData
   } catch (error) {
     console.error('Failed to load menu:', error)
+    // Fallback to fetch from public folder
+    try {
+      const response = await fetch('/xibex/data/menu.json')
+      menuItems.value = await response.json()
+    } catch (fetchError) {
+      console.error('Fallback fetch also failed:', fetchError)
+    }
   }
 })
 
