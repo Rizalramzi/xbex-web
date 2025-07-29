@@ -1,467 +1,282 @@
 <template>
   <Layout>
-    <div class="h-full flex flex-col">
-      <!-- Page Header -->
-      <div class="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between flex-shrink-0">
-        <div class="sm:flex-auto">
-          <h1 class="text-2xl font-semibold leading-6 text-gray-900">Work Orders</h1>
-          <p class="mt-2 text-sm text-gray-700">Track and manage all maintenance work orders.</p>
-        </div>
-        <div class="mt-3 sm:mt-0 flex items-center space-x-3">
-          <button
-            type="button"
-            class="inline-flex items-center rounded-md bg-petrosea-primary px-3 py-2 text-sm font-semibold text-secondary shadow-sm hover:bg-petrosea-primary-dark"
-          >
-            <MdiIcon :path="mdiPlus" class="mr-2 h-4 w-4 text-secondary" />
-            New Work Order
-          </button>
-          <FavoriteButton :show-tooltip="true" />
-        </div>
-      </div>
-
-      <!-- Table Bar -->
-      <div class="mt-6 bg-white p-4 rounded-lg shadow-sm border border-gray-200 flex-shrink-0">
-        <!-- Simple Search Mode -->
-        <div v-if="!showAdvanceSearch" class="flex items-center justify-between">
-          <div class="flex items-center space-x-4 flex-1">
-            <!-- Search Box -->
-            <div class="relative flex-1 max-w-md">
-              <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 fill-current" viewBox="0 0 24 24">
-                <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-              </svg>
-              <input
-                v-model="searchQuery"
-                type="text"
-                placeholder="Search work orders..."
-                class="pl-10 w-full rounded-md border-gray-300 shadow-sm focus:border-petrosea-primary focus:ring-petrosea-primary"
-              />
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex items-center space-x-2">
-              <!-- Refresh Button -->
-              <button
-                @click="refreshData"
-                :disabled="loading"
-                class="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 rounded-md border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center"
-                title="Refresh data"
-              >
-                <svg 
-                  :class="loading ? 'animate-spin' : ''" 
-                  class="h-4 w-4 fill-current" 
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z" />
-                </svg>
-              </button>
-
-              <!-- Print Button -->
-              <button
-                @click="printData"
-                class="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 rounded-md border border-gray-300 transition-all duration-200 flex items-center"
-                title="Print work orders"
-              >
-                <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M18,3H6V7H18M19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12M16,19H8V14H16M19,8H5A3,3 0 0,0 2,11V17H6V21H18V17H22V11A3,3 0 0,0 19,8Z" />
-                </svg>
-              </button>
-
-              <!-- Advanced Search Button -->
-              <button
-                @click="showAdvanceSearch = true"
-                class="px-4 py-2 text-sm font-medium text-gray-600 bg-petrosea-primary hover:bg-petrosea-primary-dark rounded-md border border-petrosea-primary shadow-sm hover:shadow-md transition-all duration-200 flex items-center"
-                title="Advanced search"
-              >
-                <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14,12V19.88C14.04,20.18 13.94,20.5 13.71,20.71C13.32,21.1 12.69,21.1 12.3,20.71L10.29,18.7C10.06,18.47 9.96,18.16 10,17.87V12H9.97L4.21,4.62C3.87,4.19 3.95,3.56 4.38,3.22C4.57,3.08 4.78,3 5,3V3H19V3C19.22,3 19.43,3.08 19.62,3.22C20.05,3.56 20.13,4.19 19.79,4.62L14.03,12H14Z" />
-                </svg>
-                Advanced Search
-              </button>
+    <template #content>
+      <div class="h-full flex flex-col">
+        <!-- Page Header -->
+        <div class="w-full container__section">
+          
+          <div class="container__header__main">
+            <span class="title__main">Work Orders</span>
+            <p class="desc__main">Track and manage all maintenance work orders.</p>
+          </div>
+  
+          <div class="flex flex-row items-center gap-[20px]">
+            <button class="btn__primary">+ New Work Order</button>
+            <div class="background__icon">
+              <img src="/icons/unlove.svg" alt="Unlove Icon" class="w-auto h-[19px] object-center object-cover shrink-0" :show-tooltip="true">
             </div>
           </div>
         </div>
-
-        <!-- Advanced Search Mode -->
-        <div v-else class="space-y-4">
-          <div class="flex items-center justify-between">
-            <h3 class="text-lg font-semibold text-gray-900 flex items-center">
-              <svg class="h-5 w-5 mr-2 text-petrosea-primary" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14,12V19.88C14.04,20.18 13.94,20.5 13.71,20.71C13.32,21.1 12.69,21.1 12.3,20.71L10.29,18.7C10.06,18.47 9.96,18.16 10,17.87V12H9.97L4.21,4.62C3.87,4.19 3.95,3.56 4.38,3.22C4.57,3.08 4.78,3 5,3V3H19V3C19.22,3 19.43,3.08 19.62,3.22C20.05,3.56 20.13,4.19 19.79,4.62L14.03,12H14Z" />
-              </svg>
-              Advanced Search
-            </h3>
-            <div class="flex items-center space-x-2">
-              <!-- Print Button -->
-              <button
-                @click="printData"
-                class="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 rounded-md border border-gray-300 transition-all duration-200 flex items-center"
-                title="Print work orders"
-              >
-                <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M18,3H6V7H18M19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12M16,19H8V14H16M19,8H5A3,3 0 0,0 2,11V17H6V21H18V17H22V11A3,3 0 0,0 19,8Z" />
-                </svg>
-              </button>
-              
-              <!-- Simple Search Button -->
-              <button
-                @click="closeAdvanceSearch"
-                class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-300 shadow-sm hover:shadow-md transition-all duration-200 flex items-center"
-              >
-                <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
-                </svg>
-                Simple Search
-              </button>
+  
+        <!-- Table Bar -->
+        <div class="w-full container__section mt-[40px]">
+          <div v-if="!showAdvanceSearch" class="flex flex-row items-center gap-[10px]">
+            <div class="search" >
+              <img src="/icons/search.svg" alt="Search Icon" class="w-[20px] h-auto object-center object-cover shrink-0">
+              <input v-model="searchQuery" type="text" name="" id="" class="w-full h-full outline-none" placeholder="Search Work Order">
             </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <!-- WO ID Search -->
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Work Order ID</label>
-              <input
-                v-model="advanceSearch.woId"
-                type="text"
-                placeholder="e.g., WO-2024-001"
-                class="w-full rounded-md border-gray-300 shadow-sm focus:border-petrosea-primary focus:ring-petrosea-primary"
-              />
-            </div>
-
-            <!-- Status Filter -->
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
-              <select
-                v-model="advanceSearch.status"
-                class="w-full rounded-md border-gray-300 shadow-sm focus:border-petrosea-primary focus:ring-petrosea-primary"
-              >
-                <option value="">All Statuses</option>
-                <option value="scheduled">Scheduled</option>
-                <option value="in-progress">In Progress</option>
-                <option value="completed">Completed</option>
-                <option value="pending">Pending</option>
-                <option value="cancelled">Cancelled</option>
-              </select>
-            </div>
-
-            <!-- Priority Filter -->
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Priority</label>
-              <select
-                v-model="advanceSearch.priority"
-                class="w-full rounded-md border-gray-300 shadow-sm focus:border-petrosea-primary focus:ring-petrosea-primary"
-              >
-                <option value="">All Priorities</option>
-                <option value="Critical">Critical</option>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-              </select>
-            </div>
-
-            <!-- Progress Filter -->
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Progress</label>
-              <select
-                v-model="advanceSearch.progress"
-                class="w-full rounded-md border-gray-300 shadow-sm focus:border-petrosea-primary focus:ring-petrosea-primary"
-              >
-                <option value="">All Progress</option>
-                <option value="0-25">0% - 25%</option>
-                <option value="26-50">26% - 50%</option>
-                <option value="51-75">51% - 75%</option>
-                <option value="76-100">76% - 100%</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="flex items-center">
-            <button
-              @click="clearAdvanceSearch"
-              class="px-4 py-2 text-sm bg-white border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 hover:border-gray-400 shadow-sm transition-all duration-200 flex items-center"
-            >
-              <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83C8.74,11.13 11.57,12.55 14.37,12.17L15.56,13.36C14.5,14.6 13.03,15.4 11.5,15.4C9.15,15.4 6.92,14.22 5.93,17.57M8.58,19.93C9.82,21.18 11.33,21.86 12.88,21.94L13.68,18.11C12.12,17.87 10.58,17.2 9.29,16.21L8.58,19.93Z" />
-              </svg>
-              Clear All
+    
+            <button @click="refreshData" :disabled="loading" class="background__icon">
+              <img src="/icons/repeat.svg" alt="Repeat Icon" class="w-[16px] h-[16px] object-center object-cover shrink-0">
+            </button>
+            
+            <button @click="printData" class="background__icon">
+              <img src="/icons/print.svg" alt="Print Icon" class="w-[16px] h-[16px] object-center object-cover shrink-0">
             </button>
           </div>
+  
+          <button @click="showAdvanceSearch = true" class="bg-gray-100 hover:bg-gray-300 cursor-pointer px-[30px] py-[20px] rounded-[50px] flex flex-row items-center justify-center gap-[20px]">
+            <img src="/icons/filter.svg" alt="Filter Icon" class="w-[18px] h-[11px] object-center object-cover shrink-0">
+            <span class="text-[14px]">Advanced Search</span>
+            <img src="/icons/arrow.svg" alt="Arrow Icon" class="w-[10px] h-auto object-center object-cover shrink-0">
+          </button>
         </div>
-      </div>
-
-      <!-- Work Orders Table -->
-      <div class="mt-6 bg-white shadow-sm rounded-lg border border-gray-200 flex-1 flex flex-col min-h-0">
-        <!-- Loading State -->
-        <div v-if="loading" class="p-8 text-center">
-          <div class="inline-flex items-center">
-            <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-petrosea-primary mr-3"></div>
-            <span class="text-gray-600">Loading work orders...</span>
+  
+        <!-- Work Orders Table -->
+        <div class="mt-[32px] flex-1 flex flex-col min-h-0">
+          <!-- Loading State -->
+          <div v-if="loading" class="p-8 text-center">
+            <div class="inline-flex items-center">
+              <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-petrosea-primary mr-3"></div>
+              <span class="text-gray-600">Loading work orders...</span>
+            </div>
           </div>
-        </div>
-
-        <!-- Error State -->
-        <div v-else-if="error" class="p-8 text-center">
-          <div class="text-red-600">
-            <MdiIcon :path="mdiAlertCircle" class="h-8 w-8 mx-auto mb-2" />
-            <p class="font-medium">Error loading work orders</p>
-            <p class="text-sm mt-1">{{ error }}</p>
+  
+          <!-- Error State -->
+          <div v-else-if="error" class="p-8 text-center">
+            <div class="text-red-600">
+              <MdiIcon :path="mdiAlertCircle" class="h-8 w-8 mx-auto mb-2" />
+              <p class="font-medium">Error loading work orders</p>
+              <p class="text-sm mt-1">{{ error }}</p>
+            </div>
           </div>
-        </div>
-
-        <!-- Empty State -->
-        <div v-else-if="filteredWorkOrders.length === 0" class="p-8 text-center">
-          <MdiIcon :path="mdiClipboardTextOutline" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
-          <h3 class="text-lg font-medium text-gray-900 mb-2">No work orders found</h3>
-          <p class="text-gray-600">{{ searchQuery || statusFilter || priorityFilter || typeFilter ? 'Try adjusting your filters' : 'Create your first work order to get started' }}</p>
-        </div>
-
-        <!-- Table -->
-        <div v-else class="flex flex-col flex-1 min-h-0">
-          <!-- Fixed Header -->
-          <div class="flex-shrink-0 overflow-x-auto">
-            <table class="min-w-full">
-              <thead class="bg-gray-50">
-                <tr>
-                  <th 
-                    :class="sortField === 'id' ? 'bg-petrosea-primary/10 border-petrosea-primary/20' : 'hover:bg-gray-100'"
-                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer select-none border-r border-gray-200" 
+  
+          <!-- Empty State -->
+          <div v-else-if="filteredWorkOrders.length === 0" class="p-8 text-center">
+            <MdiIcon :path="mdiClipboardTextOutline" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h3 class="text-lg font-medium text-gray-900 mb-2">No work orders found</h3>
+            <p class="text-gray-600">{{ searchQuery || statusFilter || priorityFilter || typeFilter ? 'Try adjusting your filters' : 'Create your first work order to get started' }}</p>
+          </div>
+  
+          <!-- Table Component -->
+          <div v-else class="overflow-y-auto">
+            <table class="w-full table-fixed">
+              <thead class="font-medium sticky top-0 z-10">
+                <tr class="text-left text-[14px]">
+                  <!-- Work ID -->
+                  <th
                     @click="sortBy('id')"
+                    class="max-w-[195px] bg-gray-100 px-[20px] py-[12px] cursor-pointer select-none"
                   >
-                    <div class="flex items-center justify-between">
-                      <span :class="sortField === 'id' ? 'text-petrosea-primary font-semibold' : ''">WO ID</span>
-                      <div class="flex flex-col ml-1">
-                        <svg 
-                          :class="sortField === 'id' && sortDirection === 'asc' ? 'text-petrosea-primary' : 'text-gray-300'" 
-                          class="h-3 w-3 -mb-1" 
-                          fill="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M7,14L12,9L17,14H7Z" />
-                        </svg>
-                        <svg 
-                          :class="sortField === 'id' && sortDirection === 'desc' ? 'text-petrosea-primary' : 'text-gray-300'" 
-                          class="h-3 w-3" 
-                          fill="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M7,10L12,15L17,10H7Z" />
-                        </svg>
+                    <div class="flex items-center justify-between w-full">
+                      <span :class="sortField === 'id' ? 'text-petrosea-primary font-medium' : ''" class="truncate">Work ID</span>
+                      <div class="flex flex-col gap-0.5">
+                        <img 
+                          src="/icons/arrow.svg"
+                          alt="Arrow Up"
+                          class="w-[6px] h-auto object-cover shrink-0"
+                          :class="sortField === 'id' && sortDirection === 'asc' ? 'rotate-180 text-petrosea-primary' : 'opacity-30'"
+                        />
+                        <img 
+                          src="/icons/arrow.svg"
+                          alt="Arrow Down"
+                          class="w-[6px] h-auto object-cover shrink-0"
+                          :class="sortField === 'id' && sortDirection === 'desc' ? 'text-petrosea-primary' : 'opacity-30'"
+                        />
                       </div>
                     </div>
                   </th>
-                  <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200">
-                    <div class="flex items-center">
-                      Work Order Details
-                    </div>
-                  </th>
-                  <th 
-                    :class="sortField === 'status' ? 'bg-petrosea-primary/10 border-petrosea-primary/20' : 'hover:bg-gray-100'"
-                    class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer select-none border-r border-gray-200" 
+  
+                  <!-- Work Details -->
+                  <th class="max-w-[195px] truncate bg-gray-100 px-[20px] py-[12px]">Work Details</th>
+  
+                  <!-- Status -->
+                  <th
                     @click="sortBy('status')"
+                    class="max-w-[195px] truncate bg-gray-100 px-[20px] py-[12px] cursor-pointer select-none"
                   >
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between w-full">
                       <span :class="sortField === 'status' ? 'text-petrosea-primary font-semibold' : ''">Status</span>
-                      <div class="flex flex-col ml-1">
-                        <svg 
-                          :class="sortField === 'status' && sortDirection === 'asc' ? 'text-petrosea-primary' : 'text-gray-300'" 
-                          class="h-3 w-3 -mb-1" 
-                          fill="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M7,14L12,9L17,14H7Z" />
-                        </svg>
-                        <svg 
-                          :class="sortField === 'status' && sortDirection === 'desc' ? 'text-petrosea-primary' : 'text-gray-300'" 
-                          class="h-3 w-3" 
-                          fill="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M7,10L12,15L17,10H7Z" />
-                        </svg>
+                      <div class="flex flex-col gap-0.5">
+                        <img 
+                          src="/icons/arrow.svg"
+                          class="w-[6px] h-auto object-cover shrink-0"
+                          :class="sortField === 'status' && sortDirection === 'asc' ? 'rotate-180 text-petrosea-primary' : 'opacity-30'"
+                        />
+                        <img 
+                          src="/icons/arrow.svg"
+                          class="w-[6px] h-auto object-cover shrink-0"
+                          :class="sortField === 'status' && sortDirection === 'desc' ? 'text-petrosea-primary' : 'opacity-30'"
+                        />
                       </div>
                     </div>
                   </th>
-                  <th 
-                    :class="sortField === 'progress' ? 'bg-petrosea-primary/10 border-petrosea-primary/20' : 'hover:bg-gray-100'"
-                    class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer select-none border-r border-gray-200" 
+  
+                  <!-- Progress -->
+                  <th
                     @click="sortBy('progress')"
+                    class="max-w-[195px] truncate bg-gray-100 px-[20px] py-[12px] cursor-pointer select-none"
                   >
-                    <div class="flex items-center justify-between">
-                      <span :class="sortField === 'progress' ? 'text-petrosea-primary font-semibold' : ''">Progress</span>
-                      <div class="flex flex-col ml-1">
-                        <svg 
-                          :class="sortField === 'progress' && sortDirection === 'asc' ? 'text-petrosea-primary' : 'text-gray-300'" 
-                          class="h-3 w-3 -mb-1" 
-                          fill="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M7,14L12,9L17,14H7Z" />
-                        </svg>
-                        <svg 
-                          :class="sortField === 'progress' && sortDirection === 'desc' ? 'text-petrosea-primary' : 'text-gray-300'" 
-                          class="h-3 w-3" 
-                          fill="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M7,10L12,15L17,10H7Z" />
-                        </svg>
+                    <div class="flex items-center justify-between w-full">
+                      <span :class="sortField === 'progress' ? 'text-petrosea-primary font-medium' : ''">Progress</span>
+                      <div class="flex flex-col gap-0.5">
+                        <img src="/icons/arrow.svg" class="w-[6px] h-auto object-cover shrink-0"
+                          :class="sortField === 'progress' && sortDirection === 'asc' ? 'rotate-180 text-petrosea-primary' : 'opacity-30'" />
+                        <img src="/icons/arrow.svg" class="w-[6px] h-auto object-cover shrink-0"
+                          :class="sortField === 'progress' && sortDirection === 'desc' ? 'text-petrosea-primary' : 'opacity-30'" />
                       </div>
                     </div>
                   </th>
-                  <th 
-                    :class="sortField === 'items' ? 'bg-petrosea-primary/10 border-petrosea-primary/20' : 'hover:bg-gray-100'"
-                    class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer select-none border-r border-gray-200" 
+  
+                  <!-- Items -->
+                  <th
                     @click="sortBy('items')"
+                    class="max-w-[195px] truncate bg-gray-100 px-[20px] py-[12px] cursor-pointer select-none"
                   >
-                    <div class="flex items-center justify-between">
-                      <span :class="sortField === 'items' ? 'text-petrosea-primary font-semibold' : ''">Items</span>
-                      <div class="flex flex-col ml-1">
-                        <svg 
-                          :class="sortField === 'items' && sortDirection === 'asc' ? 'text-petrosea-primary' : 'text-gray-300'" 
-                          class="h-3 w-3 -mb-1" 
-                          fill="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M7,14L12,9L17,14H7Z" />
-                        </svg>
-                        <svg 
-                          :class="sortField === 'items' && sortDirection === 'desc' ? 'text-petrosea-primary' : 'text-gray-300'" 
-                          class="h-3 w-3" 
-                          fill="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M7,10L12,15L17,10H7Z" />
-                        </svg>
+                    <div class="flex items-center justify-between w-full">
+                      <span :class="sortField === 'items' ? 'text-petrosea-primary font-normal' : ''">Items</span>
+                      <div class="flex flex-col gap-0.5">
+                        <img src="/icons/arrow.svg" class="w-[6px] h-auto object-cover shrink-0"
+                          :class="sortField === 'items' && sortDirection === 'asc' ? 'rotate-180 text-petrosea-primary' : 'opacity-30'" />
+                        <img src="/icons/arrow.svg" class="w-[6px] h-auto object-cover shrink-0"
+                          :class="sortField === 'items' && sortDirection === 'desc' ? 'text-petrosea-primary' : 'opacity-30'" />
                       </div>
                     </div>
                   </th>
-                  <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200">
-                    <div class="flex items-center">
-                      Assigned To
-                    </div>
-                  </th>
-                  <th class="px-3 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+  
+                  <th class="max-w-[195px] truncate bg-gray-100 px-[20px] py-[12px]">Assigned To</th>
+                  <th class="max-w-[195px] truncate bg-gray-100 px-[20px] py-[12px]">Actions</th>
                 </tr>
               </thead>
-            </table>
-          </div>
-          
-          <!-- Scrollable Body -->
-          <div class="flex-1 overflow-y-auto">
-            <table class="min-w-full">
-              <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="workOrder in paginatedWorkOrders" :key="workOrder.id" class="hover:bg-gray-50">
-                  <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {{ workOrder.id }}
-                  </td>
-                  <td class="px-4 py-4">
-                    <div class="flex items-start space-x-3">
-                      <MdiIcon :path="getAssetIcon(workOrder.assetName)" class="h-6 w-6 text-gray-400 mt-1 flex-shrink-0" />
-                      <div class="min-w-0 flex-1">
-                        <!-- Asset Info -->
-                        <div class="flex items-center space-x-2 mb-1">
-                          <div class="text-sm font-medium text-gray-900 truncate">
-                            {{ workOrder.assetName.split(' ').slice(0, 2).join(' ') }}
-                          </div>
-                          <div class="text-xs text-gray-500">{{ workOrder.assetId }}</div>
+  
+              <tbody v-for="workOrder in paginatedWorkOrders" :key="workOrder.id" class="">
+                <tr><td colspan="7" class="h-6"></td></tr>
+                <tr  class="text-left text-[14px]">
+                  <!-- ID -->
+                  <td class="container__data">{{ workOrder.id }}</td>
+  
+                  <!-- Work Details -->
+                  <td>
+                    <div class="flex flex-col gap-[10px]">
+                      <div class="background__icon__content">
+                        <img :src="getAssetIcon(workOrder.assetName)" alt="Asset Icon" class="w-auto h-[18px] object-center object-contain shrink-0" />
+                      </div>
+  
+                      <div class="flex flex-col gap-[5px]">
+                        <div class="flex justify-between">
+                          <span class="text-[14px]">{{ workOrder.assetName.split(' ').slice(0, 2).join(' ') }}</span>
+                          <p class="text-[14px]">{{ workOrder.assetId }}</p>
                         </div>
-                        
-                        <!-- Title -->
-                        <div class="text-sm text-gray-900 mb-2" :title="workOrder.title">
-                          {{ workOrder.title }}
-                        </div>
-                        
-                        <!-- Priority, Type badges -->
-                        <div class="flex items-center space-x-2">
-                          <span :class="getPriorityBadgeClass(workOrder.priority)" class="inline-flex px-2 py-1 text-xs font-semibold rounded-full">
-                            {{ workOrder.priority }}
-                          </span>
-                          <span :class="getTypeBadgeClass(workOrder.type)" class="inline-flex px-2 py-1 text-xs font-semibold rounded-full">
-                            {{ getTypeLabel(workOrder.type) }}
-                          </span>
-                        </div>
+                        <p class="label__secondary truncate">{{ workOrder.title }}</p>
+                      </div>
+  
+                      <div class="flex flex-wrap items-center gap-[10px]">
+                        <div :class="getPriorityBadgeClass(workOrder.priority)">{{ workOrder.priority }}</div>
+                        <div :class="getTypeBadgeClass(workOrder.type)">{{ getTypeLabel(workOrder.type) }}</div>
                       </div>
                     </div>
                   </td>
-                  <td class="px-3 py-4 whitespace-nowrap">
-                    <span :class="getStatusBadgeClass(workOrder.status)" class="inline-flex px-2 py-1 text-xs font-semibold rounded-full">
+  
+                  <!-- Status -->
+                  <td class="container__data">
+                    <div :class="getStatusBadgeClass(workOrder.status)">
                       {{ getStatusLabel(workOrder.status) }}
-                    </span>
+                    </div>
                   </td>
-                  <td class="px-3 py-4 whitespace-nowrap">
-                    <div class="flex flex-col">
-                      <div class="flex items-center mb-1">
-                        <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
-                          <div 
-                            :class="getCompletionBarClass(getWorkOrderCompletion(workOrder.id))"
-                            class="h-2 rounded-full transition-all duration-300"
-                            :style="{ width: getWorkOrderCompletion(workOrder.id) + '%' }"
-                          ></div>
+  
+                  <!-- Progress -->
+                  <td>
+                    <div class="flex items-center justify-center">
+                      <div class="flex flex-col gap-1">
+                        <div class="flex items-center">
+                          <div class="w-32 bg-gray-200 rounded-full h-[15px] mr-2">
+                            <div
+                              :class="getCompletionBarClass(getWorkOrderCompletion(workOrder.id))"
+                              class="h-[15px] rounded-full transition-all duration-300"
+                              :style="{ width: getWorkOrderCompletion(workOrder.id) + '%' }"
+                            ></div>
+                          </div>
+                          <span class="text-xs font-medium text-gray-900">
+                            {{ getWorkOrderCompletion(workOrder.id) }}%
+                          </span>
                         </div>
-                        <span class="text-xs font-medium text-gray-900 min-w-[2rem]">
-                          {{ getWorkOrderCompletion(workOrder.id) }}%
+                        <span :class="getWorkOrderProgressStatus(workOrder).class" class="label__secondary">
+                          {{ getWorkOrderProgressStatus(workOrder).label }}
                         </span>
                       </div>
-                      <span :class="getWorkOrderProgressStatus(workOrder).class" class="text-xs font-medium">
-                        {{ getWorkOrderProgressStatus(workOrder).label }}
-                      </span>
                     </div>
                   </td>
-                  <td class="px-3 py-4 whitespace-nowrap">
-                    <div class="flex flex-col">
-                      <span :class="getItemStatusBadgeClass(getWorkOrderItemStatus(workOrder.id).status)" class="inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full mb-1">
-                        <MdiIcon :path="getItemStatusIcon(getWorkOrderItemStatus(workOrder.id).status)" class="h-3 w-3 mr-1" />
+  
+                  <!-- Items -->
+                  <td>
+                    <div class="flex flex-col items-center">
+                      <span :class="getItemStatusBadgeClass(getWorkOrderItemStatus(workOrder.id).status)" class="mb-1 inline-flex items-center text-[14px] font-semibold rounded-full ps-[20px] pe-[50px] py-[10px]">
+                        <MdiIcon :path="getItemStatusIcon(getWorkOrderItemStatus(workOrder.id).status)" class="w-4 h-4 mr-1" />
                         {{ getItemStatusLabel(getWorkOrderItemStatus(workOrder.id).status) }}
                       </span>
-                      <span class="text-xs text-gray-500 truncate max-w-[8rem]" :title="getWorkOrderItemStatus(workOrder.id).message">
+                      <span class="text-[14px] text-gray-500 truncate" :title="getWorkOrderItemStatus(workOrder.id).message">
                         {{ getWorkOrderItemStatus(workOrder.id).message }}
                       </span>
                     </div>
                   </td>
-                  <td class="px-3 py-4 whitespace-nowrap">
-                    <div class="flex flex-col">
-                      <div class="text-sm font-medium text-gray-900">
-                        {{ getAssignedTeamInfo(workOrder.assignedTo).mainPerson }}
-                      </div>
-                      <div v-if="getAssignedTeamInfo(workOrder.assignedTo).otherCount > 0" class="text-xs text-gray-500">
-                        +{{ getAssignedTeamInfo(workOrder.assignedTo).otherCount }} other{{ getAssignedTeamInfo(workOrder.assignedTo).otherCount > 1 ? 's' : '' }}
+  
+                  <!-- Assigned To -->
+                  <td>
+                    <div class="flex flex-col justify-center items-center">
+                      <div class="flex flex-col">
+                        <span class="text-[14px] font-medium">{{ getAssignedTeamInfo(workOrder.assignedTo).mainPerson }}</span>
+                        <span v-if="getAssignedTeamInfo(workOrder.assignedTo).otherCount > 0" class="text-xs text-gray-500">
+                          +{{ getAssignedTeamInfo(workOrder.assignedTo).otherCount }} other{{ getAssignedTeamInfo(workOrder.assignedTo).otherCount > 1 ? 's' : '' }}
+                        </span>
                       </div>
                     </div>
                   </td>
-                  <td class="px-3 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <div class="flex items-center justify-end space-x-2">
-                      <button
-                        type="button"
-                        class="text-petrosea-primary hover:text-petrosea-primary-dark"
-                        :title="`View ${workOrder.id}`"
-                      >
-                        <MdiIcon :path="mdiEye" class="h-4 w-4" />
-                      </button>
-                      <button
-                        type="button"
-                        class="text-gray-600 hover:text-gray-900"
-                        :title="`Edit ${workOrder.id}`"
-                      >
-                        <MdiIcon :path="mdiPencil" class="h-4 w-4" />
-                      </button>
-                      <button
-                        type="button"
-                        class="text-red-600 hover:text-red-900"
-                        :title="`Delete ${workOrder.id}`"
-                      >
-                        <MdiIcon :path="mdiDelete" class="h-4 w-4" />
-                      </button>
+  
+                  <!-- Actions -->
+                  <td>
+                    <div class="flex items-center justify-center">
+                      <div class="flex justify-end items-center gap-2.5">
+                        <button class="bg-gray-100 p-[15px] hover:bg-gray-300 rounded-[50px] cursor-pointer" :title="`View ${workOrder.id}`">
+                          <MdiIcon :path="mdiEye" class="w-5 h-5" />
+                        </button>
+                        <button class="bg-gray-100 p-[15px] hover:bg-gray-300 rounded-[50px] cursor-pointer" :title="`Edit ${workOrder.id}`">
+                          <MdiIcon :path="mdiPencil" class="w-5 h-5" />
+                        </button>
+                        <button class="bg-red-100 p-[15px] hover:bg-red-300 rounded-[50px] cursor-pointer text-red-800" :title="`Delete ${workOrder.id}`">
+                          <MdiIcon :path="mdiDelete" class="w-5 h-5" />
+                        </button>
+                      </div>
                     </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="7">
+                    <hr class="my-[32px] border-[#101828]/10">
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-        
-          <!-- Fixed Pagination Footer -->
-          <div v-if="filteredWorkOrders.length > 0" class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6 flex-shrink-0">
+  
+        </div>
+      </div>
+    </template>
+
+    <template #pagination>
+      <div v-if="filteredWorkOrders.length > 0" class="my-[20px]">
             <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <p class="text-sm text-gray-700">
+              <div class="flex flex-row items-center gap-[20px]">
+                <p class="text-[14px] text-gray-700">
                   Showing
                   <span class="font-medium">{{ (currentPage - 1) * itemsPerPage + 1 }}</span>
                   to
@@ -470,11 +285,11 @@
                   <span class="font-medium">{{ filteredWorkOrders.length }}</span>
                   results
                 </p>
-                <div class="ml-4">
-                  <label class="text-sm text-gray-700 mr-2">Items per page:</label>
+                <label class="text-[14px]">Items per page:</label>
+                <div class=" px-[30px] py-[20px] bg-white rounded-[50px] min-h-[61px] hover:bg-gray-300">
                   <select
                     v-model="itemsPerPage"
-                    class="text-sm rounded-md border-gray-300 shadow-sm focus:border-petrosea-primary focus:ring-petrosea-primary"
+                    class="text-[14px] outline-none min-w-[50px]"
                   >
                     <option :value="10">10</option>
                     <option :value="25">25</option>
@@ -482,6 +297,7 @@
                   </select>
                 </div>
               </div>
+              
               <div class="flex items-center gap-1">
                 <button
                   @click="currentPage = 1"
@@ -489,7 +305,7 @@
                   class="pageButton"
                   title="First page"
                 >
-                  ⏮️
+                  <img src="/icons/double-arrow.svg" alt="Double Arrow" class="w-auto h-[13px] object-center object-cover shrink-0 invert">
                 </button>
                 <button
                   @click="currentPage--"
@@ -497,7 +313,7 @@
                   class="pageButton"
                   title="Previous page"
                 >
-                  ◀️
+                  <img src="/icons/arrow.svg" alt="Arrow" class="w-auto h-[10px] object-center object-cover shrink-0 rotate-90">
                 </button>
                 <span class="pageButton">
                   {{ currentPage }} of {{ totalPages }}
@@ -508,7 +324,7 @@
                   class="pageButton"
                   title="Next page"
                 >
-                  ▶️
+                  <img src="/icons/arrow.svg" alt="Arrow" class="w-auto h-[10px] object-center object-cover shrink-0 -rotate-90">
                 </button>
                 <button
                   @click="currentPage = totalPages"
@@ -516,14 +332,12 @@
                   class="pageButton"
                   title="Last page"
                 >
-                  ⏭️
+                   <img src="/icons/double-arrow.svg" alt="Double Arrow" class="w-auto h-[13px] object-center object-cover shrink-0 invert rotate-180">
                 </button>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+    </template>
   </Layout>
 </template>
 
@@ -988,7 +802,7 @@ const clearAdvanceSearch = () => {
 }
 
 const getStatusBadgeClass = (status) => {
-  const baseClass = 'inline-flex px-2 py-1 text-xs font-semibold rounded-full'
+  const baseClass = 'flex items-center justify-center px-[20px] py-[10px] text-[14px] font-medium rounded-[50px]'
   switch (status) {
     case 'completed':
       return `${baseClass} bg-green-100 text-green-800`
@@ -1017,7 +831,7 @@ const getStatusLabel = (status) => {
 }
 
 const getPriorityBadgeClass = (priority) => {
-  const baseClass = 'inline-flex px-2 py-1 text-xs font-semibold rounded-full'
+  const baseClass = 'flex items-center justify-center px-[20px] py-[10px] text-[14px] font-medium rounded-[50px]'
   switch (priority) {
     case 'Critical':
       return `${baseClass} bg-red-100 text-red-800`
@@ -1033,7 +847,7 @@ const getPriorityBadgeClass = (priority) => {
 }
 
 const getTypeBadgeClass = (type) => {
-  const baseClass = 'inline-flex px-2 py-1 text-xs font-semibold rounded-full'
+  const baseClass = 'flex items-center justify-center px-[20px] py-[10px] text-[14px] font-medium rounded-[50px]'
   switch (type) {
     case 'planned':
       return `${baseClass} bg-blue-100 text-blue-800`
@@ -1054,15 +868,15 @@ const getTypeLabel = (type) => {
 
 const getAssetIcon = (assetName) => {
   const name = assetName.toLowerCase()
-  if (name.includes('excavator')) return mdiExcavator
-  if (name.includes('truck') || name.includes('dump')) return mdiTruckFast
-  if (name.includes('drill')) return mdiHammerScrewdriver
-  if (name.includes('crusher')) return mdiCog
-  if (name.includes('grader')) return mdiRoadVariant
-  if (name.includes('compactor')) return mdiRoad
-  if (name.includes('loader')) return mdiForklift
-  if (name.includes('dozer') || name.includes('bulldozer')) return mdiBulldozer
-  return mdiCog
+  if (name.includes('excavator')) return 'icons/road.svg'
+  if (name.includes('truck') || name.includes('dump')) return 'icons/road.svg'
+  if (name.includes('drill')) return 'icons/road.svg'
+  if (name.includes('crusher')) return 'icons/road.svg'
+  if (name.includes('grader')) return 'icons/road.svg'
+  if (name.includes('compactor')) return 'icons/road.svg'
+  if (name.includes('loader')) return 'icons/road.svg'
+  if (name.includes('dozer') || name.includes('bulldozer')) return 'icons/road.svg'
+  return 'icons/road.svg'
 }
 
 const getCompletionBarClass = (percentage) => {

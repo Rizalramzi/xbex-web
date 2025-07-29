@@ -1,230 +1,155 @@
 <template>
-  <header class="border-b h-16 flex items-center justify-between px-6 z-30 flex-shrink-0" style="background-color: var(--color-bgheader); border-color: var(--border-light);">    <!-- Left side - Hamburger menu, app title and breadcrumb -->
-    <div class="flex items-center space-x-4">
-      <!-- Hamburger menu button for all screen sizes -->
-      <div class="flex items-center space-x-3">
-        <img 
-          :src="logoSmall" 
-          @click="toggleSidebar" 
-          alt="ARFS" 
-          class="w-8 h-8 cursor-pointer transition-transform duration-200 hover:scale-105"
-        />
-        <h1 class="font-bold hidden sm:block" style="color: var(--color-primary);">XiBex</h1>
+  <header class="w-full h-fit pt-[32px] flex items-center justify-between z-30 flex-shrink-0">
+
+    <!-- Left Side -->
+    <div class="flex flex-row items-center gap-[10px]">
+      <button 
+          class="group bg-primary rounded-[50px] w-[75px] h-[75px] flex items-center justify-center flex-none"
+          @click="$emit('toggle-sidebar')"
+        >
+          <img 
+            src="/icons/double-arrow.svg"
+            alt="ARFS"
+            :class="[
+              'w-[12px] h-auto cursor-pointer transform transition-transform duration-300 group-hover:scale-105',
+              props.isSidebarOpen ? 'rotate-0' : 'rotate-180'
+            ]"
+          />
+      </button>
+
+      <div class="flex-none flex flex-row items-center gap-[20px] w-fit h-full min-h-[75px] px-[30px] py-[20px] justify-center bg-white rounded-[50px] min-w-[172px] hover:bg-gray-100 cursor-pointer">
+        <select 
+          v-model="searchCategory"
+          class="outline-none w-full h-full text-[14px] cursor-pointer"
+        >
+          <option value="workorder">Work Order</option>
+          <option value="item">Item</option>
+          <option value="asset">Asset</option>
+          <option value="employee">Employee</option>
+          <option value="menu">Menu</option>
+        </select>
       </div>
-      
-      <!-- Breadcrumb -->
-      <nav class="hidden sm:flex items-center space-x-1 text-sm">
-        <span style="color: var(--text-muted);">|</span>
-        <span class="font-medium" style="color: var(--color-primary);">{{ pageTitle }}</span>
-        <template v-if="currentSite">
-          <span style="color: var(--text-muted);">|</span>
-          <span class="font-medium flex items-center text-secondary-light">
-            <MdiIcon :path="mdiMapMarker" :size="16" class="mr-1" />
-            {{ currentSite }}
-          </span>
-        </template>
-      </nav>
-    </div>    <!-- Center - Search with Category Dropdown (hidden on small screens) -->
-    <div class="hidden md:flex flex-1 max-w-lg mx-8">
-      <div class="flex w-full gap-1">
-        <!-- Search Category Dropdown -->
-        <div class="relative">
-          <select 
-            v-model="searchCategory"
-            class="form-select-dark rounded-r-none border-r-0 pr-8 py-2 text-sm min-w-[120px]"
-            style="background-color: var(--color-bgpopup); border-color: var(--border-light); color: var(--text-primary);"
-          >
-            <option value="workorder">Work Order</option>
-            <option value="item">Item</option>
-            <option value="asset">Asset</option>
-            <option value="employee">Employee</option>
-            <option value="menu">Menu</option>
-          </select>
-          <div class="absolute inset-y-0 right-2 flex items-center pointer-events-none">
-            <ChevronDownIcon class="h-4 w-4" style="color: var(--text-muted);" />
-          </div>
-        </div>
-        
-        <!-- Search Input -->
-        <div class="relative flex-1">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <SearchIcon class="h-5 w-5" style="color: var(--text-muted);" />
-          </div>
+
+      <div class="relative w-full min-w-[411px]">
+        <div class="outline__input flex flex-row items-center gap-[20px] w-full h-full min-h-[75px] ps-[30px] pe-[60px] py-[20px] justify-center bg-white rounded-[50px]">
+          <img src="/icons/search.svg" alt="Search Icon" class="w-auto h-[22px] object-center object-cover shrink-0">
           <input 
             type="text" 
-            :placeholder="getSearchPlaceholder()"
-            class="form-input-dark w-full pl-10 pr-4 py-2 text-sm rounded-l-none"
             v-model="searchQuery"
             @input="handleSearch"
             @focus="handleSearch"
             @blur="() => setTimeout(() => showAutocomplete.value = false, 200)"
-            style="background-color: var(--color-bgpopup); border-color: var(--border-light); color: var(--text-primary);"
+            class="outline-none w-full text-[14px] placeholder:text-[14px]"
+            :placeholder="getSearchPlaceholder()"
+          />
+        </div>
+
+        <!-- Autocomplete Dropdown -->
+        <div v-if="showAutocomplete" class="absolute left-0 right-0 top-full mt-1 bg-white rounded-xl shadow-lg border border-gray-200 z-50 max-h-64 overflow-auto">
+          <div 
+            v-for="item in searchResults" 
+            :key="item.id || item.sku || item.title"
+            @mousedown.prevent="selectAutocomplete(item)"
+            class="px-4 py-2 cursor-pointer hover:bg-gray-100 text-sm"
           >
-          <div v-if="showAutocomplete" class="absolute left-0 right-0 top-full mt-1 bg-popup rounded-lg shadow-lg border border-light z-50 max-h-64 overflow-auto">
-            <div v-for="item in searchResults" :key="item.id || item.sku || item.title" @mousedown.prevent="selectAutocomplete(item)" class="px-4 py-2 cursor-pointer hover:bg-primary-light text-sm" style="color: var(--text-primary);">
-              <template v-if="searchCategory === 'asset'">
-                <div class="font-medium">{{ item.name }}</div>
-                <div class="text-xs text-muted">{{ item.code }} &bull; {{ item.location }}</div>
-              </template>
-              <template v-else-if="searchCategory === 'item'">
-                <div class="font-medium">{{ item.name }}</div>
-                <div class="text-xs text-muted">SKU: {{ item.sku }} &bull; {{ item.category }}</div>
-              </template>
-              <template v-else-if="searchCategory === 'workorder'">
-                <div class="font-medium">{{ item.title }}</div>
-                <div class="text-xs text-muted">{{ item.id }} &bull; {{ item.status }}</div>
-              </template>
-              <template v-else-if="searchCategory === 'employee'">
-                <div class="font-medium">{{ item.name }}</div>
-                <div class="text-xs text-muted">ID: {{ item.id }} &bull; {{ item.department }}</div>
-              </template>
-              <template v-else-if="searchCategory === 'menu'">
-                <div class="flex items-center font-medium">
-                  <span 
-                    v-if="item.level > 1" 
-                    class="mr-2 text-xs px-1.5 py-0.5 rounded-full" 
-                    :style="{
-                      backgroundColor: item.level === 2 ? 'var(--color-primary-light)' : 'var(--color-secondary-light)',
-                      color: item.level === 2 ? 'var(--color-primary)' : 'var(--color-secondary)'
-                    }"
-                  >
-                    L{{ item.level }}
-                  </span>
-                  {{ item.name }}
-                </div>
-                <div class="text-xs text-muted">
-                  {{ item.parent ? item.parent + ' • ' : '' }}{{ item.path }}
-                </div>
-              </template>
-            </div>
+            <template v-if="searchCategory === 'asset'">
+              <div class="font-medium">{{ item.name }}</div>
+              <div class="text-xs text-gray-500">{{ item.code }} • {{ item.location }}</div>
+            </template>
+            <template v-else-if="searchCategory === 'item'">
+              <div class="font-medium">{{ item.name }}</div>
+              <div class="text-xs text-gray-500">SKU: {{ item.sku }} • {{ item.category }}</div>
+            </template>
+            <template v-else-if="searchCategory === 'workorder'">
+              <div class="font-medium">{{ item.title }}</div>
+              <div class="text-xs text-gray-500">{{ item.id }} • {{ item.status }}</div>
+            </template>
+            <template v-else-if="searchCategory === 'employee'">
+              <div class="font-medium">{{ item.name }}</div>
+              <div class="text-xs text-gray-500">ID: {{ item.id }} • {{ item.department }}</div>
+            </template>
+            <template v-else-if="searchCategory === 'menu'">
+              <div class="font-medium">{{ item.name }}</div>
+              <div class="text-xs text-gray-500">{{ item.parent ? item.parent + ' • ' : '' }}{{ item.path }}</div>
+            </template>
           </div>
         </div>
       </div>
     </div>
+    <!-- End Left Side -->
 
-    <!-- Right side - Notifications, theme toggle, and user menu -->
-    <div class="flex items-center space-x-1">
-      <!-- Theme toggle -->
-      <button 
-        @click="toggleTheme"
-        class="p-2 rounded-md text-secondary hover:text-primary hover:bg-primary-light transition-all duration-200"
-        :title="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
-      >
-        <SunIcon v-if="isDarkMode" class="h-5 w-5" />
-        <MoonIcon v-else class="h-5 w-5" />
+    <!-- Right Side -->
+    <div class="flex flex-row items-center gap-[10px]">
+
+      <!-- Toggle theme Mode -->
+      <button class="cursor-pointer p-[10px] flex flex-row items-center justify-between gap-[10px] bg-gray-500 hover:bg-gray-700 rounded-[50px]">
+        <div class="w-[20px] h-[20px] rounded-[50px] bg-white"></div>
+        <div>
+          <img src="/icons/light.svg" alt="Light Mode Icon" class="w-[15px] h-[15px] object-center object-cover shrink-0">
+        </div>
       </button>
 
-      <!-- Notifications -->
+      <!-- Notification -->
       <div class="relative">
         <button 
+          class="relative group bg-white rounded-[50px] w-[75px] h-[75px] flex items-center justify-center flex-none cursor-pointer hover:bg-gray-100"
           @click="showNotifications = !showNotifications"
-          class="relative p-2 rounded-md text-secondary hover:text-primary hover:bg-primary-light transition-all duration-200"
           :title="`${unreadNotifications > 0 ? unreadNotifications + ' new notifications' : 'No new notifications'}`"
+          ref="notificationButton"
         >
-          <!-- Bell Icon -->
-          <svg fill="none" stroke="white" viewBox="0 0 24 24" class="h-5 w-5">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-3.5-3.5a50.002 50.002 0 00-1.5-1.5v-6a6 6 0 10-12 0v6c0 .538-.214 1.055-.598 1.436L5 17h5m0 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-          </svg>
-          
-          <!-- Notification Count Badge -->
+          <img 
+            src="/icons/notification.svg"
+            alt="Notification"
+            class="w-[22px] h-auto cursor-pointer transform transition-transform duration-300 group-hover:scale-105"
+          />
           <span 
             v-if="unreadNotifications > 0" 
-            class="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-1/2 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center border-2 border-white shadow-lg font-bold"
+            class="absolute top-1 left-1 h-5 w-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center border-2 border-white shadow-lg font-bold"
           >
             {{ unreadNotifications > 9 ? '9+' : unreadNotifications }}
           </span>
-        </button>        <!-- Notifications dropdown -->
-        <div v-if="showNotifications" class="absolute right-0 mt-2 w-80 rounded-lg shadow-lg border z-50" style="background-color: var(--color-bgpopup); border-color: var(--border-light);">
-          <div class="p-4 border-b" style="border-color: var(--border-light);">
-            <h3 class="text-sm font-semibold" style="color: var(--text-primary);">Notifications</h3>
-          </div>          <div class="max-h-96 overflow-y-auto">
-            <div v-if="notifications.length === 0" class="p-4 text-center" style="color: var(--text-muted);">
-              No notifications
-            </div>
-            <div v-else class="divide-y" style="border-color: var(--border-light);">
-              <div 
-                v-for="notification in notifications" 
-                :key="notification.id"
-                class="p-4 transition-colors cursor-pointer hover:opacity-80"
-                @click="markAsRead(notification.id)"
-                style="background-color: var(--color-bgpopup);"
-              >
-                <div class="flex items-start space-x-3">                  <div class="flex-shrink-0">
-                    <div class="w-2 h-2 rounded-full" :style="getNotificationDotStyle(notification.type)"></div>
-                  </div>
-                  <div class="flex-1">
-                    <p class="text-sm" style="color: var(--text-primary);">{{ notification.message }}</p>
-                    <p class="text-xs mt-1" style="color: var(--text-muted);">{{ notification.time }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="p-3 border-t" style="border-color: var(--border-light);">
-            <button class="text-sm font-medium transition-colors hover:opacity-80" style="color: var(--color-primary);">
-              View all notifications
-            </button>
-          </div>
-        </div>
-      </div>
+        </button>
 
-      <!-- User menu -->
-      <div class="relative">
-        <button 
-          @click="showUserMenu = !showUserMenu"
-          class="flex items-center space-x-1 p-2 rounded-md text-secondary hover:text-primary hover:bg-primary-light transition-all duration-200"
+        <!-- Dropdown Notifications -->
+        <div 
+          v-if="showNotifications" 
+          ref="notificationDropdown"
+          class="absolute right-0 mt-2 w-[300px] bg-white border border-gray-200 rounded-xl shadow-lg z-50 p-4 max-h-[300px] overflow-y-auto"
         >
-          <div class="w-8 h-8 rounded-full flex items-center justify-center shadow-sm" style="background-color: var(--color-primary);">
-            <span class="text-sm font-semibold text-white">{{ getUserInitials }}</span>
-          </div>
-          <ChevronDownIcon class="h-4 w-4" />
-        </button>        <!-- User dropdown -->
-        <div v-if="showUserMenu" class="absolute right-0 mt-2 w-48 rounded-lg shadow-lg border z-50" style="background-color: var(--color-bgpopup); border-color: var(--border-light);">
-          <div class="p-3 border-b" style="border-color: var(--border-light);">
-            <p class="text-sm font-medium" style="color: var(--text-primary);">{{ currentUser?.name || 'User' }}</p>
-            <p class="text-xs" style="color: var(--text-muted);">{{ currentUser?.email || 'user@example.com' }}</p>
-          </div>
-          <div class="py-1">
-            <a href="#" class="block px-4 py-2 text-sm transition-colors hover:opacity-80" style="color: var(--text-secondary);">
-              Profile Settings
-            </a>
-            <a href="#" class="block px-4 py-2 text-sm transition-colors hover:opacity-80" style="color: var(--text-secondary);">
-              Account
-            </a>
-            <div class="border-t my-1" style="border-color: var(--border-light);"></div>
-            
-            <!-- Favorite Menus Section -->
-            <div v-if="favoriteMenus.length > 0" class="py-1">
-              <div class="px-4 py-2 text-xs font-semibold uppercase tracking-wide" style="color: var(--text-muted);">
-                Favorite Menus
-              </div>
-              <div class="max-h-32 overflow-y-auto">
-                <button 
-                  v-for="menu in favoriteMenus" 
-                  :key="menu.path"
-                  @click="navigateToFavorite(menu)"
-                  class="block w-full text-left px-4 py-2 text-sm transition-colors hover:opacity-80 flex items-center"
-                  style="color: var(--text-secondary);"
-                >
-                  <svg class="h-3 w-3 mr-2 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
-                  </svg>
-                  <span class="truncate">{{ menu.name }}</span>
-                </button>
-              </div>
-              <div class="border-t my-1" style="border-color: var(--border-light);"></div>
-            </div>
-            
-            <button 
-              @click="logout"
-              class="block w-full text-left px-4 py-2 text-sm transition-colors hover:opacity-80"
-              style="color: var(--color-error);"
+          <div v-if="notifications.length === 0" class="text-sm text-gray-500">No notifications</div>
+          <div v-else>
+            <div 
+              v-for="notif in notifications" 
+              :key="notif.id" 
+              class="flex items-start gap-2 mb-3 last:mb-0 cursor-pointer hover:bg-gray-100 rounded-md p-2"
+              @click="markAsRead(notif.id)"
             >
-              Sign out
-            </button>
+              <div class="w-2 h-2 rounded-full mt-1 flex-none" :style="getNotificationDotStyle(notif.type)"></div>
+              <div class="text-sm">
+                <div class="font-medium">{{ notif.message }}</div>
+                <div class="text-xs text-gray-500">{{ notif.time }}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      
+      <!-- Profile -->
+       <button class="cursor-pointer max-h-[75px] bg-white hover:bg-gray-100 px-[30px] py-[20px] flex flex-row items-center gap-[20px] rounded-[50px]">
+        <div class="flex flex-row items-center gap-[15px]">
+          <div class="icon__rounded bg-primary">
+            <span class="text-[14px] text-white">AU</span>
+          </div>
+          <div class="flex flex-col items-start">
+            <span class="label__main">Admin User</span>
+            <span class="label__secondary">admin@example.com</span>
+          </div>
+        </div>
+
+        <div>
+          <img src="/icons/arrow.svg" alt="Arrow Icon" class="w-[10px] h-auto object-center object-cover shrink-0">
+        </div>
+      </button>
     </div>
   </header>
 </template>
@@ -261,6 +186,12 @@ const ChevronDownIcon = {
   template: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>`
 }
 
+const props = defineProps({
+  isSidebarOpen: {
+    type: Boolean,
+    default: true
+  }
+});
 const emit = defineEmits(['toggle-sidebar'])
 
 const route = useRoute()
@@ -322,7 +253,7 @@ const notifications = ref([
     type: 'error',
     message: 'Critical maintenance overdue for Generator GN-003',
     time: '3 hours ago'
-  }
+  },
 ])
 
 const toggleSidebar = () => {

@@ -1,5 +1,129 @@
 @import "tailwindcss";
 
+/* Sidebar */
+.card__menu {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 20px;
+    background-color: transparent;
+    border-radius: 15px;
+    color: var(--text-muted);
+}
+
+
+.icon__menu {
+    width: 22px;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+.label__main {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.label__secondary {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.container__menu{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px
+}
+
+.title__container__menu {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.title__container__menu > span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.dotted__border {
+    border-width: 1px;
+    border-style: dashed;
+    width: 100%;
+    border-color: var(--text-muted);
+    opacity: 0.2;
+}
+
+.icon__rounded {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-primary {
+    background-color: var(--color-primary)
+}
+/* End Sidebar */
+
+
+/* Navbar */
+.outline__input {
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.outline__input:hover,
+.outline__input:focus-within {
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+.outline__input::placeholder {
+    color: var(--text-muted)
+}
+/* End Navbar */
+
+
+
+/* Main Content */
+.title__main {
+    font-size: 24px;
+    font-weight: 500;
+}
+.desc__main {
+    font-size: 14px;
+    font-weight: 300;
+}
+.container__header__main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+.container__section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search {
+    @apply bg-gray-100 ps-[30px] pe-[80px] py-[20px] rounded-[50px] flex items-center gap-[20px] text-[14px] w-fit 
+}
+
+.background__icon__content {
+    @apply bg-gray-100 hover:bg-gray-300 rounded-[50px] w-[50px] h-[50px] flex items-center justify-center cursor-pointer
+}
+
+.container__data {
+    @apply flex items-center justify-center min-h-[155px]
+}
+
+/* End Main Content */
 .card {
     @apply bg-panel-bg p-[10px] rounded-md shadow-md w-[450px] border-[1px] border-panel-bg;
 }
@@ -9,8 +133,12 @@
     color: #000 !important
 }
 
-.btn_primary {
-    @apply bg-primary text-white  disabled:bg-slate-500 disabled:text-white disabled:cursor-not-allowed
+.background__icon {
+    @apply bg-gray-100 hover:bg-gray-300 rounded-[50px] w-[60px] h-[60px] flex items-center justify-center cursor-pointer
+}
+
+.btn__primary {
+    @apply bg-primary text-white px-[30px] py-[20px] text-[14px] flex items-center justify-center rounded-[50px] hover:bg-primary-hover cursor-pointer
 }
 
 .btn_success {
@@ -239,7 +367,7 @@ height: -webkit-fill-available;
 width: -webkit-fill-available;  
 background-color:rgba(240,240,240,0.5);
 
-} 
+}   
 .loader::before{
 @apply border-t-primary;
 position: absolute;
@@ -261,7 +389,5 @@ opacity: 1.2;
 }
 
 .pageButton {
-    @apply px-3 py-2 text-sm   
-        disabled:text-gray-400 disabled:opacity-20 disabled:cursor-not-allowed 
-        transition-all font-medium;
+    @apply px-[30px] py-[20px] bg-white rounded-[50px] hover:bg-gray-300 text-[14px] min-h-[61px];
 }

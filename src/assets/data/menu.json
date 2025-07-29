@@ -3,7 +3,7 @@
     "id": "dashboard",
     "name": "Dashboard",
     "href": "/dashboard",
-    "icon": "mdiViewDashboard",
+    "icon": "icons/dashboard.svg",
     "level": 1
   },
   {
@@ -17,42 +17,42 @@
         "id": "Task",
         "name": "Task Management",
         "href": "/task",
-        "icon": "mdiClipboardList",
+        "icon": "icons/task-management.svg",
         "level": 2
       },
       {
         "id": "maintenance",
         "name": "Work Order",
         "href": "/work-order",
-        "icon": "mdiWrench",
+        "icon": "icons/work-order.svg",
         "level": 2
       },
       {
         "id": "itemstat",
         "name": "Material Status",
         "href": "/material-status",
-        "icon": "mdiPackageVariant",
+        "icon": "icons/material-status.svg",
         "level": 2
       },
       {
         "id": "defect",
         "name": "Defect Management",
         "href": "/defect",
-        "icon": "mdiAlertCircle",
+        "icon": "icons/defect-management.svg",
         "level": 2
       },
       {
         "id": "sync",
         "name": "Sync Data",
         "href": "/sync-data",
-        "icon": "mdiSync",
+        "icon": "icons/sync-data.svg",
         "level": 2
       },
       {
         "id": "reports",
         "name": "Reports",
         "href": "/reports",
-        "icon": "mdiChartBox",
+        "icon": "icons/reports.svg",
         "level": 2,
         "children": [
           {
@@ -246,7 +246,7 @@
         "id": "master-data-local",
         "name": "Master Data Local",
         "href": "/system/master-local",
-        "icon": "mdiDatabase",
+        "icon": "icons/master-data-local.svg",
         "level": 2,
         "children": [
           {
@@ -283,7 +283,7 @@
         "id": "master-data-sap",
         "name": "Master Data SAP",
         "href": "/system/master-sap",
-        "icon": "mdiDatabaseSync",
+        "icon": "icons/master-data-sap.svg",
         "level": 2,
         "children": [
           {
@@ -376,14 +376,14 @@
         "id": "settings",
         "name": "Settings",
         "href": "/settings",
-        "icon": "mdiCog",
+        "icon": "icons/settings.svg",
         "level": 2
       },
       {
         "id": "template-designer",
         "name": "Template Designer",
         "href": "/template-designer",
-        "icon": "mdiFileDocumentEdit",
+        "icon": "icons/dashboard.svg",
         "level": 2
       }
     ]
