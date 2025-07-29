@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #content>
-      <div class="h-full flex flex-col">
+      <div class="flex flex-col h-full">
         <!-- Page Header -->
         <div class="w-full container__section">
           
@@ -47,7 +47,7 @@
           <!-- Loading State -->
           <div v-if="loading" class="p-8 text-center">
             <div class="inline-flex items-center">
-              <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-petrosea-primary mr-3"></div>
+              <div class="w-6 h-6 mr-3 border-b-2 rounded-full animate-spin border-petrosea-primary"></div>
               <span class="text-gray-600">Loading work orders...</span>
             </div>
           </div>
@@ -55,23 +55,23 @@
           <!-- Error State -->
           <div v-else-if="error" class="p-8 text-center">
             <div class="text-red-600">
-              <MdiIcon :path="mdiAlertCircle" class="h-8 w-8 mx-auto mb-2" />
+              <MdiIcon :path="mdiAlertCircle" class="w-8 h-8 mx-auto mb-2" />
               <p class="font-medium">Error loading work orders</p>
-              <p class="text-sm mt-1">{{ error }}</p>
+              <p class="mt-1 text-sm">{{ error }}</p>
             </div>
           </div>
   
           <!-- Empty State -->
           <div v-else-if="filteredWorkOrders.length === 0" class="p-8 text-center">
-            <MdiIcon :path="mdiClipboardTextOutline" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 class="text-lg font-medium text-gray-900 mb-2">No work orders found</h3>
+            <MdiIcon :path="mdiClipboardTextOutline" class="w-12 h-12 mx-auto mb-4 text-gray-400" />
+            <h3 class="mb-2 text-lg font-medium text-gray-900">No work orders found</h3>
             <p class="text-gray-600">{{ searchQuery || statusFilter || priorityFilter || typeFilter ? 'Try adjusting your filters' : 'Create your first work order to get started' }}</p>
           </div>
   
           <!-- Table Component -->
           <div v-else class="overflow-y-auto">
             <table class="w-full table-fixed">
-              <thead class="font-medium sticky top-0 z-10">
+              <thead class="sticky top-0 z-10 font-medium">
                 <tr class="text-left text-[14px]">
                   <!-- Work ID -->
                   <th
@@ -177,7 +177,7 @@
                           <span class="text-[14px]">{{ workOrder.assetName.split(' ').slice(0, 2).join(' ') }}</span>
                           <p class="text-[14px]">{{ workOrder.assetId }}</p>
                         </div>
-                        <p class="label__secondary truncate">{{ workOrder.title }}</p>
+                        <p class="truncate label__secondary">{{ workOrder.title }}</p>
                       </div>
   
                       <div class="flex flex-wrap items-center gap-[10px]">
@@ -232,7 +232,7 @@
   
                   <!-- Assigned To -->
                   <td>
-                    <div class="flex flex-col justify-center items-center">
+                    <div class="flex flex-col items-center justify-center">
                       <div class="flex flex-col">
                         <span class="text-[14px] font-medium">{{ getAssignedTeamInfo(workOrder.assignedTo).mainPerson }}</span>
                         <span v-if="getAssignedTeamInfo(workOrder.assignedTo).otherCount > 0" class="text-xs text-gray-500">
