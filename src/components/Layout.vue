@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen bg-app flex">
+  <div class="h-screen flex">
     <!-- Sidebar -->
     <Sidebar
       v-show="sidebarStore.sidebarOpen"
@@ -9,15 +9,15 @@
 
     <!-- Main content area -->
     <div
-      class="transition-all duration-300 ease-in-out flex flex-col flex-1 min-h-screen me-[62px]" :class="sidebarStore.sidebarOpen ? 'ms-[373px]' : 'lg:ml-[62px]'"
+      class="transition-all duration-300 ease-in-out flex flex-col flex-1 min-h-screen  xl:me-[24px] 2xl:me-[62px]" :class="sidebarStore.sidebarOpen ? 'xl:ms-[269px] 2xl:ms-[373px]' : 'xl:ml-[24px] 2xl:ml-[62px]'"
     >
       <!-- Header -->
       <Header @toggle-sidebar="toggleSidebar" />
 
       <!-- Page content -->
       <main>
-        <section class="h-[750px] mt-[20px] px-[60px] py-[40px] bg-white rounded-[30px] overflow-hidden"
-        style="border-color: var(--border-light);">
+        <section class="h-[40vw] mt-[20px] px-[40px] py-[27px] 2xl:px-[60px] 2xl:py-[40px] rounded-[30px] overflow-hidden"
+        style="background-color: var(--color-bgsidebar);">
           <slot name="content" />
         </section>
         <section>
@@ -39,9 +39,3 @@ const toggleSidebar = () => {
   sidebarStore.toggleSidebar()
 }
 </script>
-
-<style scoped>
-.bg-app {
-  background-color: #f6f8fa; /* Sesuaikan dengan background aplikasimu */
-}
-</style>

@@ -1,15 +1,15 @@
 <template>
   <div
     id="sidebar"
-    class="min-w-[331px] h-screen fixed flex flex-col items-start py-[22px] ps-[2vw] pe-[28px] bg-white overflow-y-auto"
+    class="xl:min-w-[245px] 2xl:min-w-[331px] h-screen fixed flex flex-col items-start xl:py-[16px] 2xl:py-[22px] ps-[2vw] pe-[28px] overflow-y-auto" style="background-color: var(--color-bgsidebar);"
   >
     <!-- Logo -->
     <div class="w-full h-fit">
-      <span class="text-primary-color text-[40px] leading-[60px] font-bold">Xibex</span>
+      <span class="text-primary-color xl:text-[30px] 2xl:text-[40px] xl:leading-[44px] 2xl:leading-[60px] font-bold">Xibex</span>
     </div>
 
     <!-- Menu Utama -->
-    <div class="w-full mt-5 flex flex-col items-start gap-[20px]">
+    <div class="w-full xl:mt-3.5 2xl:mt-5 flex flex-col items-start xl:gap-[15px] 2xl:gap-[20px]">
       <template v-for="item in menuItems" :key="item.id">
         <!-- Jika bukan group -->
         <router-link
@@ -22,7 +22,7 @@
         </router-link>
 
         <!-- Jika group -->
-        <div v-else class="w-full flex flex-col items-start gap-[15px]">
+        <div v-else class="w-full flex flex-col items-start xl:gap-[11px] 2xl:gap-[15px]">
           <div class="title__container__menu">
             <span>{{ item.name }}</span>
             <div class="dotted__border"></div>
@@ -40,15 +40,18 @@
                 <span class="label__main">{{ child.name }}</span>
               </router-link>
 
-              <!-- Level 2 dengan children (submenu modal fixed) -->
-              <div
-                class="card__menu relative"
+              <!-- Level 2 dengan children -->
+              <div 
+                class="card__menu w-full flex items-center justify-between relative cursor-pointer"
                 v-else
                 @mouseenter="handleMouseEnter($event, child)"
-                @mouseleave="hoveredMenu = null"
+                @mouseleave="handleSubmenuLeave"
               >
-                <img :src="child.icon" :alt="child.name + ' Icon'" class="icon__menu" />
-                <span class="label__main">{{ child.name }}</span>
+                <div class="flex items-center xl:gap-[15px] 2xl:gap-[20px]">
+                  <img :src="child.icon" :alt="child.name + ' Icon'" class="icon__menu" />
+                  <span class="label__main">{{ child.name }}</span>
+                </div>
+                <img src="/icons/arrow.svg" alt="Arrow Icon" class="arrow xl:w-[10px] 2xl:w-[12px] h-auto object-center object-cover shrink-0 -rotate-90">
               </div>
             </template>
           </div>
@@ -56,27 +59,29 @@
       </template>
     </div>
 
-    <!-- Modal submenu (muncul di luar sidebar) -->
+    <!-- Modal submenu -->
     <div
       v-if="hoveredMenu"
-      class="fixed z-50 min-w-[300px] bg-white border border-gray-200 shadow-xl p-4"
+      class="fixed z-50 min-w-[300px] bg__submenu shadow-xl p-4"
       :style="`top: ${submenuPosition.top}px; left: ${submenuPosition.left}px`"
-      @mouseleave="hoveredMenu = null"
+      @mouseenter="cancelSubmenuClose"
+      @mouseleave="handleSubmenuLeave"
     >
       <div class="grid grid-cols-3 gap-4">
         <router-link
           v-for="sub in hoveredMenu.children"
           :key="sub.id"
           :to="sub.link"
-          class="text-sm hover:underline cursor-pointer"
+          class="flex items-center gap-2 text-sm hover:underline cursor-pointer"
         >
-          {{ sub.name }}
+          <img :src="sub.icon" alt="Submenu Icon" class="w-4 h-4 object-contain" />
+          <span>{{ sub.name }}</span>
         </router-link>
       </div>
     </div>
 
     <!-- Status & Logout -->
-    <div class="w-full mt-[60px] mb-32">
+    <div class="w-full xl:mt-[44px] 2xl:mt-[60px] mb-32">
       <div class="w-full flex flex-col gap-[25px] items-start">
         <div class="dotted__border"></div>
         <div class="w-full flex flex-col gap-[10px] items-start">
@@ -86,7 +91,7 @@
                 <img
                   src="/icons/location.svg"
                   alt="Location Icon"
-                  class="w-[12px] h-[15px] object-cover object-center shrink-0"
+                  class="xl:w-[10px] xl:h-auto 2xl:w-[12px] 2xl:h-[15px] object-cover object-center shrink-0"
                 />
               </div>
               <div class="flex flex-col">
@@ -96,13 +101,13 @@
             </div>
 
             <div
-              class="icon__rounded bg-gray-300 flex-none cursor-pointer"
+              class="icon__rounded bg-gray-100 hover:bg-gray-300 flex-none cursor-pointer"
               @click="openSiteChangeModal"
             >
               <img
                 src="/icons/switch.svg"
                 alt="Switch Icon"
-                class="w-[16px] h-[14px] object-cover object-center shrink-0"
+                class="xl:w-[12px] xl:h-auto 2xl:w-[16px] 2xl:h-[14px] object-cover object-center shrink-0"
               />
             </div>
           </div>
@@ -110,7 +115,7 @@
           <div class="w-full flex flex-row justify-between items-center">
             <div class="w-full flex flex-row gap-[22px] items-center">
               <div class="icon__rounded bg-primary">
-                <span class="text-[14px] leading-[21px] text-white">A</span>
+                <span class="text-[10px] 2xl:text-[14px] leading-[21px] text-white">A</span>
               </div>
               <div class="flex flex-col">
                 <span class="label__main">Admin</span>
@@ -119,13 +124,13 @@
             </div>
 
             <div
-              class="icon__rounded bg-gray-300 flex-none cursor-pointer"
+              class="icon__rounded bg-gray-100 hover:bg-gray-300 flex-none cursor-pointer"
               @click="logout"
             >
               <img
                 src="/icons/logout.svg"
                 alt="Logout Icon"
-                class="w-[16px] h-[14px] object-cover object-center shrink-0"
+                class="xl:w-[12px] xl:h-auto 2xl:w-[16px] 2xl:h-[14px] object-cover object-center shrink-0"
               />
             </div>
           </div>
@@ -144,7 +149,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 import { useSiteStore } from '@/stores/siteStore'
@@ -153,7 +158,9 @@ import SiteChangeModal from '@/components/SiteChangeModal.vue'
 const menuItems = ref([])
 const hoveredMenu = ref(null)
 const submenuPosition = ref({ top: 0, left: 0 })
+const submenuLocked = ref(false)
 const showSiteModal = ref(false)
+const submenuCloseTimeout = ref(null)
 
 const route = useRoute()
 const router = useRouter()
@@ -167,11 +174,42 @@ function isActiveRoute(path) {
 }
 
 function handleMouseEnter(event, child) {
+  if (submenuLocked.value) return
+
+  // Batalkan timeout jika user kembali hover
+  if (submenuCloseTimeout.value) {
+    clearTimeout(submenuCloseTimeout.value)
+    submenuCloseTimeout.value = null
+  }
+
   hoveredMenu.value = child
   const rect = event.currentTarget.getBoundingClientRect()
   submenuPosition.value = {
     top: rect.top,
     left: rect.right + 16,
+  }
+}
+
+function handleSubmenuLeave() {
+  if (!submenuLocked.value) {
+    submenuCloseTimeout.value = setTimeout(() => {
+      hoveredMenu.value = null
+    }, 250) // delay sebelum submenu tertutup
+  }
+}
+
+function cancelSubmenuClose() {
+  if (submenuCloseTimeout.value) {
+    clearTimeout(submenuCloseTimeout.value)
+    submenuCloseTimeout.value = null
+  }
+}
+
+function handleClickOutside(event) {
+  const sidebar = document.getElementById('sidebar')
+  if (sidebar && !sidebar.contains(event.target)) {
+    hoveredMenu.value = null
+    submenuLocked.value = false
   }
 }
 
@@ -200,32 +238,21 @@ onMounted(async () => {
   } catch (error) {
     console.error('Failed to load menu.json:', error)
   }
+
+  document.addEventListener('click', handleClickOutside)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
+
+  if (submenuCloseTimeout.value) {
+    clearTimeout(submenuCloseTimeout.value)
+  }
 })
 </script>
 
 <style scoped>
 #sidebar::-webkit-scrollbar {
   display: none;
-}
-
-.card__menu:hover,
-.card__menu:active {
-  background-color: var(--color-primary);
-  color: white;
-  cursor: pointer;
-}
-
-.card__menu:hover .icon__menu,
-.card__menu:active .icon__menu {
-  filter: brightness(0) invert(1);
-}
-
-.card__menu.active {
-  background-color: var(--color-primary);
-  color: white;
-}
-
-.card__menu.active .icon__menu {
-  filter: brightness(0) invert(1);
 }
 </style>

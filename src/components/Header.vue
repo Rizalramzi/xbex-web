@@ -1,26 +1,25 @@
 <template>
-  <header class="w-full h-fit pt-[32px] flex items-center justify-between z-30 flex-shrink-0">
-
+  <header class="w-full h-fit xl:pt-[16px] 2xl:pt-[32px] flex items-center justify-between z-30 flex-shrink-0">
     <!-- Left Side -->
     <div class="flex flex-row items-center gap-[10px]">
       <button 
-          class="group bg-primary rounded-[50px] w-[75px] h-[75px] flex items-center justify-center flex-none"
+          class="group bg-primary rounded-[50px] xl:w-[50px] xl:h-[50px] 2xl:w-[75px] 2xl:h-[75px] flex items-center justify-center flex-none"
           @click="$emit('toggle-sidebar')"
         >
           <img 
             src="/icons/double-arrow.svg"
             alt="ARFS"
             :class="[
-              'w-[12px] h-auto cursor-pointer transform transition-transform duration-300 group-hover:scale-105',
+              'xl:w-[10px] 2xl:w-[12px] h-auto cursor-pointer transform transition-transform duration-300 group-hover:scale-105',
               props.isSidebarOpen ? 'rotate-0' : 'rotate-180'
             ]"
           />
       </button>
 
-      <div class="flex-none flex flex-row items-center gap-[20px] w-fit h-full min-h-[75px] px-[30px] py-[20px] justify-center bg-white rounded-[50px] min-w-[172px] hover:bg-gray-100 cursor-pointer">
+      <div class="category__option flex-none flex flex-row items-center gap-[20px] w-fit h-full xl:min-h-[50px] 2xl:min-h-[75px] xl:px-[20px] 2xl:px-[30px] xl:py-[13px] 2xl:py-[20px] justify-center rounded-[50px] 2xl:min-w-[172px] cursor-pointer">
         <select 
           v-model="searchCategory"
-          class="outline-none w-full h-full text-[14px] cursor-pointer"
+          class="outline-none w-full h-full xl:text-[10px] 2xl:text-[14px] cursor-pointer"
         >
           <option value="workorder">Work Order</option>
           <option value="item">Item</option>
@@ -30,16 +29,16 @@
         </select>
       </div>
 
-      <div class="relative w-full min-w-[411px]">
-        <div class="outline__input flex flex-row items-center gap-[20px] w-full h-full min-h-[75px] ps-[30px] pe-[60px] py-[20px] justify-center bg-white rounded-[50px]">
-          <img src="/icons/search.svg" alt="Search Icon" class="w-auto h-[22px] object-center object-cover shrink-0">
+      <div class="relative w-full xl:min-w-[275px] 2xl:min-w-[411px]">
+        <div class="outline__input flex flex-row items-center xl:gap-[13px] 2xl:gap-[20px] w-full h-full xl:min-h-[50px] 2xl:min-h-[75px] xl:ps-[20px] xl:pe-[40px] py-[13px] 2xl:ps-[30px] 2xl:pe-[60px] 2xl:py-[20px] justify-center rounded-[50px]" style="background-color: var(--color-bgsidebar);">
+          <img src="/icons/search.svg" alt="Search Icon" class="w-auto xl:h-[16px] 2xl:h-[22px] object-center object-cover shrink-0">
           <input 
             type="text" 
             v-model="searchQuery"
             @input="handleSearch"
             @focus="handleSearch"
             @blur="() => setTimeout(() => showAutocomplete.value = false, 200)"
-            class="outline-none w-full text-[14px] placeholder:text-[14px]"
+            class="outline-none w-full xl:text-[10px] 2xl:text-[14px] xl:placeholder:text-[10px] 2xl:placeholder:text-[14px] placeholder:truncate"
             :placeholder="getSearchPlaceholder()"
           />
         </div>
@@ -82,17 +81,20 @@
     <div class="flex flex-row items-center gap-[10px]">
 
       <!-- Toggle theme Mode -->
-      <button class="cursor-pointer p-[10px] flex flex-row items-center justify-between gap-[10px] bg-gray-500 hover:bg-gray-700 rounded-[50px]">
-        <div class="w-[20px] h-[20px] rounded-[50px] bg-white"></div>
+      <button 
+        @click="toggleTheme"
+        class="cursor-pointer xl:p-[7px] 2xl:p-[10px] flex flex-row items-center justify-between gap-[7px] 2xl:gap-[10px] bg-gray-500 hover:bg-gray-700 rounded-[50px]"
+      >
+        <div class="xl:w-[13px] xl:h-[13px] 2xl:w-[20px] 2xl:h-[20px] rounded-[50px] bg-white"></div>
         <div>
-          <img src="/icons/light.svg" alt="Light Mode Icon" class="w-[15px] h-[15px] object-center object-cover shrink-0">
+          <img src="/icons/light.svg" alt="Light Mode Icon" class="xl:w-[13px] xl:h-[13px] 2xl:w-[15px] 2xl:h-[15px] object-center object-cover shrink-0">
         </div>
       </button>
 
       <!-- Notification -->
       <div class="relative">
         <button 
-          class="relative group bg-white rounded-[50px] w-[75px] h-[75px] flex items-center justify-center flex-none cursor-pointer hover:bg-gray-100"
+          class="relative group bg__notification"
           @click="showNotifications = !showNotifications"
           :title="`${unreadNotifications > 0 ? unreadNotifications + ' new notifications' : 'No new notifications'}`"
           ref="notificationButton"
@@ -100,11 +102,11 @@
           <img 
             src="/icons/notification.svg"
             alt="Notification"
-            class="w-[22px] h-auto cursor-pointer transform transition-transform duration-300 group-hover:scale-105"
+            class="xl:w-[15px] 2xl:w-[22px] h-auto cursor-pointer transform transition-transform duration-300 group-hover:scale-105"
           />
           <span 
             v-if="unreadNotifications > 0" 
-            class="absolute top-1 left-1 h-5 w-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center border-2 border-white shadow-lg font-bold"
+            class="absolute top-1 xl:left-0 2xl:left-1 h-5 w-5 bg-red-500 text-white xl:text-[8px] 2xl:text-xs rounded-full flex items-center justify-center border-2 border-white shadow-lg font-bold"
           >
             {{ unreadNotifications > 9 ? '9+' : unreadNotifications }}
           </span>
@@ -133,12 +135,12 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Profile -->
-       <button class="cursor-pointer max-h-[75px] bg-white hover:bg-gray-100 px-[30px] py-[20px] flex flex-row items-center gap-[20px] rounded-[50px]">
+       <button class="profile__container">
         <div class="flex flex-row items-center gap-[15px]">
           <div class="icon__rounded bg-primary">
-            <span class="text-[14px] text-white">AU</span>
+            <span class="xl:text-[10px] 2xl:text-[14px] text-white">AU</span>
           </div>
           <div class="flex flex-col items-start">
             <span class="label__main">Admin User</span>
@@ -160,31 +162,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/authStore'
 import { useSiteStore } from '../stores/siteStore'
 import { useFavoriteMenuStore } from '../stores/favoriteMenuStore'
-import MdiIcon from './MdiIcon.vue'
-import { mdiMapMarker } from '@mdi/js'
-import logoSmall from '../assets/images/logo-small.svg'
 import searchData from '../assets/data/search.json'
-
-// Icons
-const SearchIcon = {
-  template: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>`
-}
-
-const BellIcon = {
-  template: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-3.5-3.5a50.002 50.002 0 00-1.5-1.5v-6a6 6 0 10-12 0v6c0 .538-.214 1.055-.598 1.436L5 17h5m0 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>`
-}
-
-const SunIcon = {
-  template: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>`
-}
-
-const MoonIcon = {
-  template: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>`
-}
-
-const ChevronDownIcon = {
-  template: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>`
-}
 
 const props = defineProps({
   isSidebarOpen: {
@@ -192,6 +170,16 @@ const props = defineProps({
     default: true
   }
 });
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+  const storedTheme = localStorage.getItem('theme')
+  isDarkMode.value = storedTheme === 'dark'
+  if (isDarkMode.value) {
+    document.documentElement.setAttribute('data-theme', 'dark')
+  }
+})
+
 const emit = defineEmits(['toggle-sidebar'])
 
 const route = useRoute()
@@ -208,108 +196,47 @@ const isDarkMode = ref(false)
 const searchResults = ref([])
 const showAutocomplete = ref(false)
 
-const pageTitle = computed(() => {
-  const routeName = route.name || route.path.slice(1) || 'Dashboard'
-  return routeName.charAt(0).toUpperCase() + routeName.slice(1)
-})
-
-// Get current site from siteStore
 const currentSite = computed(() => siteStore.currentSite)
-
-// User information from authStore
 const currentUser = computed(() => authStore.currentUser)
 
-// Get user initials for avatar
 const getUserInitials = computed(() => {
   const user = currentUser.value
   if (!user || !user.name) return 'U'
-  
   const names = user.name.split(' ')
-  if (names.length === 1) {
-    return names[0].charAt(0).toUpperCase()
-  }
-  return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase()
+  return (names[0].charAt(0) + (names[1]?.charAt(0) || '')).toUpperCase()
 })
-
-// Get favorite menus
-const favoriteMenus = computed(() => favoriteMenuStore.favoriteMenus)
 
 const unreadNotifications = ref(3)
 const notifications = ref([
-  {
-    id: 1,
-    type: 'warning',
-    message: 'Asset maintenance due for Excavator EX-001',
-    time: '2 minutes ago'
-  },
-  {
-    id: 2,
-    type: 'info',
-    message: 'New asset registered: Truck TR-025',
-    time: '1 hour ago'
-  },
-  {
-    id: 3,
-    type: 'error',
-    message: 'Critical maintenance overdue for Generator GN-003',
-    time: '3 hours ago'
-  },
+  { id: 1, type: 'warning', message: 'Asset maintenance due for Excavator EX-001', time: '2 minutes ago' },
+  { id: 2, type: 'info', message: 'New asset registered: Truck TR-025', time: '1 hour ago' },
+  { id: 3, type: 'error', message: 'Critical maintenance overdue for Generator GN-003', time: '3 hours ago' },
 ])
-
-const toggleSidebar = () => {
-  emit('toggle-sidebar')
-}
 
 const toggleTheme = () => {
   isDarkMode.value = !isDarkMode.value
   if (isDarkMode.value) {
     document.documentElement.setAttribute('data-theme', 'dark')
+    localStorage.setItem('theme', 'dark')
   } else {
     document.documentElement.removeAttribute('data-theme')
+    localStorage.setItem('theme', 'light')
   }
 }
 
+
 const handleSearch = () => {
   const query = searchQuery.value.trim().toLowerCase()
-  if (!query) {
-    searchResults.value = []
-    showAutocomplete.value = false
-    return
-  }
+  if (!query) return searchResults.value = [], showAutocomplete.value = false
+
   const cat = searchCategory.value
   let results = []
   if (searchData[cat]) {
-    if (cat === 'asset') {
-      results = searchData.asset.filter(a =>
-        a.name.toLowerCase().includes(query) ||
-        a.code.toLowerCase().includes(query) ||
-        a.location.toLowerCase().includes(query)
+    results = searchData[cat].filter(item =>
+      Object.values(item).some(val =>
+        String(val).toLowerCase().includes(query)
       )
-    } else if (cat === 'item') {
-      results = searchData.item.filter(i =>
-        i.name.toLowerCase().includes(query) ||
-        i.sku.toLowerCase().includes(query) ||
-        i.category.toLowerCase().includes(query)
-      )
-    } else if (cat === 'workorder') {
-      results = searchData.workorder.filter(w =>
-        w.id.toLowerCase().includes(query) ||
-        w.title.toLowerCase().includes(query) ||
-        w.status.toLowerCase().includes(query)
-      )
-    } else if (cat === 'employee') {
-      results = searchData.employee.filter(e =>
-        e.name.toLowerCase().includes(query) ||
-        e.id.toLowerCase().includes(query) ||
-        e.department.toLowerCase().includes(query)
-      )
-    } else if (cat === 'menu') {
-      results = searchData.menu.filter(m =>
-        m.name.toLowerCase().includes(query) ||
-        m.path.toLowerCase().includes(query) ||
-        (m.parent && m.parent.toLowerCase().includes(query))
-      )
-    }
+    )
   }
   searchResults.value = results.slice(0, 8)
   showAutocomplete.value = searchResults.value.length > 0
@@ -318,24 +245,16 @@ const handleSearch = () => {
 const selectAutocomplete = (item) => {
   searchQuery.value = item.name || item.title || item.id
   showAutocomplete.value = false
-  
-  // Navigate based on category and item
-  if (searchCategory.value === 'menu' && item.path) {
-    router.push(item.path);
-  }
-  // Optionally add navigation for other categories in the future
+  if (searchCategory.value === 'menu' && item.path) router.push(item.path)
 }
 
-const getSearchPlaceholder = () => {
-  const placeholders = {
-    asset: 'Search assets by name, code, or location...',
-    item: 'Search items by name, SKU, or category...',
-    workorder: 'Search work orders by ID, title, or status...',
-    employee: 'Search employees by name, ID, or department...',
-    menu: 'Search menu by name or path...'
-  }
-  return placeholders[searchCategory.value] || 'Search...'
-}
+const getSearchPlaceholder = () => ({
+  asset: 'Search assets by name, code, or location...',
+  item: 'Search items by name, SKU, or category...',
+  workorder: 'Search work orders by ID, title, or status...',
+  employee: 'Search employees by name, ID, or department...',
+  menu: 'Search menu by name or path...'
+})[searchCategory.value] || 'Search...'
 
 const getNotificationDotStyle = (type) => {
   const colors = {
@@ -346,32 +265,15 @@ const getNotificationDotStyle = (type) => {
   return { backgroundColor: colors[type] || colors.info }
 }
 
-const markAsRead = (notificationId) => {
-  const notification = notifications.value.find(n => n.id === notificationId)
-  if (notification) {
-    // Mark as read logic
+const markAsRead = (id) => {
+  const idx = notifications.value.findIndex(n => n.id === id)
+  if (idx !== -1) {
+    notifications.value.splice(idx, 1)
     unreadNotifications.value = Math.max(0, unreadNotifications.value - 1)
   }
   showNotifications.value = false
 }
 
-const logout = async () => {
-  try {
-    await authStore.logout()
-    router.push('/login')
-  } catch (error) {
-    console.error('Logout failed:', error)
-  }
-}
-
-const navigateToFavorite = (menu) => {
-  if (menu.path) {
-    router.push(menu.path)
-    showUserMenu.value = false
-  }
-}
-
-// Close dropdowns when clicking outside
 const handleClickOutside = (event) => {
   if (!event.target.closest('.relative')) {
     showNotifications.value = false
@@ -381,7 +283,6 @@ const handleClickOutside = (event) => {
 
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
-  // Check initial theme
   isDarkMode.value = document.documentElement.getAttribute('data-theme') === 'dark'
 })
 

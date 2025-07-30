@@ -30,10 +30,13 @@
   --color-error-light: #fed7d7;
   
   --color-bgapp: #f7fafc;
-  --color-bgheader: #23272f;
+  --color-bgheader: #ffff;
+  --color-bgheader-hover: #f3f4f6;
   --color-bgsidebar: #ffffff;
   --color-bgpopup: #ffffff;
   --color-bgmodal: rgba(0, 0, 0, 0.5);
+  --color-bgtable : #f3f4f6;
+  --color-bgtable-hover : #d1d5db;
   
   /* Text Colors for Light Mode - Professional Corporate */
   --text-primary: #1a202c;
@@ -49,7 +52,7 @@
 
 /* Dark Mode Colors - Complementary to Petrosea Theme */
 [data-theme="dark"] {
-  --color-primary: #4fd1c7;
+  --color-primary: #1a7a6b;
   --color-primary-hover: #38b2ac;
   --color-primary-light: #234e52;
   
@@ -76,11 +79,14 @@
   --color-error-hover: #f56565;
   --color-error-light: #742a2a;
   
-  --color-bgapp: #1a202c;
-  --color-bgheader: #2d3748;
-  --color-bgsidebar: #2d3748;
+  --color-bgapp: #141414;
+  --color-bgheader: #161618;
+  --color-bgheader-hover: #262528;
+  --color-bgsidebar: #161618;
   --color-bgpopup: #4a5568;
   --color-bgmodal: rgba(0, 0, 0, 0.75);
+  --color-bgtable : #1B1A1D;
+  --color-bgtable-hover : #262528;
   
   /* Text Colors for Dark Mode - Corporate Dark */
   --text-primary: #f7fafc;
@@ -175,6 +181,9 @@ body {
 .bg-sidebar { background-color: var(--color-bgsidebar); }
 .bg-popup { background-color: var(--color-bgpopup); }
 .bg-modal { background-color: var(--color-bgmodal); }
+
+.bg-table { background-color: var(--color-bgtable); }
+.bg-table:hover { background-color: var(--color-bgtable-hover); }
 
 /* Text color utilities */
 .text-primary-color { color: var(--color-primary); }

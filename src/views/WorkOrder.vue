@@ -10,40 +10,40 @@
             <p class="desc__main">Track and manage all maintenance work orders.</p>
           </div>
   
-          <div class="flex flex-row items-center gap-[20px]">
+          <div class="flex flex-row items-center xl:gap-[13px] 2xl:gap-[20px]">
             <button class="btn__primary">+ New Work Order</button>
             <div class="background__icon">
-              <img src="/icons/unlove.svg" alt="Unlove Icon" class="w-auto h-[19px] object-center object-cover shrink-0" :show-tooltip="true">
+              <img src="/icons/unlove.svg" alt="Unlove Icon" class="w-auto xl:h-[13px] 2xl:h-[19px] object-center object-cover shrink-0" :show-tooltip="true">
             </div>
           </div>
         </div>
   
         <!-- Table Bar -->
-        <div class="w-full container__section mt-[40px]">
-          <div v-if="!showAdvanceSearch" class="flex flex-row items-center gap-[10px]">
-            <div class="search" >
-              <img src="/icons/search.svg" alt="Search Icon" class="w-[20px] h-auto object-center object-cover shrink-0">
+        <div class="w-full container__section xl:mt-[26px] 2xl:mt-[40px]">
+          <div v-if="!showAdvanceSearch" class="flex flex-row items-center xl:gap-[7px] 2xl:gap-[10px]">
+            <div class="search outline__input" >
+              <img src="/icons/search.svg" alt="Search Icon" class="xl:w-[13px] 2xl:w-[20px] h-auto object-center object-cover shrink-0">
               <input v-model="searchQuery" type="text" name="" id="" class="w-full h-full outline-none" placeholder="Search Work Order">
             </div>
     
             <button @click="refreshData" :disabled="loading" class="background__icon">
-              <img src="/icons/repeat.svg" alt="Repeat Icon" class="w-[16px] h-[16px] object-center object-cover shrink-0">
+              <img src="/icons/repeat.svg" alt="Repeat Icon" class="xl:w-[13px] xl:h-[13px] 2xl:w-[16px] 2xl:h-[16px] object-center object-cover shrink-0">
             </button>
             
             <button @click="printData" class="background__icon">
-              <img src="/icons/print.svg" alt="Print Icon" class="w-[16px] h-[16px] object-center object-cover shrink-0">
+              <img src="/icons/print.svg" alt="Print Icon" class="xl:w-[13px] xl:h-[13px] 2xl:w-[16px] 2xl:h-[16px] object-center object-cover shrink-0">
             </button>
           </div>
   
-          <button @click="showAdvanceSearch = true" class="bg-gray-100 hover:bg-gray-300 cursor-pointer px-[30px] py-[20px] rounded-[50px] flex flex-row items-center justify-center gap-[20px]">
-            <img src="/icons/filter.svg" alt="Filter Icon" class="w-[18px] h-[11px] object-center object-cover shrink-0">
-            <span class="text-[14px]">Advanced Search</span>
-            <img src="/icons/arrow.svg" alt="Arrow Icon" class="w-[10px] h-auto object-center object-cover shrink-0">
+          <button @click="showAdvanceSearch = true" class="cursor-pointer xl:px-[20px] xl:py-[13px] 2xl:px-[30px] 2xl:py-[20px] xl:rounded-[33px] 2xl:rounded-[50px] flex flex-row items-center justify-center xl:gap-[13px] 2xl:gap-[20px]" style="background-color: var(--color-bgtable);">
+            <img src="/icons/filter.svg" alt="Filter Icon" class="xl:w-[12px] xl:h-auto 2xl:w-[18px] 2xl:h-[11px] object-center object-cover shrink-0">
+            <span class="xl:text-[10px] 2xl:text-[14px]">Advanced Search</span>
+            <img src="/icons/arrow.svg" alt="Arrow Icon" class="xl:w-[8px] 2xl:w-[10px] h-auto object-center object-cover shrink-0">
           </button>
         </div>
   
         <!-- Work Orders Table -->
-        <div class="mt-[32px] flex-1 flex flex-col min-h-0">
+        <div class="xl:mt-[21px] 2xl:mt-[32px] flex-1 flex flex-col min-h-0">
           <!-- Loading State -->
           <div v-if="loading" class="p-8 text-center">
             <div class="inline-flex items-center">
@@ -72,11 +72,11 @@
           <div v-else class="overflow-y-auto">
             <table class="w-full table-fixed">
               <thead class="font-medium sticky top-0 z-10">
-                <tr class="text-left text-[14px]">
+                <tr class="text-left xl:text-[10px] 2xl:text-[14px]">
                   <!-- Work ID -->
                   <th
                     @click="sortBy('id')"
-                    class="max-w-[195px] bg-gray-100 px-[20px] py-[12px] cursor-pointer select-none"
+                    class="container__header__table cursor-pointer select-none"
                   >
                     <div class="flex items-center justify-between w-full">
                       <span :class="sortField === 'id' ? 'text-petrosea-primary font-medium' : ''" class="truncate">Work ID</span>
@@ -84,13 +84,13 @@
                         <img 
                           src="/icons/arrow.svg"
                           alt="Arrow Up"
-                          class="w-[6px] h-auto object-cover shrink-0"
+                          class="xl:w-[4px] 2xl:w-[6px] h-auto object-cover shrink-0"
                           :class="sortField === 'id' && sortDirection === 'asc' ? 'rotate-180 text-petrosea-primary' : 'opacity-30'"
                         />
                         <img 
                           src="/icons/arrow.svg"
                           alt="Arrow Down"
-                          class="w-[6px] h-auto object-cover shrink-0"
+                          class="xl:w-[4px] 2xl:w-[6px] h-auto object-cover shrink-0"
                           :class="sortField === 'id' && sortDirection === 'desc' ? 'text-petrosea-primary' : 'opacity-30'"
                         />
                       </div>
@@ -98,24 +98,24 @@
                   </th>
   
                   <!-- Work Details -->
-                  <th class="max-w-[195px] truncate bg-gray-100 px-[20px] py-[12px]">Work Details</th>
+                  <th class="truncate container__header__table">Work Details</th>
   
                   <!-- Status -->
                   <th
                     @click="sortBy('status')"
-                    class="max-w-[195px] truncate bg-gray-100 px-[20px] py-[12px] cursor-pointer select-none"
+                    class="truncate container__header__table cursor-pointer select-none"
                   >
                     <div class="flex items-center justify-between w-full">
                       <span :class="sortField === 'status' ? 'text-petrosea-primary font-semibold' : ''">Status</span>
                       <div class="flex flex-col gap-0.5">
                         <img 
                           src="/icons/arrow.svg"
-                          class="w-[6px] h-auto object-cover shrink-0"
+                          class="xl:w-[4px] 2xl:w-[6px] h-auto object-cover shrink-0"
                           :class="sortField === 'status' && sortDirection === 'asc' ? 'rotate-180 text-petrosea-primary' : 'opacity-30'"
                         />
                         <img 
                           src="/icons/arrow.svg"
-                          class="w-[6px] h-auto object-cover shrink-0"
+                          class="xl:w-[4px] 2xl:w-[6px] h-auto object-cover shrink-0"
                           :class="sortField === 'status' && sortDirection === 'desc' ? 'text-petrosea-primary' : 'opacity-30'"
                         />
                       </div>
@@ -125,14 +125,14 @@
                   <!-- Progress -->
                   <th
                     @click="sortBy('progress')"
-                    class="max-w-[195px] truncate bg-gray-100 px-[20px] py-[12px] cursor-pointer select-none"
+                    class="truncate container__header__table cursor-pointer select-none"
                   >
                     <div class="flex items-center justify-between w-full">
                       <span :class="sortField === 'progress' ? 'text-petrosea-primary font-medium' : ''">Progress</span>
                       <div class="flex flex-col gap-0.5">
-                        <img src="/icons/arrow.svg" class="w-[6px] h-auto object-cover shrink-0"
+                        <img src="/icons/arrow.svg" class="xl:w-[4px] 2xl:w-[6px] h-auto object-cover shrink-0"
                           :class="sortField === 'progress' && sortDirection === 'asc' ? 'rotate-180 text-petrosea-primary' : 'opacity-30'" />
-                        <img src="/icons/arrow.svg" class="w-[6px] h-auto object-cover shrink-0"
+                        <img src="/icons/arrow.svg" class="xl:w-[4px] 2xl:w-[6px] h-auto object-cover shrink-0"
                           :class="sortField === 'progress' && sortDirection === 'desc' ? 'text-petrosea-primary' : 'opacity-30'" />
                       </div>
                     </div>
@@ -141,41 +141,43 @@
                   <!-- Items -->
                   <th
                     @click="sortBy('items')"
-                    class="max-w-[195px] truncate bg-gray-100 px-[20px] py-[12px] cursor-pointer select-none"
+                    class="truncate container__header__table cursor-pointer select-none"
                   >
                     <div class="flex items-center justify-between w-full">
                       <span :class="sortField === 'items' ? 'text-petrosea-primary font-normal' : ''">Items</span>
                       <div class="flex flex-col gap-0.5">
-                        <img src="/icons/arrow.svg" class="w-[6px] h-auto object-cover shrink-0"
+                        <img src="/icons/arrow.svg" class="xl:w-[4px] 2xl:w-[6px] h-auto object-cover shrink-0"
                           :class="sortField === 'items' && sortDirection === 'asc' ? 'rotate-180 text-petrosea-primary' : 'opacity-30'" />
-                        <img src="/icons/arrow.svg" class="w-[6px] h-auto object-cover shrink-0"
+                        <img src="/icons/arrow.svg" class="xl:w-[4px] 2xl:w-[6px] h-auto object-cover shrink-0"
                           :class="sortField === 'items' && sortDirection === 'desc' ? 'text-petrosea-primary' : 'opacity-30'" />
                       </div>
                     </div>
                   </th>
   
-                  <th class="max-w-[195px] truncate bg-gray-100 px-[20px] py-[12px]">Assigned To</th>
-                  <th class="max-w-[195px] truncate bg-gray-100 px-[20px] py-[12px]">Actions</th>
+                  <th class="truncate container__header__table">Assigned To</th>
+                  <th class="truncate container__header__table">Actions</th>
                 </tr>
               </thead>
   
               <tbody v-for="workOrder in paginatedWorkOrders" :key="workOrder.id" class="">
-                <tr><td colspan="7" class="h-6"></td></tr>
-                <tr  class="text-left text-[14px]">
+                <tr>
+                  <td colspan="7" class="xl:h-[21px] 2xl:h-[32px]"></td>
+                </tr>
+                <tr  class="text-left">
                   <!-- ID -->
-                  <td class="container__data">{{ workOrder.id }}</td>
+                  <td class="container__data xl:text-[10px] 2xl:text-[14px]">{{ workOrder.id }}</td>
   
                   <!-- Work Details -->
                   <td>
                     <div class="flex flex-col gap-[10px]">
                       <div class="background__icon__content">
-                        <img :src="getAssetIcon(workOrder.assetName)" alt="Asset Icon" class="w-auto h-[18px] object-center object-contain shrink-0" />
+                        <img :src="getAssetIcon(workOrder.assetName)" alt="Asset Icon" class="w-auto xl:h-[13px] 2xl:h-[18px] object-center object-contain shrink-0" />
                       </div>
   
                       <div class="flex flex-col gap-[5px]">
                         <div class="flex justify-between">
-                          <span class="text-[14px]">{{ workOrder.assetName.split(' ').slice(0, 2).join(' ') }}</span>
-                          <p class="text-[14px]">{{ workOrder.assetId }}</p>
+                          <span class="xl:text-[10px] 2xl:text-[14px]">{{ workOrder.assetName.split(' ').slice(0, 2).join(' ') }}</span>
+                          <p class="xl:text-[10px] 2xl:text-[14px]">{{ workOrder.assetId }}</p>
                         </div>
                         <p class="label__secondary truncate">{{ workOrder.title }}</p>
                       </div>
@@ -199,14 +201,14 @@
                     <div class="flex items-center justify-center">
                       <div class="flex flex-col gap-1">
                         <div class="flex items-center">
-                          <div class="w-32 bg-gray-200 rounded-full h-[15px] mr-2">
+                          <div class="xl:w-16 2xl:w-32 rounded-full xl:h-[10px] 2xl:h-[15px] mr-2" style="background-color: var(--color-bgtable);">
                             <div
                               :class="getCompletionBarClass(getWorkOrderCompletion(workOrder.id))"
-                              class="h-[15px] rounded-full transition-all duration-300"
+                              class="xl:h-[10px] 2xl:h-[15px] rounded-full transition-all duration-300"
                               :style="{ width: getWorkOrderCompletion(workOrder.id) + '%' }"
                             ></div>
                           </div>
-                          <span class="text-xs font-medium text-gray-900">
+                          <span class="text-xs font-medium">
                             {{ getWorkOrderCompletion(workOrder.id) }}%
                           </span>
                         </div>
@@ -220,11 +222,11 @@
                   <!-- Items -->
                   <td>
                     <div class="flex flex-col items-center">
-                      <span :class="getItemStatusBadgeClass(getWorkOrderItemStatus(workOrder.id).status)" class="mb-1 inline-flex items-center text-[14px] font-semibold rounded-full ps-[20px] pe-[50px] py-[10px]">
-                        <MdiIcon :path="getItemStatusIcon(getWorkOrderItemStatus(workOrder.id).status)" class="w-4 h-4 mr-1" />
+                      <span :class="getItemStatusBadgeClass(getWorkOrderItemStatus(workOrder.id).status)" class="mb-1 inline-flex items-center xl:text-[10px] 2xl:text-[14px] font-semibold rounded-full xl:ps-[13px] 2xl:ps-[20px] xl:pe-[30px] 2xl:pe-[50px] xl:py-[7px] 2xl:py-[10px]">
+                        <MdiIcon :path="getItemStatusIcon(getWorkOrderItemStatus(workOrder.id).status)" class="xl:w-3 xl:h-3 2xl:w-4 2xl:h-4 xl:mr-1.5 2xl:mr-2.5" />
                         {{ getItemStatusLabel(getWorkOrderItemStatus(workOrder.id).status) }}
                       </span>
-                      <span class="text-[14px] text-gray-500 truncate" :title="getWorkOrderItemStatus(workOrder.id).message">
+                      <span class="xl:text-[10px] 2xl:text-[14px] text-gray-500 truncate" :title="getWorkOrderItemStatus(workOrder.id).message">
                         {{ getWorkOrderItemStatus(workOrder.id).message }}
                       </span>
                     </div>
@@ -234,8 +236,8 @@
                   <td>
                     <div class="flex flex-col justify-center items-center">
                       <div class="flex flex-col">
-                        <span class="text-[14px] font-medium">{{ getAssignedTeamInfo(workOrder.assignedTo).mainPerson }}</span>
-                        <span v-if="getAssignedTeamInfo(workOrder.assignedTo).otherCount > 0" class="text-xs text-gray-500">
+                        <span class="xl:text-[10px] 2xl:text-[14px] font-medium">{{ getAssignedTeamInfo(workOrder.assignedTo).mainPerson }}</span>
+                        <span v-if="getAssignedTeamInfo(workOrder.assignedTo).otherCount > 0" class="label__secondary">
                           +{{ getAssignedTeamInfo(workOrder.assignedTo).otherCount }} other{{ getAssignedTeamInfo(workOrder.assignedTo).otherCount > 1 ? 's' : '' }}
                         </span>
                       </div>
@@ -246,14 +248,14 @@
                   <td>
                     <div class="flex items-center justify-center">
                       <div class="flex justify-end items-center gap-2.5">
-                        <button class="bg-gray-100 p-[15px] hover:bg-gray-300 rounded-[50px] cursor-pointer" :title="`View ${workOrder.id}`">
-                          <MdiIcon :path="mdiEye" class="w-5 h-5" />
+                        <button class="container__action" :title="`View ${workOrder.id}`">
+                          <MdiIcon :path="mdiEye" class="xl:w-3 xl:h-3 2xl:w-5 2xl:h-5" />
                         </button>
-                        <button class="bg-gray-100 p-[15px] hover:bg-gray-300 rounded-[50px] cursor-pointer" :title="`Edit ${workOrder.id}`">
-                          <MdiIcon :path="mdiPencil" class="w-5 h-5" />
+                        <button class="container__action" :title="`Edit ${workOrder.id}`">
+                          <MdiIcon :path="mdiPencil" class="xl:w-3 xl:h-3 2xl:w-5 2xl:h-5" />
                         </button>
-                        <button class="bg-red-100 p-[15px] hover:bg-red-300 rounded-[50px] cursor-pointer text-red-800" :title="`Delete ${workOrder.id}`">
-                          <MdiIcon :path="mdiDelete" class="w-5 h-5" />
+                        <button class="bg-red-100 xl:p-[8px] 2xl:p-[15px] hover:bg-red-300 rounded-[50px] cursor-pointer text-red-800" :title="`Delete ${workOrder.id}`">
+                          <MdiIcon :path="mdiDelete" class="xl:w-3 xl:h-3 2xl:w-5 2xl:h-5" />
                         </button>
                       </div>
                     </div>
@@ -261,7 +263,7 @@
                 </tr>
                 <tr>
                   <td colspan="7">
-                    <hr class="my-[32px] border-[#101828]/10">
+                    <hr class="xl:mt-[21px] 2xl:mt-[32px] border-[#101828]/10">
                   </td>
                 </tr>
               </tbody>
@@ -275,8 +277,8 @@
     <template #pagination>
       <div v-if="filteredWorkOrders.length > 0" class="my-[20px]">
             <div class="flex items-center justify-between">
-              <div class="flex flex-row items-center gap-[20px]">
-                <p class="text-[14px] text-gray-700">
+              <div class="flex flex-row items-center xl:gap-[13px] 2xl:gap-[20px]">
+                <p class="xl:text-[10px] 2xl:text-[14px]">
                   Showing
                   <span class="font-medium">{{ (currentPage - 1) * itemsPerPage + 1 }}</span>
                   to
@@ -285,11 +287,11 @@
                   <span class="font-medium">{{ filteredWorkOrders.length }}</span>
                   results
                 </p>
-                <label class="text-[14px]">Items per page:</label>
-                <div class=" px-[30px] py-[20px] bg-white rounded-[50px] min-h-[61px] hover:bg-gray-300">
+                <label class="xl:text-[10px] 2xl:text-[14px]">Items per page:</label>
+                <div class="pagination__option">
                   <select
                     v-model="itemsPerPage"
-                    class="text-[14px] outline-none min-w-[50px]"
+                    class="xl:text-[10px] 2xl:text-[14px] outline-none xl:min-w-[40px] 2xl:min-w-[50px] cursor-pointer"
                   >
                     <option :value="10">10</option>
                     <option :value="25">25</option>
@@ -305,7 +307,7 @@
                   class="pageButton"
                   title="First page"
                 >
-                  <img src="/icons/double-arrow.svg" alt="Double Arrow" class="w-auto h-[13px] object-center object-cover shrink-0 invert">
+                  <img src="/icons/double-arrow.svg" alt="Double Arrow" class="w-auto xl:h-[8px] 2xl:h-[13px] object-center object-cover shrink-0 invert">
                 </button>
                 <button
                   @click="currentPage--"
@@ -313,7 +315,7 @@
                   class="pageButton"
                   title="Previous page"
                 >
-                  <img src="/icons/arrow.svg" alt="Arrow" class="w-auto h-[10px] object-center object-cover shrink-0 rotate-90">
+                  <img src="/icons/arrow.svg" alt="Arrow" class="w-auto xl:h-[6px] 2xl:h-[10px] object-center object-cover shrink-0 rotate-90">
                 </button>
                 <span class="pageButton">
                   {{ currentPage }} of {{ totalPages }}
@@ -324,7 +326,7 @@
                   class="pageButton"
                   title="Next page"
                 >
-                  <img src="/icons/arrow.svg" alt="Arrow" class="w-auto h-[10px] object-center object-cover shrink-0 -rotate-90">
+                  <img src="/icons/arrow.svg" alt="Arrow" class="w-auto xl:h-[6px] 2xl:h-[10px] object-center object-cover shrink-0 -rotate-90">
                 </button>
                 <button
                   @click="currentPage = totalPages"
@@ -332,7 +334,7 @@
                   class="pageButton"
                   title="Last page"
                 >
-                   <img src="/icons/double-arrow.svg" alt="Double Arrow" class="w-auto h-[13px] object-center object-cover shrink-0 invert rotate-180">
+                   <img src="/icons/double-arrow.svg" alt="Double Arrow" class="w-auto xl:h-[8px] 2xl:h-[13px] object-center object-cover shrink-0 invert rotate-180">
                 </button>
               </div>
             </div>
@@ -360,14 +362,6 @@ import {
   mdiCheckCircle,
   mdiCloseCircle,
   mdiHelpCircle,
-  mdiExcavator,
-  mdiTruckFast,
-  mdiHammerScrewdriver,
-  mdiCog,
-  mdiRoadVariant,
-  mdiRoad,
-  mdiForklift,
-  mdiBulldozer
 } from '@mdi/js'
 
 const workOrderStore = useWorkOrderStore()
@@ -802,7 +796,7 @@ const clearAdvanceSearch = () => {
 }
 
 const getStatusBadgeClass = (status) => {
-  const baseClass = 'flex items-center justify-center px-[20px] py-[10px] text-[14px] font-medium rounded-[50px]'
+  const baseClass = 'flex items-center justify-center xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[50px]'
   switch (status) {
     case 'completed':
       return `${baseClass} bg-green-100 text-green-800`
@@ -831,7 +825,7 @@ const getStatusLabel = (status) => {
 }
 
 const getPriorityBadgeClass = (priority) => {
-  const baseClass = 'flex items-center justify-center px-[20px] py-[10px] text-[14px] font-medium rounded-[50px]'
+  const baseClass = 'flex items-center justify-center xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[50px]'
   switch (priority) {
     case 'Critical':
       return `${baseClass} bg-red-100 text-red-800`
@@ -847,7 +841,7 @@ const getPriorityBadgeClass = (priority) => {
 }
 
 const getTypeBadgeClass = (type) => {
-  const baseClass = 'flex items-center justify-center px-[20px] py-[10px] text-[14px] font-medium rounded-[50px]'
+  const baseClass = 'flex items-center justify-center xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[50px]'
   switch (type) {
     case 'planned':
       return `${baseClass} bg-blue-100 text-blue-800`
@@ -884,7 +878,7 @@ const getCompletionBarClass = (percentage) => {
   if (percentage >= 75) return 'bg-blue-500'
   if (percentage >= 50) return 'bg-yellow-500'
   if (percentage >= 25) return 'bg-orange-500'
-  return 'bg-red-500'
+  return percentage
 }
 
 const getItemStatusBadgeClass = (status) => {

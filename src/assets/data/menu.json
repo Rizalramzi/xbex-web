@@ -59,7 +59,7 @@
             "id": "asset-utilization",
             "name": "Asset Utilization",
             "href": "/reports/asset-utilization",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 1
           },
@@ -67,7 +67,7 @@
             "id": "maintenance-history",
             "name": "Maintenance History",
             "href": "/reports/maintenance-history",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 1
           },
@@ -75,7 +75,7 @@
             "id": "scheduled-maintenance",
             "name": "Scheduled Maintenance",
             "href": "/reports/scheduled-maintenance",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 1
           },
@@ -83,7 +83,7 @@
             "id": "cost-analysis",
             "name": "Cost Analysis",
             "href": "/reports/cost-analysis",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 1
           },
@@ -91,7 +91,7 @@
             "id": "downtime-analysis",
             "name": "Downtime Analysis",
             "href": "/reports/downtime-analysis",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 1
           },
@@ -99,7 +99,7 @@
             "id": "equipment-performance",
             "name": "Equipment Performance",
             "href": "/reports/equipment-performance",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 1
           },
@@ -107,7 +107,7 @@
             "id": "inventory-status",
             "name": "Inventory Status",
             "href": "/reports/inventory-status",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 1
           },
@@ -115,7 +115,7 @@
             "id": "maintenance-compliance",
             "name": "Maintenance Compliance",
             "href": "/reports/maintenance-compliance",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 1
           },
@@ -123,7 +123,7 @@
             "id": "fuel-consumption",
             "name": "Fuel Consumption",
             "href": "/reports/fuel-consumption",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 2
           },
@@ -131,7 +131,7 @@
             "id": "equipment-availability",
             "name": "Equipment Availability",
             "href": "/reports/equipment-availability",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 2
           },
@@ -139,7 +139,7 @@
             "id": "parts-usage",
             "name": "Parts Usage",
             "href": "/reports/parts-usage",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 2
           },
@@ -147,7 +147,7 @@
             "id": "labor-analysis",
             "name": "Labor Analysis",
             "href": "/reports/labor-analysis",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 2
           },
@@ -155,7 +155,7 @@
             "id": "service-contracts",
             "name": "Service Contracts",
             "href": "/reports/service-contracts",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 2
           },
@@ -163,7 +163,7 @@
             "id": "warranty-coverage",
             "name": "Warranty Coverage",
             "href": "/reports/warranty-coverage",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 2
           },
@@ -171,7 +171,7 @@
             "id": "oil-analysis",
             "name": "Oil Analysis",
             "href": "/reports/oil-analysis",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 2
           },
@@ -179,7 +179,7 @@
             "id": "asset-lifecycle",
             "name": "Asset Lifecycle",
             "href": "/reports/asset-lifecycle",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 2
           },
@@ -187,7 +187,7 @@
             "id": "component-reliability",
             "name": "Component Reliability",
             "href": "/reports/component-reliability",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 3
           },
@@ -195,7 +195,7 @@
             "id": "inspection-findings",
             "name": "Inspection Findings",
             "href": "/reports/inspection-findings",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 3
           },
@@ -203,7 +203,7 @@
             "id": "safety-incidents",
             "name": "Safety Incidents",
             "href": "/reports/safety-incidents",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 3
           },
@@ -211,7 +211,7 @@
             "id": "productivity-metrics",
             "name": "Productivity Metrics",
             "href": "/reports/productivity-metrics",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 3
           },
@@ -219,7 +219,7 @@
             "id": "operator-performance",
             "name": "Operator Performance",
             "href": "/reports/operator-performance",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 3
           },
@@ -227,7 +227,7 @@
             "id": "site-comparison",
             "name": "Site Comparison",
             "href": "/reports/site-comparison",
-            "icon": "mdiChartBox",
+            "icon": "icons/dashboard.svg",
             "level": 3,
             "column": 3
           }
