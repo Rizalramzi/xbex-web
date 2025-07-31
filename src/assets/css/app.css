@@ -43,7 +43,7 @@
 
 .label__secondary {
   color: var(--text-muted);
-  @apply xl:text-[10px] 2xl:text-[14px] font-normal;
+  @apply text-[3vw] xl:text-[10px] 2xl:text-[14px] font-normal;
 }
 
 .container__menu {
@@ -64,7 +64,7 @@
 }
 
 .icon__rounded {
-  @apply xl:w-[27px] xl:h-[27px] 2xl:w-[40px] 2xl:h-[40px] rounded-full flex items-center justify-center;
+  @apply flex-none w-[20px] h-[20px] xl:w-[27px] xl:h-[27px] 2xl:w-[40px] 2xl:h-[40px] rounded-full flex items-center justify-center;
 }
 
 .bg-primary {
@@ -85,19 +85,32 @@
 .outline__input::placeholder {
   color: var(--text-muted);
 }
+.bg__header {
+  background-color: var(--color-bgsidebar);
+}
+
+@media (min-width: 1280px) {
+  .bg__header {
+    background-color: transparent;
+  }
+  .page__content {
+    background-color: var(--color-bgsidebar) !important;
+  }
+}
+
 /* End Navbar */
 
 /* Main Content */
 .title__main {
-  @apply xl:text-[16px] 2xl:text-[24px] font-medium;
+  @apply text-[4.4vw] xl:text-[16px] 2xl:text-[24px] font-medium;
 }
 
 .desc__main {
-  @apply xl:text-[10px] 2xl:text-[14px] font-light;
+  @apply text-[10px] xl:text-[10px] 2xl:text-[14px] font-light;
 }
 
 .container__header__main {
-  @apply flex flex-col xl:gap-[6px] 2xl:gap-[10px];
+  @apply flex flex-col gap-[5px] xl:gap-[6px] 2xl:gap-[10px];
 }
 
 .container__section {
@@ -106,9 +119,10 @@
 
 .search {
   background-color: var(--color-bgtable);
-  @apply h-auto xl:ps-[20px] xl:pe-[66px] xl:py-[13px]
+  @apply  ps-[4vw] pe-[3vw] py-[4vw] rounded-[7vw] max-w-[37vw] max-h-[10vw] xl:max-w-full xl:max-h-full
+          h-auto xl:ps-[20px] xl:pe-[66px] xl:py-[13px]
          2xl:ps-[30px] 2xl:pe-[80px] 2xl:py-[20px]
-         rounded-[50px] flex items-center xl:gap-[14px] 2xl:gap-[20px]
+         xl:rounded-[33px] 2xl:rounded-[50px] flex items-center gap-[2vw] xl:gap-[14px] 2xl:gap-[20px]
          xl:text-[10px] 2xl:text-[14px] w-fit;
 }
 
@@ -116,6 +130,7 @@
 .background__icon {
   background-color: var(--color-bgtable);
   @apply flex items-center justify-center cursor-pointer
+    rounded-[25px] w-[10vw] h-[10vw]
     xl:rounded-[33px] xl:w-[40px] xl:h-[40px]
     2xl:rounded-[50px] 2xl:w-[60px] 2xl:h-[60px];
 }
@@ -155,8 +170,8 @@
 .pagination__option,
 .pageButton {
   background-color: var(--color-bgheader);
-  @apply flex items-center justify-center cursor-pointer rounded-[50px]
-    xl:px-[20px] xl:py-[13px] xl:text-[10px] xl:min-h-[40px]
+  @apply flex items-center justify-center cursor-pointer rounded-[25px] xl:rounded-[33px] 2xl:rounded-[50px]
+    px-[4vw] py-[2.7vw] xl:px-[20px] xl:py-[13px] text-[2.7vw] xl:text-[10px] xl:min-h-[40px]
     2xl:px-[30px] 2xl:py-[20px] 2xl:text-[14px] 2xl:min-h-[61px];
 }
 
@@ -170,7 +185,7 @@
 }
 
 .profile__container {
-  @apply xl:max-h-[50px] 2xl:max-h-[75px] flex-row gap-[20px];
+  @apply xl:max-h-[50px] 2xl:max-h-[75px] flex-row gap-[2.7vw] xl:gap-[20px];
 }
 
 .bg__submenu {
@@ -179,7 +194,7 @@
 
 .bg__notification {
     background-color: var(--color-bgheader);
-    @apply 2xl:rounded-[50px] xl:rounded-[33px] xl:w-[50px] xl:h-[50px] 2xl:w-[75px] 2xl:h-[75px] flex items-center justify-center flex-none cursor-pointer
+    @apply 2xl:rounded-[50px] xl:rounded-[33px] w-[10.5vw] h-[10.5vw] rounded-[7vw]  xl:w-[50px] xl:h-[50px] 2xl:w-[75px] 2xl:h-[75px] flex items-center justify-center flex-none cursor-pointer
 }
 .bg__notification:hover {
     background-color: var(--color-bgheader-hover);
@@ -193,9 +208,17 @@
     background-color: var(--color-bgheader-hover);
 }
 
+.page__content {
+  background-color: transparent;
+}
+
 /* Buttons */
+.toggle__btn {
+  background-color: var(--color-bgtoggle);
+}
 .btn__primary {
-  @apply bg-primary text-white flex items-center justify-center rounded-[50px]
+  @apply bg-primary text-white flex items-center justify-center rounded-[7vw] xl:rounded-[33px] 2xl:rounded-[50px]
+    px-[4.1vw] py-[2.7vw] text-[10px]
     xl:px-[20px] xl:py-[13px] xl:text-[10px]
     2xl:px-[30px] 2xl:py-[20px] 2xl:text-[14px]
     hover:bg-primary-hover cursor-pointer;
@@ -235,7 +258,8 @@
 
 /* Input Fields */
 input::placeholder {
-    color: var(--text-primary)
+    color: var(--text-primary);
+    @apply text-[2.7vw] xl:text-[100%]
 }
 .input_label {
   @apply text-[0.7em] font-bold text-slate-500;
@@ -317,6 +341,11 @@ textarea.input_field {
   animation: spin 1.75s linear infinite;
   position: absolute;
   opacity: 1.2;
+}
+
+/* Mobile */
+.container__data__mobile {
+  @apply w-full flex flex-row items-center justify-between
 }
 
 /* Forms, Tabs, Layouts and Modals */

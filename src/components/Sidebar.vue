@@ -1,11 +1,24 @@
 <template>
   <div
     id="sidebar"
-    class="xl:min-w-[245px] 2xl:min-w-[331px] h-screen fixed flex flex-col items-start xl:py-[16px] 2xl:py-[22px] ps-[2vw] pe-[28px] overflow-y-auto" style="background-color: var(--color-bgsidebar);"
+    class="xl:min-w-[245px] 2xl:min-w-[331px] h-screen fixed flex flex-col items-start xl:py-[16px] 2xl:py-[22px] xl:ps-[2vw] xl:pe-[28px] ps-[4vw] pe-[7.7vw] overflow-y-auto" style="background-color: var(--color-bgsidebar);"
   >
     <!-- Logo -->
-    <div class="w-full h-fit">
-      <span class="text-primary-color xl:text-[30px] 2xl:text-[40px] xl:leading-[44px] 2xl:leading-[60px] font-bold">Xibex</span>
+    <div class="w-full h-fit flex items-center justify-between">
+      <span class="text-primary-color text-[6.6vw] xl:text-[30px] 2xl:text-[40px] xl:leading-[44px] 2xl:leading-[60px] font-bold">Xibex</span>
+      <button 
+        class="group bg-primary rounded-[50px] w-[40px] h-[40px] xl:w-[50px] xl:h-[50px] 2xl:w-[75px] 2xl:h-[75px] flex items-center justify-center flex-none cursor-pointer"
+        @click="toggleSidebar"
+      >
+        <img 
+          src="/icons/double-arrow.svg"
+          alt="ARFS"
+          :class="[
+            'w-[8px] xl:w-[10px] 2xl:w-[12px] h-auto cursor-pointer transform transition-transform duration-300 group-hover:scale-105',
+            isRotated ? 'rotate-0' : 'rotate-180'
+          ]"
+        />
+      </button>
     </div>
 
     <!-- Menu Utama -->
@@ -166,11 +179,18 @@ const route = useRoute()
 const router = useRouter()
 const authStore = useAuthStore()
 const siteStore = useSiteStore()
+const isRotated = ref(true)
+const emit = defineEmits(['toggle-sidebar'])
 
 const currentSite = computed(() => siteStore.currentSite)
 
 function isActiveRoute(path) {
   return route.path === path || route.path.startsWith(path + '/')
+}
+
+const toggleSidebar = () => {
+  isRotated.value = !isRotated.value
+  emit('toggle-sidebar')
 }
 
 function handleMouseEnter(event, child) {

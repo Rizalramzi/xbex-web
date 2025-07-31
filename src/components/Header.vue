@@ -1,22 +1,24 @@
 <template>
-  <header class="w-full h-fit xl:pt-[16px] 2xl:pt-[32px] flex items-center justify-between z-30 flex-shrink-0">
+  <header class="w-full h-fit px-[4.5vw] py-[3vw] xl:px-0 xl:py-0 xl:pt-[16px] 2xl:pt-[32px] flex items-center justify-between z-30 flex-shrink-0 xl:bg-transparent bg__header">
     <!-- Left Side -->
     <div class="flex flex-row items-center gap-[10px]">
+      <!-- Tombol Toggle Sidebar -->
       <button 
-          class="group bg-primary rounded-[50px] xl:w-[50px] xl:h-[50px] 2xl:w-[75px] 2xl:h-[75px] flex items-center justify-center flex-none"
-          @click="$emit('toggle-sidebar')"
-        >
-          <img 
-            src="/icons/double-arrow.svg"
-            alt="ARFS"
-            :class="[
-              'xl:w-[10px] 2xl:w-[12px] h-auto cursor-pointer transform transition-transform duration-300 group-hover:scale-105',
-              props.isSidebarOpen ? 'rotate-0' : 'rotate-180'
-            ]"
-          />
+        class="group bg-primary rounded-[50px] w-[40px] h-[40px] xl:w-[50px] xl:h-[50px] 2xl:w-[75px] 2xl:h-[75px] flex items-center justify-center flex-none cursor-pointer"
+        @click="toggleSidebar"
+      >
+        <img 
+          src="/icons/double-arrow.svg"
+          alt="ARFS"
+          :class="[
+            'w-[8px] xl:w-[10px] 2xl:w-[12px] h-auto cursor-pointer transform transition-transform duration-300 group-hover:scale-105',
+            isRotated ? 'rotate-0' : 'rotate-180'
+          ]"
+        />
       </button>
 
-      <div class="category__option flex-none flex flex-row items-center gap-[20px] w-fit h-full xl:min-h-[50px] 2xl:min-h-[75px] xl:px-[20px] 2xl:px-[30px] xl:py-[13px] 2xl:py-[20px] justify-center rounded-[50px] 2xl:min-w-[172px] cursor-pointer">
+
+      <div class="hidden category__option flex-none xl:flex flex-row items-center gap-[20px] w-fit h-full xl:min-h-[50px] 2xl:min-h-[75px] xl:px-[20px] 2xl:px-[30px] xl:py-[13px] 2xl:py-[20px] justify-center rounded-[50px] 2xl:min-w-[172px] cursor-pointer">
         <select 
           v-model="searchCategory"
           class="outline-none w-full h-full xl:text-[10px] 2xl:text-[14px] cursor-pointer"
@@ -29,7 +31,7 @@
         </select>
       </div>
 
-      <div class="relative w-full xl:min-w-[275px] 2xl:min-w-[411px]">
+      <div class="hidden xl:block relative w-full xl:min-w-[275px] 2xl:min-w-[411px]">
         <div class="outline__input flex flex-row items-center xl:gap-[13px] 2xl:gap-[20px] w-full h-full xl:min-h-[50px] 2xl:min-h-[75px] xl:ps-[20px] xl:pe-[40px] py-[13px] 2xl:ps-[30px] 2xl:pe-[60px] 2xl:py-[20px] justify-center rounded-[50px]" style="background-color: var(--color-bgsidebar);">
           <img src="/icons/search.svg" alt="Search Icon" class="w-auto xl:h-[16px] 2xl:h-[22px] object-center object-cover shrink-0">
           <input 
@@ -81,15 +83,34 @@
     <div class="flex flex-row items-center gap-[10px]">
 
       <!-- Toggle theme Mode -->
+      <!-- Tombol Theme Toggle -->
       <button 
         @click="toggleTheme"
-        class="cursor-pointer xl:p-[7px] 2xl:p-[10px] flex flex-row items-center justify-between gap-[7px] 2xl:gap-[10px] bg-gray-500 hover:bg-gray-700 rounded-[50px]"
+        class="relative w-[38px] h-[20px] xl:w-[50px] xl:h-[26px] 2xl:w-[75px] 2xl:h-[36px] px-[6px] 2xl:px-[10px] flex items-center justify-between toggle__btn rounded-full transition-colors duration-300 overflow-hidden cursor-pointer"
       >
-        <div class="xl:w-[13px] xl:h-[13px] 2xl:w-[20px] 2xl:h-[20px] rounded-[50px] bg-white"></div>
-        <div>
-          <img src="/icons/light.svg" alt="Light Mode Icon" class="xl:w-[13px] xl:h-[13px] 2xl:w-[15px] 2xl:h-[15px] object-center object-cover shrink-0">
+        <!-- Indicator Bulat Putih -->
+        <div
+          class="absolute top-1/2 transform -translate-y-1/2 bg-white rounded-full transition-all duration-300"
+          :class="isDarkMode 
+            ? 'right-[6px] xl:w-[13px] xl:h-[13px] 2xl:w-[20px] 2xl:h-[20px]' 
+            : 'left-[6px] xl:w-[13px] xl:h-[13px] 2xl:w-[20px] 2xl:h-[20px]'" 
+        ></div>
+
+        <!-- Ikon Mode -->
+        <div
+          class="transition-all duration-300"
+          :class="isDarkMode 
+            ? 'absolute left-[8px]' 
+            : 'absolute right-[8px]'"
+        >
+          <img 
+            :src="isDarkMode ? 'icons/dark.svg' : 'icons/light.svg'" 
+            :alt="isDarkMode ? 'Dark Mode' : 'Light Mode'" 
+            class="xl:w-[13px] xl:h-[13px] 2xl:w-[15px] 2xl:h-[15px] object-center object-cover shrink-0"
+          />
         </div>
       </button>
+
 
       <!-- Notification -->
       <div class="relative">
@@ -102,11 +123,11 @@
           <img 
             src="/icons/notification.svg"
             alt="Notification"
-            class="xl:w-[15px] 2xl:w-[22px] h-auto cursor-pointer transform transition-transform duration-300 group-hover:scale-105"
+            class="w-[5vw] xl:w-[15px] 2xl:w-[22px] h-auto cursor-pointer transform transition-transform duration-300 group-hover:scale-105"
           />
           <span 
             v-if="unreadNotifications > 0" 
-            class="absolute top-1 xl:left-0 2xl:left-1 h-5 w-5 bg-red-500 text-white xl:text-[8px] 2xl:text-xs rounded-full flex items-center justify-center border-2 border-white shadow-lg font-bold"
+            class="hidden absolute top-1 xl:left-0 2xl:left-1 xl:h-5 xl:w-5 bg-red-500 text-white text-[2vw] xl:text-[8px] 2xl:text-xs rounded-full xl:flex items-center justify-center border-2 border-white shadow-lg font-bold"
           >
             {{ unreadNotifications > 9 ? '9+' : unreadNotifications }}
           </span>
@@ -140,9 +161,9 @@
        <button class="profile__container">
         <div class="flex flex-row items-center gap-[15px]">
           <div class="icon__rounded bg-primary">
-            <span class="xl:text-[10px] 2xl:text-[14px] text-white">AU</span>
+            <span class="text-[2vw] xl:text-[10px] 2xl:text-[14px] text-white">AU</span>
           </div>
-          <div class="flex flex-col items-start">
+          <div class="hidden xl:flex flex-col items-start">
             <span class="label__main">Admin User</span>
             <span class="label__secondary">admin@example.com</span>
           </div>
@@ -164,47 +185,21 @@ import { useSiteStore } from '../stores/siteStore'
 import { useFavoriteMenuStore } from '../stores/favoriteMenuStore'
 import searchData from '../assets/data/search.json'
 
-const props = defineProps({
-  isSidebarOpen: {
-    type: Boolean,
-    default: true
-  }
-});
-
-onMounted(() => {
-  document.addEventListener('click', handleClickOutside)
-  const storedTheme = localStorage.getItem('theme')
-  isDarkMode.value = storedTheme === 'dark'
-  if (isDarkMode.value) {
-    document.documentElement.setAttribute('data-theme', 'dark')
-  }
-})
-
 const emit = defineEmits(['toggle-sidebar'])
-
 const route = useRoute()
 const router = useRouter()
 const authStore = useAuthStore()
 const siteStore = useSiteStore()
 const favoriteMenuStore = useFavoriteMenuStore()
 
+const isRotated = ref(true)
+const isDarkMode = ref(false)
 const searchQuery = ref('')
 const searchCategory = ref('workorder')
-const showNotifications = ref(false)
-const showUserMenu = ref(false)
-const isDarkMode = ref(false)
 const searchResults = ref([])
 const showAutocomplete = ref(false)
-
-const currentSite = computed(() => siteStore.currentSite)
-const currentUser = computed(() => authStore.currentUser)
-
-const getUserInitials = computed(() => {
-  const user = currentUser.value
-  if (!user || !user.name) return 'U'
-  const names = user.name.split(' ')
-  return (names[0].charAt(0) + (names[1]?.charAt(0) || '')).toUpperCase()
-})
+const showNotifications = ref(false)
+const showUserMenu = ref(false)
 
 const unreadNotifications = ref(3)
 const notifications = ref([
@@ -212,6 +207,11 @@ const notifications = ref([
   { id: 2, type: 'info', message: 'New asset registered: Truck TR-025', time: '1 hour ago' },
   { id: 3, type: 'error', message: 'Critical maintenance overdue for Generator GN-003', time: '3 hours ago' },
 ])
+
+const toggleSidebar = () => {
+  isRotated.value = !isRotated.value
+  emit('toggle-sidebar')
+}
 
 const toggleTheme = () => {
   isDarkMode.value = !isDarkMode.value
@@ -224,18 +224,15 @@ const toggleTheme = () => {
   }
 }
 
-
 const handleSearch = () => {
   const query = searchQuery.value.trim().toLowerCase()
-  if (!query) return searchResults.value = [], showAutocomplete.value = false
+  if (!query) return (searchResults.value = [], showAutocomplete.value = false)
 
   const cat = searchCategory.value
   let results = []
   if (searchData[cat]) {
     results = searchData[cat].filter(item =>
-      Object.values(item).some(val =>
-        String(val).toLowerCase().includes(query)
-      )
+      Object.values(item).some(val => String(val).toLowerCase().includes(query))
     )
   }
   searchResults.value = results.slice(0, 8)
@@ -283,10 +280,15 @@ const handleClickOutside = (event) => {
 
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
-  isDarkMode.value = document.documentElement.getAttribute('data-theme') === 'dark'
+  const storedTheme = localStorage.getItem('theme')
+  isDarkMode.value = storedTheme === 'dark'
+  if (isDarkMode.value) {
+    document.documentElement.setAttribute('data-theme', 'dark')
+  }
 })
 
 onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside)
 })
 </script>
+

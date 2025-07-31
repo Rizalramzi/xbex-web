@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #content>
-      <div class="h-full flex flex-col">
+      <div id="desktop" class="h-full hidden xl:flex flex-col">
         <!-- Page Header -->
         <div class="w-full container__section">
           
@@ -12,9 +12,7 @@
   
           <div class="flex flex-row items-center xl:gap-[13px] 2xl:gap-[20px]">
             <button class="btn__primary">+ New Work Order</button>
-            <div class="background__icon">
-              <img src="/icons/unlove.svg" alt="Unlove Icon" class="w-auto xl:h-[13px] 2xl:h-[19px] object-center object-cover shrink-0" :show-tooltip="true">
-            </div>
+            <FavoriteButton :show-tooltip="true" />
           </div>
         </div>
   
@@ -272,12 +270,137 @@
   
         </div>
       </div>
+
+      <div id="mobile" class="flex xl:hidden flex-col gap-[3vw]">
+        <div class="flex flex-col gap-[20px] px-[8vw] py-[5.5vw] rounded-[4vw]" style="background-color: var(--color-bgsidebar);">
+          <div class="flex flex-col gap-[2.7vw]">
+            <div class="container__header__main">
+                <span class="title__main">Work Orders</span>
+                <p class="desc__main">Track and manage all maintenance work orders.</p>
+            </div>
+            <div class="flex flex-row items-center gap-[2.7vw] xl:gap-[13px] 2xl:gap-[20px]">
+              <FavoriteButton :show-tooltip="true" />
+              <button class="btn__primary">+ New Work Order</button>
+            </div>
+          </div>
+          <div class="w-full container__section xl:mt-[26px] 2xl:mt-[40px]">
+            <div v-if="!showAdvanceSearch" class="flex flex-row items-center gap-[2vw] xl:gap-[7px] 2xl:gap-[10px]">
+              <div class="search outline__input" >
+                <img src="/icons/search.svg" alt="Search Icon" class="w-[3.5vw] xl:w-[13px] 2xl:w-[20px] h-auto object-center object-cover shrink-0">
+                <input v-model="searchQuery" type="text" name="" id="" class="w-full h-full outline-none" placeholder="Search Work Order">
+              </div>
+      
+              <button @click="refreshData" :disabled="loading" class="background__icon">
+                <img src="/icons/repeat.svg" alt="Repeat Icon" class="w-[3.5vw] xl:w-[13px] xl:h-[13px] 2xl:w-[16px] 2xl:h-[16px] object-center object-cover shrink-0">
+              </button>
+              
+              <button @click="printData" class="background__icon">
+                <img src="/icons/print.svg" alt="Print Icon" class="w-[3.5vw] xl:w-[13px] xl:h-[13px] 2xl:w-[16px] 2xl:h-[16px] object-center object-cover shrink-0">
+              </button>
+            </div>
+    
+            <button @click="showAdvanceSearch = true" class="cursor-pointer min-h-[10vw] xl:min-h-full px-[3vw] py-[2.7vw] xl:px-[20px] xl:py-[13px] 2xl:px-[30px] 2xl:py-[20px] rounded-[7vw] xl:rounded-[33px] 2xl:rounded-[50px] flex flex-row items-center justify-center gap-[2vw] xl:gap-[13px] 2xl:gap-[20px]" style="background-color: var(--color-bgtable);">
+              <img src="/icons/filter.svg" alt="Filter Icon" class="w-[3vw] xl:w-[12px] h-auto 2xl:w-[18px] 2xl:h-[11px] object-center object-cover shrink-0">
+              <span class="hidden xl:block xl:text-[10px] 2xl:text-[14px]">Advanced Search</span>
+              <img src="/icons/arrow.svg" alt="Arrow Icon" class="w-[2vw] xl:w-[8px] 2xl:w-[10px] h-auto object-center object-cover shrink-0">
+            </button>
+          </div>
+        </div>
+        <!-- Loading State -->
+          <div v-if="loading" class="p-8 text-center">
+            <div class="inline-flex items-center">
+              <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-petrosea-primary mr-3"></div>
+              <span class="text-gray-600">Loading work orders...</span>
+            </div>
+          </div>
+  
+          <!-- Error State -->
+          <div v-else-if="error" class="p-8 text-center">
+            <div class="text-red-600">
+              <MdiIcon :path="mdiAlertCircle" class="h-8 w-8 mx-auto mb-2" />
+              <p class="font-medium">Error loading work orders</p>
+              <p class="text-sm mt-1">{{ error }}</p>
+            </div>
+          </div>
+  
+          <!-- Empty State -->
+          <div v-else-if="filteredWorkOrders.length === 0" class="p-8 text-center">
+            <MdiIcon :path="mdiClipboardTextOutline" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h3 class="text-lg font-medium text-gray-900 mb-2">No work orders found</h3>
+            <p class="text-gray-600">{{ searchQuery || statusFilter || priorityFilter || typeFilter ? 'Try adjusting your filters' : 'Create your first work order to get started' }}</p>
+          </div>
+
+        <div v-else v-for="workOrder in paginatedWorkOrders" :key="workOrder.id" class="w-full h-fit px-[8vw] py-[5.5vw] rounded-[4vw]" style="background-color: var(--color-bgsidebar);">
+            <div class="container__data__mobile">
+
+              <div class="flex flex-col gap-[2.7vw]">
+                <span class="xl:text-[10px] 2xl:text-[14px]">{{ workOrder.id }}</span>
+                <div class="flex flex-col gap-[1.5vw]">
+                    <div class="background__icon__content">
+                      <img :src="getAssetIcon(workOrder.assetName)" alt="Asset Icon" class="w-auto xl:h-[13px] 2xl:h-[18px] object-center object-contain shrink-0" />
+                    </div>
+  
+                    <div class="flex flex-col gap-[5px]">
+                      <div class="">
+                        <span class="xl:text-[10px] 2xl:text-[14px]">{{ workOrder.assetName.split(' ').slice(0, 2).join(' ') }}</span>
+                      </div>
+                      <p class="label__secondary line-clamp-3 max-w-[27vw]">{{ workOrder.title }}</p>
+                    </div>
+  
+                    <div class="flex flex-wrap items-center gap-[10px]">
+                      <div :class="getPriorityBadgeClass(workOrder.priority)">{{ workOrder.priority }}</div>
+                      <div :class="getTypeBadgeClass(workOrder.type)">{{ getTypeLabel(workOrder.type) }}</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col mt-[2.7vw]">
+                      <span :class="getItemStatusBadgeClass(getWorkOrderItemStatus(workOrder.id).status)" class="mb-1 w-fit inline-flex items-center text-[2.7vw] xl:text-[10px] 2xl:text-[14px] font-semibold rounded-full ps-[2.7vw] pe-[8vw] py-[1.5vw] xl:ps-[13px] 2xl:ps-[20px] xl:pe-[30px] 2xl:pe-[50px] xl:py-[7px] 2xl:py-[10px]">
+                        <MdiIcon :path="getItemStatusIcon(getWorkOrderItemStatus(workOrder.id).status)" class="w-[4vw] h-[4vw] mr-[1.5vw] xl:w-3 xl:h-3 2xl:w-4 2xl:h-4 xl:mr-1.5 2xl:mr-2.5" />
+                        {{ getItemStatusLabel(getWorkOrderItemStatus(workOrder.id).status) }}
+                      </span>
+                      <span class="label__secondary truncate" :title="getWorkOrderItemStatus(workOrder.id).message">
+                        {{ getWorkOrderItemStatus(workOrder.id).message }}
+                      </span>
+                    </div>
+              </div>
+
+              <div class="flex flex-col items-end gap-[2.7vw]">
+
+                <p class="label__secondary">{{ workOrder.assetId }}</p>
+
+                <div :class="getStatusBadgeClass(workOrder.status)">
+                  {{ getStatusLabel(workOrder.status) }}
+                </div>
+
+                <div class="flex items-center justify-center">
+                    <div class="flex flex-col gap-1">
+                      <div class="flex items-center">
+                          <div class="xl:w-16 2xl:w-32 rounded-full xl:h-[10px] 2xl:h-[15px] mr-2" style="background-color: var(--color-bgtable);">
+                            <div
+                              :class="getCompletionBarClass(getWorkOrderCompletion(workOrder.id))"
+                              class="xl:h-[10px] 2xl:h-[15px] rounded-full transition-all duration-300"
+                              :style="{ width: getWorkOrderCompletion(workOrder.id) + '%' }"
+                            ></div>
+                          </div>
+                          <span class="text-xs font-medium">
+                            {{ getWorkOrderCompletion(workOrder.id) }}%
+                          </span>
+                        </div>
+                        <span :class="getWorkOrderProgressStatus(workOrder).class" class="label__secondary">
+                          {{ getWorkOrderProgressStatus(workOrder).label }}
+                        </span>
+                      </div>
+                    </div>
+              </div>
+            </div>
+        </div>
+      </div>
     </template>
 
     <template #pagination>
       <div v-if="filteredWorkOrders.length > 0" class="my-[20px]">
-            <div class="flex items-center justify-between">
-              <div class="flex flex-row items-center xl:gap-[13px] 2xl:gap-[20px]">
+            <div class="flex items-center justify-center xl:justify-between">
+              <div class="hidden xl:flex flex-row items-center xl:gap-[13px] 2xl:gap-[20px]">
                 <p class="xl:text-[10px] 2xl:text-[14px]">
                   Showing
                   <span class="font-medium">{{ (currentPage - 1) * itemsPerPage + 1 }}</span>
@@ -307,7 +430,7 @@
                   class="pageButton"
                   title="First page"
                 >
-                  <img src="/icons/double-arrow.svg" alt="Double Arrow" class="w-auto xl:h-[8px] 2xl:h-[13px] object-center object-cover shrink-0 invert">
+                  <img src="/icons/double-arrow.svg" alt="Double Arrow" class="w-auto h-[2vw] xl:h-[8px] 2xl:h-[13px] object-center object-cover shrink-0 invert">
                 </button>
                 <button
                   @click="currentPage--"
@@ -315,7 +438,7 @@
                   class="pageButton"
                   title="Previous page"
                 >
-                  <img src="/icons/arrow.svg" alt="Arrow" class="w-auto xl:h-[6px] 2xl:h-[10px] object-center object-cover shrink-0 rotate-90">
+                  <img src="/icons/arrow.svg" alt="Arrow" class="w-auto h-[1.4vw] xl:h-[6px] 2xl:h-[10px] object-center object-cover shrink-0 rotate-90">
                 </button>
                 <span class="pageButton">
                   {{ currentPage }} of {{ totalPages }}
@@ -326,7 +449,7 @@
                   class="pageButton"
                   title="Next page"
                 >
-                  <img src="/icons/arrow.svg" alt="Arrow" class="w-auto xl:h-[6px] 2xl:h-[10px] object-center object-cover shrink-0 -rotate-90">
+                  <img src="/icons/arrow.svg" alt="Arrow" class="w-auto h-[1.4vw] xl:h-[6px] 2xl:h-[10px] object-center object-cover shrink-0 -rotate-90">
                 </button>
                 <button
                   @click="currentPage = totalPages"
@@ -334,7 +457,7 @@
                   class="pageButton"
                   title="Last page"
                 >
-                   <img src="/icons/double-arrow.svg" alt="Double Arrow" class="w-auto xl:h-[8px] 2xl:h-[13px] object-center object-cover shrink-0 invert rotate-180">
+                   <img src="/icons/double-arrow.svg" alt="Double Arrow" class="w-auto h-[2vw] xl:h-[8px] 2xl:h-[13px] object-center object-cover shrink-0 invert rotate-180">
                 </button>
               </div>
             </div>
@@ -796,7 +919,7 @@ const clearAdvanceSearch = () => {
 }
 
 const getStatusBadgeClass = (status) => {
-  const baseClass = 'flex items-center justify-center xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[50px]'
+  const baseClass = 'flex items-center justify-center text-[2.7vw] px-[2.7vw] py-[1.5vw] xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[25px] xl:rounded-[33px] 2xl:rounded-[50px]'
   switch (status) {
     case 'completed':
       return `${baseClass} bg-green-100 text-green-800`
@@ -825,7 +948,7 @@ const getStatusLabel = (status) => {
 }
 
 const getPriorityBadgeClass = (priority) => {
-  const baseClass = 'flex items-center justify-center xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[50px]'
+  const baseClass = 'flex items-center justify-center text-[2.7vw] px-[2.7vw] py-[1.5vw] xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[25px] xl:rounded-[33px] 2xl:rounded-[50px]'
   switch (priority) {
     case 'Critical':
       return `${baseClass} bg-red-100 text-red-800`
@@ -841,7 +964,7 @@ const getPriorityBadgeClass = (priority) => {
 }
 
 const getTypeBadgeClass = (type) => {
-  const baseClass = 'flex items-center justify-center xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[50px]'
+  const baseClass = 'flex items-center justify-center text-[2.7vw] px-[2.7vw] py-[1.5vw] xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[25px] xl:rounded-[33px] 2xl:rounded-[50px]'
   switch (type) {
     case 'planned':
       return `${baseClass} bg-blue-100 text-blue-800`

@@ -37,6 +37,8 @@
   --color-bgmodal: rgba(0, 0, 0, 0.5);
   --color-bgtable : #f3f4f6;
   --color-bgtable-hover : #d1d5db;
+  --color-bgtoggle: #718096;
+  --color-bgtoggle-hover: #8794a9;
   
   /* Text Colors for Light Mode - Professional Corporate */
   --text-primary: #1a202c;
@@ -87,6 +89,8 @@
   --color-bgmodal: rgba(0, 0, 0, 0.75);
   --color-bgtable : #1B1A1D;
   --color-bgtable-hover : #262528;
+  --color-bgtoggle: #1a7a6b;
+  --color-bgtoggle-hover: #145a4f;
   
   /* Text Colors for Dark Mode - Corporate Dark */
   --text-primary: #f7fafc;
