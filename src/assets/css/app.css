@@ -4,6 +4,7 @@
 .card__menu {
   color: var(--text-muted);
   @apply w-full flex items-center bg-transparent cursor-pointer
+    px-[3.3vw] py-[2vw] rounded-[2.2vw] gap-[3.3vw]
     xl:px-[15px] xl:py-[9px] xl:gap-[15px] xl:rounded-[10px]
     2xl:px-[20px] 2xl:py-[12px] 2xl:gap-[20px] 2xl:rounded-[15px];
 }
@@ -34,7 +35,7 @@
 }
 
 .icon__menu {
-  @apply xl:w-[16px] 2xl:w-[22px] h-auto object-center object-cover shrink-0;
+  @apply w-[4.5vw] xl:w-[16px] 2xl:w-[22px] h-auto object-center object-cover shrink-0;
 }
 
 .label__main {
@@ -58,13 +59,13 @@
   @apply xl:text-[12px] 2xl:text-[16px] font-medium;
 }
 
-.dotted__border {
+.separator__border {
   border-color: var(--text-muted);
-  @apply border border-dashed w-full opacity-20;
+  @apply border w-full opacity-20;
 }
 
 .icon__rounded {
-  @apply flex-none w-[20px] h-[20px] xl:w-[27px] xl:h-[27px] 2xl:w-[40px] 2xl:h-[40px] rounded-full flex items-center justify-center;
+  @apply flex-none w-[7vw] h-[7vw] xl:w-[27px] xl:h-[27px] 2xl:w-[40px] 2xl:h-[40px] rounded-full flex items-center justify-center;
 }
 
 .bg-primary {
@@ -159,7 +160,7 @@
 
 .container__action {
   background-color: var(--color-bgtable);
-  @apply xl:p-[8px] 2xl:p-[15px] rounded-[50px] cursor-pointer;
+  @apply p-[2vw] xl:p-[8px] 2xl:p-[15px] rounded-[50px] cursor-pointer;
 }
 
 .container__action:hover {
@@ -170,6 +171,7 @@
 .pagination__option,
 .pageButton {
   background-color: var(--color-bgheader);
+  color: var(--text-primary);
   @apply flex items-center justify-center cursor-pointer rounded-[25px] xl:rounded-[33px] 2xl:rounded-[50px]
     px-[4vw] py-[2.7vw] xl:px-[20px] xl:py-[13px] text-[2.7vw] xl:text-[10px] xl:min-h-[40px]
     2xl:px-[30px] 2xl:py-[20px] 2xl:text-[14px] 2xl:min-h-[61px];
@@ -203,6 +205,7 @@
 
 .category__option {
     background-color: var(--color-bgheader);
+    @apply xl:px-[20px] 2xl:px-[30px] xl:py-[13px] 2xl:py-[20px] rounded-[7vw] xl:rounded-[33px] 2xl:rounded-[50px]
 }
 .category__option:hover {
     background-color: var(--color-bgheader-hover);
@@ -216,6 +219,16 @@
 .toggle__btn {
   background-color: var(--color-bgtoggle);
 }
+
+.btn__padding {
+  background-color: var(--color-bgtable);
+  color: var(--text-primary);
+  @apply flex flex-row items-center gap-[2vw] xl:gap-[13px] 2xl:gap-[20px] px-[3vw] py-[2.7vw] xl:px-[20px] min-h-[10.5vw] xl:min-h-fit text-[2.4vw] xl:text-[10px] 2xl:text-[14px] 2xl:px-[30px] xl:py-[13px] 2xl:py-[20px] rounded-[7vw] xl:rounded-[33px] 2xl:rounded-[50px] cursor-pointer
+}
+.btn__padding:hover {
+  background-color: var(--color-bgtable-hover);
+}
+
 .btn__primary {
   @apply bg-primary text-white flex items-center justify-center rounded-[7vw] xl:rounded-[33px] 2xl:rounded-[50px]
     px-[4.1vw] py-[2.7vw] text-[10px]

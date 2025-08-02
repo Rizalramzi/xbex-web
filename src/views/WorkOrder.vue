@@ -18,26 +18,113 @@
   
         <!-- Table Bar -->
         <div class="w-full container__section xl:mt-[26px] 2xl:mt-[40px]">
-          <div v-if="!showAdvanceSearch" class="flex flex-row items-center xl:gap-[7px] 2xl:gap-[10px]">
-            <div class="search outline__input" >
-              <img src="/icons/search.svg" alt="Search Icon" class="xl:w-[13px] 2xl:w-[20px] h-auto object-center object-cover shrink-0">
-              <input v-model="searchQuery" type="text" name="" id="" class="w-full h-full outline-none" placeholder="Search Work Order">
+          <!-- Simple Search -->
+          <div v-if="!showAdvanceSearch" class="w-full flex flex-row items-center justify-between">
+            <div class="flex flex-row items-center xl:gap-[7px] 2xl:gap-[10px]">
+              <div class="search outline__input">
+                <img src="/icons/search.svg" alt="Search Icon" class="xl:w-[13px] 2xl:w-[20px] h-auto">
+                <input v-model="searchQuery" type="text" class="w-full h-full outline-none" placeholder="Search Work Order">
+              </div>
+              
+              <button @click="refreshData" :disabled="loading" class="background__icon">
+                <img src="/icons/repeat.svg" alt="Repeat Icon" class="xl:w-[14px] xl:h-[14px] 2xl:w-[18px] 2xl:h-[18px] object-center object-cover shrink-0">
+              </button>
+              
+              <button @click="printData" class="background__icon">
+                <img src="/icons/print.svg" alt="Print Icon" class="xl:w-[14px] xl:h-[14px] 2xl:w-[18px] 2xl:h-[18px] object-center object-cover shrink-0">
+              </button>
             </div>
-    
-            <button @click="refreshData" :disabled="loading" class="background__icon">
-              <img src="/icons/repeat.svg" alt="Repeat Icon" class="xl:w-[13px] xl:h-[13px] 2xl:w-[16px] 2xl:h-[16px] object-center object-cover shrink-0">
-            </button>
             
-            <button @click="printData" class="background__icon">
-              <img src="/icons/print.svg" alt="Print Icon" class="xl:w-[13px] xl:h-[13px] 2xl:w-[16px] 2xl:h-[16px] object-center object-cover shrink-0">
+            <!-- Tombol Advanced Search -->
+            <button @click="showAdvanceSearch = true" class="cursor-pointer min-h-[10vw] xl:min-h-full btn__padding">
+              <svg class="w-[3vw] xl:w-[12px] h-auto 2xl:w-[18px] 2xl:h-[11px] object-center object-cover shrink-0" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.271973 1.5C0.271973 1.23478 0.377329 0.98043 0.564866 0.792893C0.752402 0.605357 1.00676 0.5 1.27197 0.5H17.272C17.5372 0.5 17.7915 0.605357 17.9791 0.792893C18.1666 0.98043 18.272 1.23478 18.272 1.5C18.272 1.76522 18.1666 2.01957 17.9791 2.20711C17.7915 2.39464 17.5372 2.5 17.272 2.5H1.27197C1.00676 2.5 0.752402 2.39464 0.564866 2.20711C0.377329 2.01957 0.271973 1.76522 0.271973 1.5ZM2.27197 6C2.27197 5.73478 2.37733 5.48043 2.56487 5.29289C2.7524 5.10536 3.00676 5 3.27197 5H15.272C15.5372 5 15.7915 5.10536 15.9791 5.29289C16.1666 5.48043 16.272 5.73478 16.272 6C16.272 6.26522 16.1666 6.51957 15.9791 6.70711C15.7915 6.89464 15.5372 7 15.272 7H3.27197C3.00676 7 2.7524 6.89464 2.56487 6.70711C2.37733 6.51957 2.27197 6.26522 2.27197 6ZM5.27197 10.5C5.27197 10.2348 5.37733 9.98043 5.56487 9.79289C5.7524 9.60536 6.00676 9.5 6.27197 9.5H12.272C12.5372 9.5 12.7915 9.60536 12.9791 9.79289C13.1666 9.98043 13.272 10.2348 13.272 10.5C13.272 10.7652 13.1666 11.0196 12.9791 11.2071C12.7915 11.3946 12.5372 11.5 12.272 11.5H6.27197C6.00676 11.5 5.7524 11.3946 5.56487 11.2071C5.37733 11.0196 5.27197 10.7652 5.27197 10.5Z" fill="currentColor"/>
+              </svg>
+
+              <span class="hidden xl:block xl:text-[10px] 2xl:text-[14px]">Advanced Search</span>
+              <svg class="w-[2vw] xl:w-[8px] 2xl:w-[10px] h-auto object-center object-cover shrink-0" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.65703 7.88911L2.67029e-05 2.23212L1.41403 0.818115L6.36403 5.76812L11.314 0.818115L12.728 2.23212L7.07103 7.88911C6.8835 8.07659 6.62919 8.1819 6.36403 8.1819C6.09886 8.1819 5.84455 8.07659 5.65703 7.88911Z" fill="currentColor"/>
+              </svg>
             </button>
           </div>
-  
-          <button @click="showAdvanceSearch = true" class="cursor-pointer xl:px-[20px] xl:py-[13px] 2xl:px-[30px] 2xl:py-[20px] xl:rounded-[33px] 2xl:rounded-[50px] flex flex-row items-center justify-center xl:gap-[13px] 2xl:gap-[20px]" style="background-color: var(--color-bgtable);">
-            <img src="/icons/filter.svg" alt="Filter Icon" class="xl:w-[12px] xl:h-auto 2xl:w-[18px] 2xl:h-[11px] object-center object-cover shrink-0">
-            <span class="xl:text-[10px] 2xl:text-[14px]">Advanced Search</span>
-            <img src="/icons/arrow.svg" alt="Arrow Icon" class="xl:w-[8px] 2xl:w-[10px] h-auto object-center object-cover shrink-0">
-          </button>
+
+          <!-- Advanced Search -->
+          <div v-else class="w-full flex flex-col xl:gap-[25px] 2xl:gap-[40px]">
+            <!-- Konten Advanced Search di sini -->
+            <div class="w-full flex flex-row items-center justify-between">
+              <span class="xl:text-[13px] 2xl:text-[18px]">Advanced Search</span>
+
+              <div class="flex flex-row items-center gap-[20px]">
+                <!-- Clear Search -->
+                <button @click="clearAdvanceSearch" class="btn__padding cursor-pointer">
+                  <svg class="xl:w-[12px] 2xl:w-[18px] xl:h-[12px] 2xl:h-[18px] object-center object-cover shrink-0" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.77425 0.0710887C9.89275 0.118913 10.0006 0.189488 10.0917 0.278784C10.1828 0.36808 10.2553 0.474348 10.3051 0.59152C10.3548 0.708692 10.3809 0.834473 10.3819 0.961681C10.3828 1.08889 10.3585 1.21503 10.3104 1.33291L6.78045 10.0055C7.24004 10.1656 7.70741 10.4084 8.11766 10.7339C8.83171 11.3009 9.41334 12.1546 9.41334 13.2898C9.41334 13.9808 9.58341 14.5555 9.84176 15.0256C10.2546 15.7799 11.1608 16.0498 12.0255 16.0498C12.2837 16.0498 12.5314 16.1519 12.714 16.3335C12.8966 16.5152 12.9992 16.7615 12.9992 17.0184C12.9992 17.2753 12.8966 17.5217 12.714 17.7034C12.5314 17.885 12.2837 17.9871 12.0255 17.9871H11.9086V18H3.47117C2.11058 18 0.674697 17.0946 0.638346 15.5138C0.608485 14.1887 0.891508 12.6815 1.69643 11.5308C2.37153 10.566 3.38808 9.89053 4.77073 9.773L8.50715 0.604487C8.55522 0.486608 8.62616 0.379304 8.71593 0.288701C8.80569 0.198098 8.91251 0.125972 9.03029 0.076441C9.14808 0.0269098 9.27452 0.000943603 9.40239 2.52436e-05C9.53026 -0.000893116 9.65576 0.0232543 9.77425 0.0710887ZM17.6625 17.9871C17.9208 17.9871 18.1684 17.885 18.351 17.7034C18.5336 17.5217 18.6362 17.2753 18.6362 17.0184C18.6362 16.7615 18.5336 16.5152 18.351 16.3335C18.1684 16.1519 17.9208 16.0498 17.6625 16.0498H15.1608C14.9025 16.0498 14.6549 16.1519 14.4723 16.3335C14.2897 16.5152 14.1871 16.7615 14.1871 17.0184C14.1871 17.2753 14.2897 17.5217 14.4723 17.7034C14.6549 17.885 14.9025 17.9871 15.1608 17.9871H17.6625ZM17.4782 13.5029C17.4782 13.7598 17.3756 14.0062 17.193 14.1879C17.0104 14.3695 16.7627 14.4716 16.5045 14.4716H14.017C13.7588 14.4716 13.5111 14.3695 13.3285 14.1879C13.1459 14.0062 13.0433 13.7598 13.0433 13.5029C13.0433 13.246 13.1459 12.9996 13.3285 12.818C13.5111 12.6363 13.7588 12.5343 14.017 12.5343H16.5045C16.7627 12.5343 17.0104 12.6363 17.193 12.818C17.3756 12.9996 17.4782 13.246 17.4782 13.5029ZM15.1608 10.8256C15.419 10.8256 15.6667 10.7235 15.8493 10.5419C16.0319 10.3602 16.1345 10.1139 16.1345 9.85695C16.1345 9.60005 16.0319 9.35367 15.8493 9.17202C15.6667 8.99036 15.419 8.88831 15.1608 8.88831H12.672C12.4137 8.88831 12.1661 8.99036 11.9835 9.17202C11.8009 9.35367 11.6983 9.60005 11.6983 9.85695C11.6983 10.1139 11.8009 10.3602 11.9835 10.5419C12.1661 10.7235 12.4137 10.8256 12.672 10.8256H15.1608Z" fill="currentColor"/>
+                  </svg>
+
+                  <span class="">Clear All Filter</span>
+                </button>
+                
+                <!-- Close Search -->
+                <button class="btn__padding cursor-pointer" @click="closeAdvanceSearch">
+                  <svg class="w-auto xl:h-[6px] 2xl:h-[10px] object-center object-cover shrink-0 rotate-90" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.65703 7.88911L2.67029e-05 2.23212L1.41403 0.818115L6.36403 5.76812L11.314 0.818115L12.728 2.23212L7.07103 7.88911C6.8835 8.07659 6.62919 8.1819 6.36403 8.1819C6.09886 8.1819 5.84455 8.07659 5.65703 7.88911Z" fill="currentColor"/>
+                  </svg>
+                  <span class="">Close</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-[20px]">
+              <!-- ID -->
+              <div class="flex flex-col gap-[10px] flex-none">
+                <label for="id" class="xl:text-[10px] 2xl:text-[14px]">Work Orders ID</label>
+                <div class="btn__padding xl:text-[10px] 2xl:text-[14px]">
+                  <select v-model="advanceSearch.woId" name="id" id="id" class="outline-none w-full cursor-pointer">
+                    <option value="">All Work Orders</option>
+                    <option v-for="wo in workOrders" :key="wo.id" :value="wo.id">{{ wo.id }}</option>
+                  </select>
+                </div>
+              </div>
+              
+              <!-- Status -->
+              <div class="flex flex-col gap-[10px] flex-none">
+                <label for="status" class="xl:text-[10px] 2xl:text-[14px]">Status</label>
+                <div class="btn__padding xl:text-[10px] 2xl:text-[14px]">
+                  <select v-model="advanceSearch.status" name="status" id="status" class="outline-none w-full cursor-pointer">
+                    <option value="">All Status</option>
+                    <option v-for="status in uniqueStatuses" :key="status" :value="status">{{ getStatusLabel(status) }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Priorities -->
+              <div class="flex flex-col gap-[10px] flex-none">
+                <label for="priority" class="xl:text-[10px] 2xl:text-[14px]">Priorities</label>
+                <div class="btn__padding xl:text-[10px] 2xl:text-[14px]">
+                  <select v-model="advanceSearch.priority" name="priority" id="priority" class="outline-none w-full cursor-pointer">
+                    <option value="">All Priorities</option>
+                    <option v-for="priority in uniquePriorities" :key="priority" :value="priority">{{ priority }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Progress -->
+              <div class="flex flex-col gap-[10px] flex-none">
+                <label for="progress" class="xl:text-[10px] 2xl:text-[14px]">Progress</label>
+                <div class="btn__padding xl:text-[10px] 2xl:text-[14px]">
+                  <select v-model="advanceSearch.progress" name="progress" id="progress" class="outline-none w-full cursor-pointer">
+                    <option value="">All Progress</option>
+                    <option value="0-25">0-25%</option>
+                    <option value="26-50">26-50%</option>
+                    <option value="51-75">51-75%</option>
+                    <option value="76-99">76-99%</option>
+                    <option value="100">100%</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
   
         <!-- Work Orders Table -->
@@ -295,15 +382,95 @@
               </button>
               
               <button @click="printData" class="background__icon">
-                <img src="/icons/print.svg" alt="Print Icon" class="w-[3.5vw] xl:w-[13px] xl:h-[13px] 2xl:w-[16px] 2xl:h-[16px] object-center object-cover shrink-0">
+                <img src="/icons/print.svg" alt="Print Icon" class="w-[3.5vw] h-auto object-center object-cover shrink-0">
               </button>
-            </div>
-    
-            <button @click="showAdvanceSearch = true" class="cursor-pointer min-h-[10vw] xl:min-h-full px-[3vw] py-[2.7vw] xl:px-[20px] xl:py-[13px] 2xl:px-[30px] 2xl:py-[20px] rounded-[7vw] xl:rounded-[33px] 2xl:rounded-[50px] flex flex-row items-center justify-center gap-[2vw] xl:gap-[13px] 2xl:gap-[20px]" style="background-color: var(--color-bgtable);">
-              <img src="/icons/filter.svg" alt="Filter Icon" class="w-[3vw] xl:w-[12px] h-auto 2xl:w-[18px] 2xl:h-[11px] object-center object-cover shrink-0">
-              <span class="hidden xl:block xl:text-[10px] 2xl:text-[14px]">Advanced Search</span>
-              <img src="/icons/arrow.svg" alt="Arrow Icon" class="w-[2vw] xl:w-[8px] 2xl:w-[10px] h-auto object-center object-cover shrink-0">
+
+              <button @click="showAdvanceSearch = true" class="cursor-pointer min-h-[10vw] xl:min-h-full btn__padding">
+              <svg class="w-[3vw] h-auto object-center object-cover shrink-0" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.271973 1.5C0.271973 1.23478 0.377329 0.98043 0.564866 0.792893C0.752402 0.605357 1.00676 0.5 1.27197 0.5H17.272C17.5372 0.5 17.7915 0.605357 17.9791 0.792893C18.1666 0.98043 18.272 1.23478 18.272 1.5C18.272 1.76522 18.1666 2.01957 17.9791 2.20711C17.7915 2.39464 17.5372 2.5 17.272 2.5H1.27197C1.00676 2.5 0.752402 2.39464 0.564866 2.20711C0.377329 2.01957 0.271973 1.76522 0.271973 1.5ZM2.27197 6C2.27197 5.73478 2.37733 5.48043 2.56487 5.29289C2.7524 5.10536 3.00676 5 3.27197 5H15.272C15.5372 5 15.7915 5.10536 15.9791 5.29289C16.1666 5.48043 16.272 5.73478 16.272 6C16.272 6.26522 16.1666 6.51957 15.9791 6.70711C15.7915 6.89464 15.5372 7 15.272 7H3.27197C3.00676 7 2.7524 6.89464 2.56487 6.70711C2.37733 6.51957 2.27197 6.26522 2.27197 6ZM5.27197 10.5C5.27197 10.2348 5.37733 9.98043 5.56487 9.79289C5.7524 9.60536 6.00676 9.5 6.27197 9.5H12.272C12.5372 9.5 12.7915 9.60536 12.9791 9.79289C13.1666 9.98043 13.272 10.2348 13.272 10.5C13.272 10.7652 13.1666 11.0196 12.9791 11.2071C12.7915 11.3946 12.5372 11.5 12.272 11.5H6.27197C6.00676 11.5 5.7524 11.3946 5.56487 11.2071C5.37733 11.0196 5.27197 10.7652 5.27197 10.5Z" fill="currentColor"/>
+              </svg>
+              <svg class="w-[2vw] xl:w-[8px] 2xl:w-[10px] h-auto object-center object-cover shrink-0" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.65703 7.88911L2.67029e-05 2.23212L1.41403 0.818115L6.36403 5.76812L11.314 0.818115L12.728 2.23212L7.07103 7.88911C6.8835 8.07659 6.62919 8.1819 6.36403 8.1819C6.09886 8.1819 5.84455 8.07659 5.65703 7.88911Z" fill="currentColor"/>
+              </svg>
             </button>
+            </div>
+
+            <!-- Advanced Search -->
+          <div v-else class="w-full flex flex-col gap-[5.5vw]">
+            <!-- Konten Advanced Search di sini -->
+            <div class="w-full flex flex-row items-center justify-between">
+              <span class="text-[2.7vw]">Advanced Search</span>
+
+              <div class="flex flex-row items-center gap-[20px]">
+                <!-- Clear Search -->
+                <button @click="clearAdvanceSearch" class="btn__padding cursor-pointer">
+                  <svg class="w-[3vw] h-auto object-center object-cover shrink-0" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.77425 0.0710887C9.89275 0.118913 10.0006 0.189488 10.0917 0.278784C10.1828 0.36808 10.2553 0.474348 10.3051 0.59152C10.3548 0.708692 10.3809 0.834473 10.3819 0.961681C10.3828 1.08889 10.3585 1.21503 10.3104 1.33291L6.78045 10.0055C7.24004 10.1656 7.70741 10.4084 8.11766 10.7339C8.83171 11.3009 9.41334 12.1546 9.41334 13.2898C9.41334 13.9808 9.58341 14.5555 9.84176 15.0256C10.2546 15.7799 11.1608 16.0498 12.0255 16.0498C12.2837 16.0498 12.5314 16.1519 12.714 16.3335C12.8966 16.5152 12.9992 16.7615 12.9992 17.0184C12.9992 17.2753 12.8966 17.5217 12.714 17.7034C12.5314 17.885 12.2837 17.9871 12.0255 17.9871H11.9086V18H3.47117C2.11058 18 0.674697 17.0946 0.638346 15.5138C0.608485 14.1887 0.891508 12.6815 1.69643 11.5308C2.37153 10.566 3.38808 9.89053 4.77073 9.773L8.50715 0.604487C8.55522 0.486608 8.62616 0.379304 8.71593 0.288701C8.80569 0.198098 8.91251 0.125972 9.03029 0.076441C9.14808 0.0269098 9.27452 0.000943603 9.40239 2.52436e-05C9.53026 -0.000893116 9.65576 0.0232543 9.77425 0.0710887ZM17.6625 17.9871C17.9208 17.9871 18.1684 17.885 18.351 17.7034C18.5336 17.5217 18.6362 17.2753 18.6362 17.0184C18.6362 16.7615 18.5336 16.5152 18.351 16.3335C18.1684 16.1519 17.9208 16.0498 17.6625 16.0498H15.1608C14.9025 16.0498 14.6549 16.1519 14.4723 16.3335C14.2897 16.5152 14.1871 16.7615 14.1871 17.0184C14.1871 17.2753 14.2897 17.5217 14.4723 17.7034C14.6549 17.885 14.9025 17.9871 15.1608 17.9871H17.6625ZM17.4782 13.5029C17.4782 13.7598 17.3756 14.0062 17.193 14.1879C17.0104 14.3695 16.7627 14.4716 16.5045 14.4716H14.017C13.7588 14.4716 13.5111 14.3695 13.3285 14.1879C13.1459 14.0062 13.0433 13.7598 13.0433 13.5029C13.0433 13.246 13.1459 12.9996 13.3285 12.818C13.5111 12.6363 13.7588 12.5343 14.017 12.5343H16.5045C16.7627 12.5343 17.0104 12.6363 17.193 12.818C17.3756 12.9996 17.4782 13.246 17.4782 13.5029ZM15.1608 10.8256C15.419 10.8256 15.6667 10.7235 15.8493 10.5419C16.0319 10.3602 16.1345 10.1139 16.1345 9.85695C16.1345 9.60005 16.0319 9.35367 15.8493 9.17202C15.6667 8.99036 15.419 8.88831 15.1608 8.88831H12.672C12.4137 8.88831 12.1661 8.99036 11.9835 9.17202C11.8009 9.35367 11.6983 9.60005 11.6983 9.85695C11.6983 10.1139 11.8009 10.3602 11.9835 10.5419C12.1661 10.7235 12.4137 10.8256 12.672 10.8256H15.1608Z" fill="#101828"/>
+                  </svg>
+
+                  <span class="">Clear All Filter</span>
+                </button>
+                
+                <!-- Close Search -->
+                <button class="btn__padding cursor-pointer" @click="closeAdvanceSearch">
+                  <svg class="w-auto h-[1.5vw] object-center object-cover shrink-0 rotate-90" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.65703 7.88911L2.67029e-05 2.23212L1.41403 0.818115L6.36403 5.76812L11.314 0.818115L12.728 2.23212L7.07103 7.88911C6.8835 8.07659 6.62919 8.1819 6.36403 8.1819C6.09886 8.1819 5.84455 8.07659 5.65703 7.88911Z" fill="currentColor"/>
+                  </svg>
+                  <span class="">Close</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-4 gap-[2.7vw] xl:gap-[13px] 2xl:gap-[20px]">
+              <!-- ID -->
+              <div class="flex flex-col gap-[2.7vw] flex-none">
+                <label for="id" class="text-[2.7vw] xl:text-[10px] 2xl:text-[14px]">Work Orders ID</label>
+                <div class="btn__padding text-[2.7vw] xl:text-[10px] 2xl:text-[14px]">
+                  <select v-model="advanceSearch.woId" name="id" id="id" class="outline-none w-full cursor-pointer">
+                    <option value="">All Work Orders</option>
+                    <option v-for="wo in workOrders" :key="wo.id" :value="wo.id">{{ wo.id }}</option>
+                  </select>
+                </div>
+              </div>
+              
+              <!-- Status -->
+              <div class="flex flex-col gap-[2.7vw] flex-none">
+                <label for="status" class="text-[2.7vw] xl:text-[10px] 2xl:text-[14px]">Status</label>
+                <div class="btn__padding text-[2.7vw] xl:text-[10px] 2xl:text-[14px]">
+                  <select v-model="advanceSearch.status" name="status" id="status" class="outline-none w-full cursor-pointer">
+                    <option value="">All Status</option>
+                    <option v-for="status in uniqueStatuses" :key="status" :value="status">{{ getStatusLabel(status) }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Priorities -->
+              <div class="flex flex-col gap-[2.7vw] flex-none">
+                <label for="priority" class="text-[2.7vw] xl:text-[10px] 2xl:text-[14px]">Priorities</label>
+                <div class="btn__padding text-[2.7vw] xl:text-[10px] 2xl:text-[14px]">
+                  <select v-model="advanceSearch.priority" name="priority" id="priority" class="outline-none w-full cursor-pointer">
+                    <option value="">All Priorities</option>
+                    <option v-for="priority in uniquePriorities" :key="priority" :value="priority">{{ priority }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Progress -->
+              <div class="flex flex-col gap-[2.7vw] flex-none">
+                <label for="progress" class="text-[2.7vw] xl:text-[10px] 2xl:text-[14px]">Progress</label>
+                <div class="btn__padding text-[2.7vw] xl:text-[10px] 2xl:text-[14px]">
+                  <select v-model="advanceSearch.progress" name="progress" id="progress" class="outline-none w-full cursor-pointer">
+                    <option value="">All Progress</option>
+                    <option value="0-25">0-25%</option>
+                    <option value="26-50">26-50%</option>
+                    <option value="51-75">51-75%</option>
+                    <option value="76-99">76-99%</option>
+                    <option value="100">100%</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
         <!-- Loading State -->
@@ -334,7 +501,7 @@
             <div class="container__data__mobile">
 
               <div class="flex flex-col gap-[2.7vw]">
-                <span class="xl:text-[10px] 2xl:text-[14px]">{{ workOrder.id }}</span>
+                <span class="text-[3vw] xl:text-[10px] 2xl:text-[14px]">{{ workOrder.id }}</span>
                 <div class="flex flex-col gap-[1.5vw]">
                     <div class="background__icon__content">
                       <img :src="getAssetIcon(workOrder.assetName)" alt="Asset Icon" class="w-auto xl:h-[13px] 2xl:h-[18px] object-center object-contain shrink-0" />
@@ -364,7 +531,7 @@
                     </div>
               </div>
 
-              <div class="flex flex-col items-end gap-[2.7vw]">
+              <div class="flex flex-col items-end gap-[3.5vw]">
 
                 <p class="label__secondary">{{ workOrder.assetId }}</p>
 
@@ -373,24 +540,47 @@
                 </div>
 
                 <div class="flex items-center justify-center">
-                    <div class="flex flex-col gap-1">
+                    <div class="flex flex-col items-end gap-1">
                       <div class="flex items-center">
-                          <div class="xl:w-16 2xl:w-32 rounded-full xl:h-[10px] 2xl:h-[15px] mr-2" style="background-color: var(--color-bgtable);">
-                            <div
-                              :class="getCompletionBarClass(getWorkOrderCompletion(workOrder.id))"
-                              class="xl:h-[10px] 2xl:h-[15px] rounded-full transition-all duration-300"
-                              :style="{ width: getWorkOrderCompletion(workOrder.id) + '%' }"
-                            ></div>
-                          </div>
                           <span class="text-xs font-medium">
                             {{ getWorkOrderCompletion(workOrder.id) }}%
                           </span>
+                          <div class="w-[14vw] xl:w-16 2xl:w-32 rounded-full xl:h-[10px] 2xl:h-[15px] ml-2" style="background-color: var(--color-bgtable);">
+                            <div
+                              :class="getCompletionBarClass(getWorkOrderCompletion(workOrder.id))"
+                              class="h-[2.2vw] xl:h-[10px] 2xl:h-[15px] rounded-full transition-all duration-300"
+                              :style="{ width: getWorkOrderCompletion(workOrder.id) + '%' }"
+                            ></div>
+                          </div>
                         </div>
                         <span :class="getWorkOrderProgressStatus(workOrder).class" class="label__secondary">
                           {{ getWorkOrderProgressStatus(workOrder).label }}
                         </span>
                       </div>
-                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center items-center">
+                  <div class="flex flex-col items-end">
+                    <span class="text-[2.7vw] xl:text-[10px] 2xl:text-[14px] font-medium">{{ getAssignedTeamInfo(workOrder.assignedTo).mainPerson }}</span>
+                    <span v-if="getAssignedTeamInfo(workOrder.assignedTo).otherCount > 0" class="label__secondary">
+                      +{{ getAssignedTeamInfo(workOrder.assignedTo).otherCount }} other{{ getAssignedTeamInfo(workOrder.assignedTo).otherCount > 1 ? 's' : '' }}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-center">
+                  <div class="flex justify-end items-center gap-2.5">
+                    <button class="container__action" :title="`View ${workOrder.id}`">
+                      <MdiIcon :path="mdiEye" class="w-[5vw] h-[5vw] xl:w-3 xl:h-3 2xl:w-5 2xl:h-5" />
+                    </button>
+                    <button class="container__action" :title="`Edit ${workOrder.id}`">
+                      <MdiIcon :path="mdiPencil" class="w-[5vw] h-[5vw] xl:w-3 xl:h-3 2xl:w-5 2xl:h-5" />
+                    </button>
+                    <button class="bg-red-100 p-[2vw] xl:p-[8px] 2xl:p-[15px] hover:bg-red-300 rounded-[50px] cursor-pointer text-red-800" :title="`Delete ${workOrder.id}`">
+                      <MdiIcon :path="mdiDelete" class="w-[5vw] h-[5vw] xl:w-3 xl:h-3 2xl:w-5 2xl:h-5" />
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
         </div>
@@ -430,7 +620,10 @@
                   class="pageButton"
                   title="First page"
                 >
-                  <img src="/icons/double-arrow.svg" alt="Double Arrow" class="w-auto h-[2vw] xl:h-[8px] 2xl:h-[13px] object-center object-cover shrink-0 invert">
+                  <svg class="w-auto h-[2vw] xl:h-[8px] 2xl:h-[13px] object-center object-cover shrink-0" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.134766 6.50001L6.08873 12.454L7.44509 11.0976L2.84748 6.50001L7.44509 1.9024L6.08873 0.546043L0.134766 6.50001ZM5.55444 6.50001L11.5084 12.454L12.8648 11.0976L8.26716 6.50001L12.8648 1.9024L11.5084 0.546043L5.55444 6.50001Z" fill="currentColor"/>
+                  </svg>
+
                 </button>
                 <button
                   @click="currentPage--"
@@ -438,7 +631,10 @@
                   class="pageButton"
                   title="Previous page"
                 >
-                  <img src="/icons/arrow.svg" alt="Arrow" class="w-auto h-[1.4vw] xl:h-[6px] 2xl:h-[10px] object-center object-cover shrink-0 rotate-90">
+                  <svg class="w-auto h-[1.4vw] xl:h-[6px] 2xl:h-[10px] object-center object-cover shrink-0 rotate-90" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.65703 7.88911L2.67029e-05 2.23212L1.41403 0.818115L6.36403 5.76812L11.314 0.818115L12.728 2.23212L7.07103 7.88911C6.8835 8.07659 6.62919 8.1819 6.36403 8.1819C6.09886 8.1819 5.84455 8.07659 5.65703 7.88911Z" fill="currentColor"/>
+                  </svg>
+
                 </button>
                 <span class="pageButton">
                   {{ currentPage }} of {{ totalPages }}
@@ -449,7 +645,9 @@
                   class="pageButton"
                   title="Next page"
                 >
-                  <img src="/icons/arrow.svg" alt="Arrow" class="w-auto h-[1.4vw] xl:h-[6px] 2xl:h-[10px] object-center object-cover shrink-0 -rotate-90">
+                   <svg class="w-auto h-[1.4vw] xl:h-[6px] 2xl:h-[10px] object-center object-cover shrink-0 -rotate-90" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.65703 7.88911L2.67029e-05 2.23212L1.41403 0.818115L6.36403 5.76812L11.314 0.818115L12.728 2.23212L7.07103 7.88911C6.8835 8.07659 6.62919 8.1819 6.36403 8.1819C6.09886 8.1819 5.84455 8.07659 5.65703 7.88911Z" fill="currentColor"/>
+                  </svg>
                 </button>
                 <button
                   @click="currentPage = totalPages"
@@ -457,7 +655,9 @@
                   class="pageButton"
                   title="Last page"
                 >
-                   <img src="/icons/double-arrow.svg" alt="Double Arrow" class="w-auto h-[2vw] xl:h-[8px] 2xl:h-[13px] object-center object-cover shrink-0 invert rotate-180">
+                   <svg class="w-auto h-[2vw] xl:h-[8px] 2xl:h-[13px] object-center object-cover shrink-0 rotate-180" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.134766 6.50001L6.08873 12.454L7.44509 11.0976L2.84748 6.50001L7.44509 1.9024L6.08873 0.546043L0.134766 6.50001ZM5.55444 6.50001L11.5084 12.454L12.8648 11.0976L8.26716 6.50001L12.8648 1.9024L11.5084 0.546043L5.55444 6.50001Z" fill="currentColor"/>
+                  </svg>
                 </button>
               </div>
             </div>
@@ -918,8 +1118,21 @@ const clearAdvanceSearch = () => {
   }
 }
 
+// Computed properties untuk mendapatkan nilai unik dari work orders
+const uniqueStatuses = computed(() => {
+  const statuses = new Set()
+  workOrders.value.forEach(wo => statuses.add(wo.status))
+  return Array.from(statuses)
+})
+
+const uniquePriorities = computed(() => {
+  const priorities = new Set()
+  workOrders.value.forEach(wo => priorities.add(wo.priority))
+  return Array.from(priorities)
+})
+
 const getStatusBadgeClass = (status) => {
-  const baseClass = 'flex items-center justify-center text-[2.7vw] px-[2.7vw] py-[1.5vw] xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[25px] xl:rounded-[33px] 2xl:rounded-[50px]'
+  const baseClass = 'flex items-center justify-center text-[2.7vw] px-[3.5vw] py-[2vw] xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[25px] xl:rounded-[33px] 2xl:rounded-[50px]'
   switch (status) {
     case 'completed':
       return `${baseClass} bg-green-100 text-green-800`
@@ -948,7 +1161,7 @@ const getStatusLabel = (status) => {
 }
 
 const getPriorityBadgeClass = (priority) => {
-  const baseClass = 'flex items-center justify-center text-[2.7vw] px-[2.7vw] py-[1.5vw] xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[25px] xl:rounded-[33px] 2xl:rounded-[50px]'
+  const baseClass = 'flex items-center justify-center text-[2.7vw] px-[3.5vw] py-[2vw] xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[25px] xl:rounded-[33px] 2xl:rounded-[50px]'
   switch (priority) {
     case 'Critical':
       return `${baseClass} bg-red-100 text-red-800`
@@ -964,7 +1177,7 @@ const getPriorityBadgeClass = (priority) => {
 }
 
 const getTypeBadgeClass = (type) => {
-  const baseClass = 'flex items-center justify-center text-[2.7vw] px-[2.7vw] py-[1.5vw] xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[25px] xl:rounded-[33px] 2xl:rounded-[50px]'
+  const baseClass = 'flex items-center justify-center text-[2.7vw] px-[3.5vw] py-[2vw] xl:px-[13px] xl:py-[7px] 2xl:px-[20px] 2xl:py-[10px] xl:text-[10px] 2xl:text-[14px] font-medium rounded-[25px] xl:rounded-[33px] 2xl:rounded-[50px]'
   switch (type) {
     case 'planned':
       return `${baseClass} bg-blue-100 text-blue-800`

@@ -3,7 +3,6 @@ import { useAuthStore } from '../stores/authStore';
 
 // Lazy loading for better performance
 const Dashboard = () => import('../views/Dashboard.vue');
-const Testing = () => import('../views/testing.vue');
 const AssetList = () => import('../views/asset/AssetList.vue');
 const AssetDetail = () => import('../views/asset/AssetDetail.vue');
 const AssetForm = () => import('../views/asset/AssetForm.vue');
@@ -26,11 +25,6 @@ const TemplateDesigner = () => import('../views/TemplateDesigner.vue');
 const KnowledgeBase = () => import('../views/KnowledgeBase.vue');
 
 const routes = [
-  {
-    path: '/testing',
-    name: 'testing',
-    component: Testing,
-  },
   {
     path: '/',
     redirect: '/dashboard'

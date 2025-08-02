@@ -1,13 +1,13 @@
 <template>
   <div
     id="sidebar"
-    class="xl:min-w-[245px] 2xl:min-w-[331px] h-screen fixed flex flex-col items-start xl:py-[16px] 2xl:py-[22px] xl:ps-[2vw] xl:pe-[28px] ps-[4vw] pe-[7.7vw] overflow-y-auto" style="background-color: var(--color-bgsidebar);"
+    class="xl:min-w-[245px] 2xl:min-w-[331px] h-screen fixed flex flex-col items-start xl:py-[16px] 2xl:py-[22px] xl:ps-[2vw] xl:pe-[28px] ps-[4vw] pe-[7.7vw] py-[3vw] overflow-y-auto" style="background-color: var(--color-bgsidebar);"
   >
     <!-- Logo -->
     <div class="w-full h-fit flex items-center justify-between">
       <span class="text-primary-color text-[6.6vw] xl:text-[30px] 2xl:text-[40px] xl:leading-[44px] 2xl:leading-[60px] font-bold">Xibex</span>
       <button 
-        class="group bg-primary rounded-[50px] w-[40px] h-[40px] xl:w-[50px] xl:h-[50px] 2xl:w-[75px] 2xl:h-[75px] flex items-center justify-center flex-none cursor-pointer"
+        class=" xl:hidden group bg-primary rounded-[50px] w-[40px] h-[40px] xl:w-[50px] xl:h-[50px] 2xl:w-[75px] 2xl:h-[75px] flex items-center justify-center flex-none cursor-pointer"
         @click="toggleSidebar"
       >
         <img 
@@ -22,7 +22,7 @@
     </div>
 
     <!-- Menu Utama -->
-    <div class="w-full xl:mt-3.5 2xl:mt-5 flex flex-col items-start xl:gap-[15px] 2xl:gap-[20px]">
+    <div class="w-full mt-[3.3vw] xl:mt-3.5 2xl:mt-5 flex flex-col items-start gap-[3.3vw] xl:gap-[15px] 2xl:gap-[20px]">
       <template v-for="item in menuItems" :key="item.id">
         <!-- Jika bukan group -->
         <router-link
@@ -38,7 +38,7 @@
         <div v-else class="w-full flex flex-col items-start xl:gap-[11px] 2xl:gap-[15px]">
           <div class="title__container__menu">
             <span>{{ item.name }}</span>
-            <div class="dotted__border"></div>
+            <div class="separator__border"></div>
           </div>
 
           <div class="container__menu">
@@ -60,11 +60,14 @@
                 @mouseenter="handleMouseEnter($event, child)"
                 @mouseleave="handleSubmenuLeave"
               >
-                <div class="flex items-center xl:gap-[15px] 2xl:gap-[20px]">
+                <div class="flex items-center gap-[3.3vw] xl:gap-[15px] 2xl:gap-[20px]">
                   <img :src="child.icon" :alt="child.name + ' Icon'" class="icon__menu" />
                   <span class="label__main">{{ child.name }}</span>
                 </div>
-                <img src="/icons/arrow.svg" alt="Arrow Icon" class="arrow xl:w-[10px] 2xl:w-[12px] h-auto object-center object-cover shrink-0 -rotate-90">
+                <svg class="arrow w-[3vw] xl:w-[10px] 2xl:w-[12px] h-auto object-center object-cover shrink-0 -rotate-90" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.65703 7.88911L2.67029e-05 2.23212L1.41403 0.818115L6.36403 5.76812L11.314 0.818115L12.728 2.23212L7.07103 7.88911C6.8835 8.07659 6.62919 8.1819 6.36403 8.1819C6.09886 8.1819 5.84455 8.07659 5.65703 7.88911Z" fill="currentColor"/>
+                </svg>
+
               </div>
             </template>
           </div>
@@ -94,9 +97,9 @@
     </div>
 
     <!-- Status & Logout -->
-    <div class="w-full xl:mt-[44px] 2xl:mt-[60px] mb-32">
-      <div class="w-full flex flex-col gap-[25px] items-start">
-        <div class="dotted__border"></div>
+    <div class="w-full mt-[10vw] xl:mt-[44px] 2xl:mt-[60px] mb-32">
+      <div class="w-full flex flex-col gap-[4.1vw] xl:gap-[25px] items-start">
+        <div class="separator__border"></div>
         <div class="w-full flex flex-col gap-[10px] items-start">
           <div class="w-full flex flex-row justify-between items-center">
             <div class="w-full flex flex-row gap-[22px] items-center">
@@ -104,7 +107,7 @@
                 <img
                   src="/icons/location.svg"
                   alt="Location Icon"
-                  class="xl:w-[10px] xl:h-auto 2xl:w-[12px] 2xl:h-[15px] object-cover object-center shrink-0"
+                  class="w-[2.4vw] xl:w-[10px] h-auto 2xl:w-[12px] 2xl:h-[15px] object-cover object-center shrink-0"
                 />
               </div>
               <div class="flex flex-col">
@@ -120,7 +123,7 @@
               <img
                 src="/icons/switch.svg"
                 alt="Switch Icon"
-                class="xl:w-[12px] xl:h-auto 2xl:w-[16px] 2xl:h-[14px] object-cover object-center shrink-0"
+                class="w-[2.7vw] xl:w-[12px] h-auto 2xl:w-[16px] 2xl:h-[14px] object-cover object-center shrink-0"
               />
             </div>
           </div>
@@ -128,7 +131,7 @@
           <div class="w-full flex flex-row justify-between items-center">
             <div class="w-full flex flex-row gap-[22px] items-center">
               <div class="icon__rounded bg-primary">
-                <span class="text-[10px] 2xl:text-[14px] leading-[21px] text-white">A</span>
+                <span class="text-[2.7vw] xl:text-[10px] 2xl:text-[14px] leading-[21px] text-white">A</span>
               </div>
               <div class="flex flex-col">
                 <span class="label__main">Admin</span>
@@ -143,7 +146,7 @@
               <img
                 src="/icons/logout.svg"
                 alt="Logout Icon"
-                class="xl:w-[12px] xl:h-auto 2xl:w-[16px] 2xl:h-[14px] object-cover object-center shrink-0"
+                class="w-[2.7vw] xl:w-[12px] h-auto 2xl:w-[16px] 2xl:h-[14px] object-cover object-center shrink-0"
               />
             </div>
           </div>

@@ -18,13 +18,13 @@ export const useSidebarStore = defineStore('sidebar', () => {
   }
 
   const closeSidebar = () => {
-    sidebarOpen.value = true
+    sidebarOpen.value = false
   }
 
   // Fungsi yang akan dijalankan saat resize layar
   const handleResize = () => {
     if (window.innerWidth < 1280) {
-      openSidebar()
+      closeSidebar()
     } else {
       openSidebar()
     }
