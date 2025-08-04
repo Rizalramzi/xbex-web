@@ -7,19 +7,6 @@
       class="fixed top-0 left-0 z-50"
     />
 
-    <!-- Header (global, tidak ikut margin konten) -->
-    <Header
-      @toggle-sidebar="toggleSidebar"
-      class="fixed xl:static top-0 left-0 right-0 z-40"
-      :class="[
-        sidebarStore.sidebarOpen
-          ? 'xl:pl-[269px] 2xl:pl-[373px]'
-          : 'xl:pl-[24px] 2xl:pl-[62px]',
-          'xl:pr-[24px] 2xl:pr-[62px]'
-      ]"
-    />
-
-
     <!-- Main content area -->
     <div
       class="transition-all duration-300 ease-in-out flex flex-col flex-1 min-h-screen"
@@ -30,10 +17,16 @@
         'me-[4.4vw] xl:me-[24px] 2xl:me-[62px]'
       ]"
     >
+      <!-- Header (mobile: fixed, desktop: static) -->
+      <Header
+        @toggle-sidebar="toggleSidebar"
+        class="fixed xl:static top-0 left-0 right-0 z-40"
+      />
+
       <!-- Page content -->
-      <main>
+      <main :class="'pt-[14vw] xl:pt-0'">
         <section
-          class="min-h-[43.3vw] xl:h-[40vw] mt-[4.1vw] xl:mt-[20px] xl:px-[40px] xl:py-[27px] 2xl:px-[60px] 2xl:py-[40px] rounded-[30px] overflow-hidden page__content">
+          class="min-h-[43.3vw] xl:h-[40vw] mt-[4.1vw] xl:mt-[20px] py-[5.5vw] xl:px-[40px] xl:py-[27px] 2xl:px-[60px] 2xl:py-[40px] rounded-[30px] overflow-hidden page__content">
           <slot name="content" />
         </section>
         <section>
@@ -43,6 +36,7 @@
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { onMounted, onBeforeUnmount } from 'vue'
@@ -66,7 +60,7 @@ const handleResize = () => {
 }
 
 onMounted(() => {
-  handleResize()
+  handleResize() // Set initial state
   window.addEventListener('resize', handleResize)
 })
 

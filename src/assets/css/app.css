@@ -190,6 +190,12 @@
   @apply xl:max-h-[50px] 2xl:max-h-[75px] flex-row gap-[2.7vw] xl:gap-[20px];
 }
 
+.border__profile{
+  border-color: var(--color-bgtable);
+  @apply border
+
+}
+
 .bg__submenu {
   background-color: var(--color-bgsidebar);
 }

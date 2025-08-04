@@ -13,8 +13,8 @@
 
           <div class="flex flex-row items-center gap-[20px]">
             <div class="background__icon">
-              <img src="/icons/unlove.svg" alt="Unlove Icon"
-                class="w-auto h-[12px] 2xl:h-[19px] object-center object-cover shrink-0" :show-tooltip="true" />
+              <FavoriteButton :show-tooltip="true" />
+
             </div>
           </div>
         </div>
@@ -113,37 +113,42 @@
 
           <div
             class="hidden bg-table flex-none xl:flex flex-row items-center gap-[20px] w-full h-full xl:max-h-[50px] 2xl:max-h-[75px] xl:px-[20px] 2xl:px-[30px] xl:py-[13px] 2xl:py-[20px] justify-center xl:rounded-[33px] 2xl:rounded-[50px] xl:max-w-[217px] 2xl:max-w-[326px] cursor-pointer">
-            <select v-model="advanceSearch.taskId" name="id" id="id" class="outline-none w-full h-full xl:text-[10px] 2xl:text-[14px] cursor-pointer">
-                    <option value="">All Tasks</option>
-                    <option v-for="task in tasks" :key="task.id" :value="task.id">{{ task.id }}</option>
+            <select v-model="advanceSearch.taskId" name="id" id="id"
+              class="outline-none w-full h-full xl:text-[10px] 2xl:text-[14px] cursor-pointer">
+              <option value="">All Tasks</option>
+              <option v-for="task in tasks" :key="task.id" :value="task.id">{{ task.id }}</option>
             </select>
           </div>
 
           <div
             class="hidden bg-table flex-none xl:flex flex-row items-center gap-[20px] w-full h-full xl:max-h-[50px] 2xl:max-h-[75px] xl:px-[20px] 2xl:px-[30px] xl:py-[13px] 2xl:py-[20px] justify-center xl:rounded-[33px] 2xl:rounded-[50px] xl:max-w-[217px] 2xl:max-w-[326px] cursor-pointer">
-            <select v-model="advanceSearch.status" name="status" id="status" class="outline-none w-full h-full xl:text-[10px] 2xl:text-[14px] cursor-pointer">
-      <option value="">All Status</option>
-                    <option v-for="status in uniqueStatuses" :key="status" :value="status">{{ getStatusLabel(status) }}</option>
+            <select v-model="advanceSearch.status" name="status" id="status"
+              class="outline-none w-full h-full xl:text-[10px] 2xl:text-[14px] cursor-pointer">
+              <option value="">All Status</option>
+              <option v-for="status in uniqueStatuses" :key="status" :value="status">{{ getStatusLabel(status) }}
+              </option>
             </select>
           </div>
 
           <div
             class="hidden bg-table flex-none xl:flex flex-row items-center gap-[20px] w-full h-full xl:max-h-[50px] 2xl:max-h-[75px] xl:px-[20px] 2xl:px-[30px] xl:py-[13px] 2xl:py-[20px] justify-center xl:rounded-[33px] 2xl:rounded-[50px] xl:max-w-[217px] 2xl:max-w-[326px] cursor-pointer">
-            <select v-model="advanceSearch.priority" name="priority" id="priority" class="outline-none w-full h-full xl:text-[10px] 2xl:text-[14px] cursor-pointer">
-   <option value="">All Priorities</option>
-                    <option v-for="priority in uniquePriorities" :key="priority" :value="priority">{{ priority }}</option>
+            <select v-model="advanceSearch.priority" name="priority" id="priority"
+              class="outline-none w-full h-full xl:text-[10px] 2xl:text-[14px] cursor-pointer">
+              <option value="">All Priorities</option>
+              <option v-for="priority in uniquePriorities" :key="priority" :value="priority">{{ priority }}</option>
             </select>
           </div>
 
           <div
             class="hidden bg-table flex-none xl:flex flex-row items-center gap-[20px] w-full h-full xl:max-h-[50px] 2xl:max-h-[75px] xl:px-[20px] 2xl:px-[30px] xl:py-[13px] 2xl:py-[20px] justify-center xl:rounded-[33px] 2xl:rounded-[50px] xl:max-w-[217px] 2xl:max-w-[326px] cursor-pointer">
-            <select v-model="advanceSearch.progress" name="progress" id="progress" class="outline-none w-full h-full xl:text-[10px] 2xl:text-[14px] cursor-pointer">
-                    <option value="">All Progress</option>
-                    <option value="0-25">0-25%</option>
-                    <option value="26-50">26-50%</option>
-                    <option value="51-75">51-75%</option>
-                    <option value="76-99">76-99%</option>
-                    <option value="100">100%</option>
+            <select v-model="advanceSearch.progress" name="progress" id="progress"
+              class="outline-none w-full h-full xl:text-[10px] 2xl:text-[14px] cursor-pointer">
+              <option value="">All Progress</option>
+              <option value="0-25">0-25%</option>
+              <option value="26-50">26-50%</option>
+              <option value="51-75">51-75%</option>
+              <option value="76-99">76-99%</option>
+              <option value="100">100%</option>
             </select>
           </div>
 
@@ -416,7 +421,7 @@
               <span class="title__main">Task Management</span>
               <p class="desc__main">Manage and track all maintenance tasks and assignments.</p>
             </div>
-                        <div class="flex flex-row items-center gap-[2.7vw] xl:gap-[13px] 2xl:gap-[20px]">
+            <div class="flex flex-row items-center gap-[2.7vw] xl:gap-[13px] 2xl:gap-[20px]">
               <FavoriteButton :show-tooltip="true" />
             </div>
           </div>
@@ -468,9 +473,12 @@
               <button
                 class="cursor-pointer px-[4.167vw] py-[2.778vw] rounded-[6.944vw] flex flex-row items-center justify-center gap-[2.778vw]"
                 style="background-color: var(--color-bgtable);">
-                  <svg class="w-[3vw] h-auto object-center object-cover shrink-0" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.77425 0.0710887C9.89275 0.118913 10.0006 0.189488 10.0917 0.278784C10.1828 0.36808 10.2553 0.474348 10.3051 0.59152C10.3548 0.708692 10.3809 0.834473 10.3819 0.961681C10.3828 1.08889 10.3585 1.21503 10.3104 1.33291L6.78045 10.0055C7.24004 10.1656 7.70741 10.4084 8.11766 10.7339C8.83171 11.3009 9.41334 12.1546 9.41334 13.2898C9.41334 13.9808 9.58341 14.5555 9.84176 15.0256C10.2546 15.7799 11.1608 16.0498 12.0255 16.0498C12.2837 16.0498 12.5314 16.1519 12.714 16.3335C12.8966 16.5152 12.9992 16.7615 12.9992 17.0184C12.9992 17.2753 12.8966 17.5217 12.714 17.7034C12.5314 17.885 12.2837 17.9871 12.0255 17.9871H11.9086V18H3.47117C2.11058 18 0.674697 17.0946 0.638346 15.5138C0.608485 14.1887 0.891508 12.6815 1.69643 11.5308C2.37153 10.566 3.38808 9.89053 4.77073 9.773L8.50715 0.604487C8.55522 0.486608 8.62616 0.379304 8.71593 0.288701C8.80569 0.198098 8.91251 0.125972 9.03029 0.076441C9.14808 0.0269098 9.27452 0.000943603 9.40239 2.52436e-05C9.53026 -0.000893116 9.65576 0.0232543 9.77425 0.0710887ZM17.6625 17.9871C17.9208 17.9871 18.1684 17.885 18.351 17.7034C18.5336 17.5217 18.6362 17.2753 18.6362 17.0184C18.6362 16.7615 18.5336 16.5152 18.351 16.3335C18.1684 16.1519 17.9208 16.0498 17.6625 16.0498H15.1608C14.9025 16.0498 14.6549 16.1519 14.4723 16.3335C14.2897 16.5152 14.1871 16.7615 14.1871 17.0184C14.1871 17.2753 14.2897 17.5217 14.4723 17.7034C14.6549 17.885 14.9025 17.9871 15.1608 17.9871H17.6625ZM17.4782 13.5029C17.4782 13.7598 17.3756 14.0062 17.193 14.1879C17.0104 14.3695 16.7627 14.4716 16.5045 14.4716H14.017C13.7588 14.4716 13.5111 14.3695 13.3285 14.1879C13.1459 14.0062 13.0433 13.7598 13.0433 13.5029C13.0433 13.246 13.1459 12.9996 13.3285 12.818C13.5111 12.6363 13.7588 12.5343 14.017 12.5343H16.5045C16.7627 12.5343 17.0104 12.6363 17.193 12.818C17.3756 12.9996 17.4782 13.246 17.4782 13.5029ZM15.1608 10.8256C15.419 10.8256 15.6667 10.7235 15.8493 10.5419C16.0319 10.3602 16.1345 10.1139 16.1345 9.85695C16.1345 9.60005 16.0319 9.35367 15.8493 9.17202C15.6667 8.99036 15.419 8.88831 15.1608 8.88831H12.672C12.4137 8.88831 12.1661 8.99036 11.9835 9.17202C11.8009 9.35367 11.6983 9.60005 11.6983 9.85695C11.6983 10.1139 11.8009 10.3602 11.9835 10.5419C12.1661 10.7235 12.4137 10.8256 12.672 10.8256H15.1608Z" fill="currentColor"/>
-                  </svg>
+                <svg class="w-[3vw] h-auto object-center object-cover shrink-0" viewBox="0 0 19 18" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M9.77425 0.0710887C9.89275 0.118913 10.0006 0.189488 10.0917 0.278784C10.1828 0.36808 10.2553 0.474348 10.3051 0.59152C10.3548 0.708692 10.3809 0.834473 10.3819 0.961681C10.3828 1.08889 10.3585 1.21503 10.3104 1.33291L6.78045 10.0055C7.24004 10.1656 7.70741 10.4084 8.11766 10.7339C8.83171 11.3009 9.41334 12.1546 9.41334 13.2898C9.41334 13.9808 9.58341 14.5555 9.84176 15.0256C10.2546 15.7799 11.1608 16.0498 12.0255 16.0498C12.2837 16.0498 12.5314 16.1519 12.714 16.3335C12.8966 16.5152 12.9992 16.7615 12.9992 17.0184C12.9992 17.2753 12.8966 17.5217 12.714 17.7034C12.5314 17.885 12.2837 17.9871 12.0255 17.9871H11.9086V18H3.47117C2.11058 18 0.674697 17.0946 0.638346 15.5138C0.608485 14.1887 0.891508 12.6815 1.69643 11.5308C2.37153 10.566 3.38808 9.89053 4.77073 9.773L8.50715 0.604487C8.55522 0.486608 8.62616 0.379304 8.71593 0.288701C8.80569 0.198098 8.91251 0.125972 9.03029 0.076441C9.14808 0.0269098 9.27452 0.000943603 9.40239 2.52436e-05C9.53026 -0.000893116 9.65576 0.0232543 9.77425 0.0710887ZM17.6625 17.9871C17.9208 17.9871 18.1684 17.885 18.351 17.7034C18.5336 17.5217 18.6362 17.2753 18.6362 17.0184C18.6362 16.7615 18.5336 16.5152 18.351 16.3335C18.1684 16.1519 17.9208 16.0498 17.6625 16.0498H15.1608C14.9025 16.0498 14.6549 16.1519 14.4723 16.3335C14.2897 16.5152 14.1871 16.7615 14.1871 17.0184C14.1871 17.2753 14.2897 17.5217 14.4723 17.7034C14.6549 17.885 14.9025 17.9871 15.1608 17.9871H17.6625ZM17.4782 13.5029C17.4782 13.7598 17.3756 14.0062 17.193 14.1879C17.0104 14.3695 16.7627 14.4716 16.5045 14.4716H14.017C13.7588 14.4716 13.5111 14.3695 13.3285 14.1879C13.1459 14.0062 13.0433 13.7598 13.0433 13.5029C13.0433 13.246 13.1459 12.9996 13.3285 12.818C13.5111 12.6363 13.7588 12.5343 14.017 12.5343H16.5045C16.7627 12.5343 17.0104 12.6363 17.193 12.818C17.3756 12.9996 17.4782 13.246 17.4782 13.5029ZM15.1608 10.8256C15.419 10.8256 15.6667 10.7235 15.8493 10.5419C16.0319 10.3602 16.1345 10.1139 16.1345 9.85695C16.1345 9.60005 16.0319 9.35367 15.8493 9.17202C15.6667 8.99036 15.419 8.88831 15.1608 8.88831H12.672C12.4137 8.88831 12.1661 8.99036 11.9835 9.17202C11.8009 9.35367 11.6983 9.60005 11.6983 9.85695C11.6983 10.1139 11.8009 10.3602 11.9835 10.5419C12.1661 10.7235 12.4137 10.8256 12.672 10.8256H15.1608Z"
+                    fill="currentColor" />
+                </svg>
                 <span class="text-[1.944vw]">Clear All Filters</span>
               </button>
 
@@ -497,9 +505,10 @@
 
             <div
               class="bg-table flex-none flex flex-row items-center w-full h-full max-h-[10.278vw] px-[4.167vw] py-[2.778vw] justify-center rounded-[6.944vw]  cursor-pointer mt-[1.389vw]">
-              <select v-model="advanceSearch.taskId" name="id" id="id" class="outline-none w-full h-full text-[1.944vw] cursor-pointer">
-                    <option value="">All Tasks</option>
-                    <option v-for="task in tasks" :key="task.id" :value="task.id">{{ task.id }}</option>
+              <select v-model="advanceSearch.taskId" name="id" id="id"
+                class="outline-none w-full h-full text-[1.944vw] cursor-pointer">
+                <option value="">All Tasks</option>
+                <option v-for="task in tasks" :key="task.id" :value="task.id">{{ task.id }}</option>
               </select>
             </div>
 
@@ -510,9 +519,11 @@
 
             <div
               class="bg-table flex-none flex flex-row items-center w-full h-full max-h-[10.278vw] px-[4.167vw] py-[2.778vw] justify-center rounded-[6.944vw]  cursor-pointer mt-[1.389vw]">
-              <select v-model="advanceSearch.status" name="status" id="status" class="outline-none w-full h-full text-[1.944vw] cursor-pointer">
-  <option value="">All Status</option>
-                    <option v-for="status in uniqueStatuses" :key="status" :value="status">{{ getStatusLabel(status) }}</option>
+              <select v-model="advanceSearch.status" name="status" id="status"
+                class="outline-none w-full h-full text-[1.944vw] cursor-pointer">
+                <option value="">All Status</option>
+                <option v-for="status in uniqueStatuses" :key="status" :value="status">{{ getStatusLabel(status) }}
+                </option>
               </select>
             </div>
 
@@ -523,9 +534,10 @@
 
             <div
               class="bg-table flex-none flex flex-row items-center w-full h-full max-h-[10.278vw] px-[4.167vw] py-[2.778vw] justify-center rounded-[6.944vw]  cursor-pointer mt-[1.389vw]">
-              <select v-model="advanceSearch.priority" name="priority" id="priority" class="outline-none w-full h-full text-[1.944vw] cursor-pointer">
- <option value="">All Priorities</option>
-                    <option v-for="priority in uniquePriorities" :key="priority" :value="priority">{{ priority }}</option>
+              <select v-model="advanceSearch.priority" name="priority" id="priority"
+                class="outline-none w-full h-full text-[1.944vw] cursor-pointer">
+                <option value="">All Priorities</option>
+                <option v-for="priority in uniquePriorities" :key="priority" :value="priority">{{ priority }}</option>
               </select>
             </div>
 
@@ -536,13 +548,14 @@
 
             <div
               class="bg-table flex-none flex flex-row items-center w-full h-full max-h-[10.278vw] px-[4.167vw] py-[2.778vw] justify-center rounded-[6.944vw]  cursor-pointer mt-[1.389vw]">
-              <select v-model="advanceSearch.progress" name="progress" id="progress" class="outline-none w-full h-full text-[1.944vw] cursor-pointer">
-                     <option value="">All Progress</option>
-                    <option value="0-25">0-25%</option>
-                    <option value="26-50">26-50%</option>
-                    <option value="51-75">51-75%</option>
-                    <option value="76-99">76-99%</option>
-                    <option value="100">100%</option>
+              <select v-model="advanceSearch.progress" name="progress" id="progress"
+                class="outline-none w-full h-full text-[1.944vw] cursor-pointer">
+                <option value="">All Progress</option>
+                <option value="0-25">0-25%</option>
+                <option value="26-50">26-50%</option>
+                <option value="51-75">51-75%</option>
+                <option value="76-99">76-99%</option>
+                <option value="100">100%</option>
               </select>
             </div>
 
@@ -588,7 +601,9 @@
               <span class="text-[3vw] xl:text-[10px] 2xl:text-[14px]">{{ task.id }}</span>
               <div class="flex flex-col gap-[1.5vw]">
                 <div class="background__icon__content">
-                  <svg width="16" height="14"  class="w-auto xl:h-[13px] 2xl:h-[18px] object-center object-contain shrink-0" viewBox="0 0 9 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="16" height="14"
+                    class="w-auto xl:h-[13px] 2xl:h-[18px] object-center object-contain shrink-0" viewBox="0 0 9 11"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
                     <mask id="mask0_132_2566" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0"
                       width="9" height="11">
                       <path
@@ -655,23 +670,24 @@
 
                   </div>
                   <span :class="getProgressStatus(task).class"
-                    class=" text-[3vw]  xl:text-[10px] 2xl:text-[14px] font-normal"
-                    style="color: var(--text-muted);">
+                    class=" text-[3vw]  xl:text-[10px] 2xl:text-[14px] font-normal" style="color: var(--text-muted);">
                     {{ getProgressStatus(task) }}
                   </span>
                   <span class="text-[3vw] font-medium">{{ task.assignedTo }}</span>
                   <div class="flex items-center justify-center">
-                                      <div class="flex justify-end items-center gap-2.5">
-                    <button class="container__action" :title="`View ${task.id}`">
-                      <MdiIcon :path="mdiEye" class="w-[5vw] h-[5vw] xl:w-3 xl:h-3 2xl:w-5 2xl:h-5" />
-                    </button>
-                    <button class="container__action" :title="`Edit ${task.id}`">
-                      <MdiIcon :path="mdiPencil" class="w-[5vw] h-[5vw] xl:w-3 xl:h-3 2xl:w-5 2xl:h-5" />
-                    </button>
-                    <button class="bg-red-100 p-[2vw] xl:p-[8px] 2xl:p-[15px] hover:bg-red-300 rounded-[50px] cursor-pointer text-red-800" :title="`Delete ${task.id}`">
-                      <MdiIcon :path="mdiDelete" class="w-[5vw] h-[5vw] xl:w-3 xl:h-3 2xl:w-5 2xl:h-5" />
-                    </button>
-                  </div>
+                    <div class="flex justify-end items-center gap-2.5">
+                      <button class="container__action" :title="`View ${task.id}`">
+                        <MdiIcon :path="mdiEye" class="w-[5vw] h-[5vw] xl:w-3 xl:h-3 2xl:w-5 2xl:h-5" />
+                      </button>
+                      <button class="container__action" :title="`Edit ${task.id}`">
+                        <MdiIcon :path="mdiPencil" class="w-[5vw] h-[5vw] xl:w-3 xl:h-3 2xl:w-5 2xl:h-5" />
+                      </button>
+                      <button
+                        class="bg-red-100 p-[2vw] xl:p-[8px] 2xl:p-[15px] hover:bg-red-300 rounded-[50px] cursor-pointer text-red-800"
+                        :title="`Delete ${task.id}`">
+                        <MdiIcon :path="mdiDelete" class="w-[5vw] h-[5vw] xl:w-3 xl:h-3 2xl:w-5 2xl:h-5" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
